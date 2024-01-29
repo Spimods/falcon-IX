@@ -1,0 +1,25 @@
+.box1 {
+    background-image: url(../images/pythonlv1.png);
+}
+.box1end {
+    background-image: url(../images/pythonlv1.png);
+}
+.box2 {
+    background-image: url(../images/pythonlv2.png);
+}
+.box2end {
+    background-image: url(../images/pythonlv2.png);
+}
+.box3 {
+    background-image: url(../images/pythonlv3.png);
+}
+.box3end {
+    background-image: url(../images/pythonlv3.png);
+}
+.text{
+    color: white;
+}
+.stack {
+    width: 1000px;
+    min-width: 1000px;
+}

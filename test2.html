@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f7f7f7;
+            color: #333;
+        }
+
+        .container {
+            position: relative;
+            height: 100vh;
+        }
+
+        .toggle-button {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            cursor: pointer;
+            z-index: 2;
+        }
+
+        .bulb {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            background-color: #f1c40f;
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(241, 196, 15, 0.8);
+        }
+
+        .menu {
+            position: fixed;
+            top: 0;
+            right: -375px;
+            width: 375px;
+            height: 100%;
+            background-color: #2c3e50;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            transition: 0.3s ease-out;
+            z-index: 1;
+            color: #ecf0f1;
+            overflow-y: auto;
+            padding-top: 60px;
+        }
+
+        .menu h2 {
+            margin: 20px 0 10px 20px;
+            font-size: 1.5em;
+            color: #ecf0f1;
+        }
+
+        .close-button {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            cursor: pointer;
+            font-size: 20px;
+            color: #ecf0f1;
+        }
+
+        .menu ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            margin-bottom: 50px; 
+        }
+
+        .menu li {
+            position: relative;
+            padding: 15px 20px;
+            cursor: pointer;
+            border-bottom: 1px solid #34495e;
+            transition: background-color 0.3s;
+            font-size: 1.2em;
+        }
+
+        .menu li:hover {
+            background-color: #34495e;
+        }
+
+        .info-dropdown {
+            width: 100%;
+            margin-left: -10px;
+            margin-top: 10px;
+            display: none;
+            background-color: #333;
+            color: #ecf0f1;
+            padding: 10px;
+            position: relative;
+            top: -1px;
+            z-index: 1;
+            overflow: hidden;
+            max-height: 0;
+        }
+
+        .menu li.info-shown .info-dropdown {
+            display: block;
+            max-height: 300px;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        pre {
+            background-color: #f9f9f9;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+
+        code {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 1em;
+            color: #333;
+        }
+
+        .parentheses {
+            color: white;
+        }
+
+        .function-fonction {
+            color: #66d9ef;
+        }
+        .texte-code {
+            color: #e6db74;
+        }
+        code {
+            font-size: 12px;
+        }
+    </style>
+    <title>Menu Indice Python</title>
+</head>
+<body>
+
+<div class="container">
+    <div class="toggle-button" onclick="toggleMenu()">
+        <span class="bulb"></span>
+    </div>
+    <div class="menu" id="menu">
+        <span class="close-button" onclick="closeMenu()">&times;</span>
+        <h2 style="text-align: center;">Indices</h2>
+        <ul>
+            <li onclick="toggleInfo('print()', this)">
+                <span class="function-fonction">print</span><span class="parentheses">( )</span>
+                <div class="info-dropdown" id="infoDropdownPrint" onclick="preventDropdownClick(event)">
+                    <p>La fonction print est utilisée pour afficher du texte à la console. Par exemple:
+                        <code>print<span class="parentheses">(</span><span class="texte-code">"Bonjour, comment ça va?"</span><span class="parentheses">)</span></code>
+                </div>
+            </li>
+
+            <li onclick="toggleInfo('input()', this)">
+                <span class="function-fonction">input</span><span class="parentheses">( )</span>
+                <div class="info-dropdown" id="infoDropdownInput" onclick="preventDropdownClick(event)">
+                    <p>Ceci est un exemple de <span class="function-fonction">définition de fonction</span> avec la fonction <code>input()</code>.</p>
+                </div>
+            </li>
+
+            <li onclick="toggleInfo('newFunction1()', this)">
+                <span class="function-fonction">len</span><span class="parentheses">( )</span>
+                <div class="info-dropdown" id="infoDropdownNew1" onclick="preventDropdownClick(event)">
+                    <p>La fonction <span class="function-fonction">len</span>( ) renvoie la longueur d'un objet, comme une chaîne de caractères ou une liste. Par exemple :<br><code> mot = "Python" <br>longueur = <span class='function-fonction'>len</span><span class='parentheses'>(mot)</span><br><span class='function-fonction'>print</span><span class='parentheses'>(<span class='texte-code'>'La longueur du mot est :"</span>, longueur)</span></code></p>
+                </div>
+            </li>
+
+            <li onclick="toggleInfo('newFunction2()', this)">
+                <span class="function-fonction">range</span><span class="parentheses">( )</span>
+                <div class="info-dropdown" id="infoDropdownNew2" onclick="preventDropdownClick(event)">
+                    <p>La fonction <span class="function-fonction">range</span>( ) génère une séquence d'entiers. Par exemple :<br><code> <span style="color : #003dd8">for</span> <span class='parentheses'>i</span> <span style="color : #003dd8">in</span> <span class='function-fonction'>range</span><span class='parentheses'>(<span style="color : #e90000;">5</span>):</span> print(i) <br>longueur = <span class='function-fonction'>len</span><span class='parentheses'>(mot)</span><br><span class='function-fonction'>print</span><span class='parentheses'>(<span class='texte-code'>'La longueur du mot est :"</span>, longueur)</span></code></p>
+                </div>
+            </li>
+
+            <li onclick="toggleInfo('newFunction3()', this)">
+                <span class="function-fonction">Les listes</span>
+                <div class="info-dropdown" id="infoDropdownNew3" onclick="preventDropdownClick(event)">
+                    <p>Les listes sont des structures de données importantes. Voici un exemple de création et d'accès à une liste :<br><code><span class='parentheses'>ma_liste = [<span style="color : #ae81ff">1</span>, <span style="color : #ae81ff">2</span>, <span style="color : #ae81ff">3</span>, <span style="color : #ae81ff">4</span>, <span style="color : #ae81ff">5</span>]</span><br><span class='function-fonction'>range</span><span class='parentheses'>(<span style="color : #e90000;">5</span>):</span> print(i) <br>longueur = <span class='function-fonction'>len</span><span class='parentheses'>(mot)</span><br><span class='function-fonction'>print</span><span class='parentheses'>(<span class='texte-code'>'La longueur du mot est :"</span>, longueur)</span></code></p>
+                </div>
+            </li>
+
+            <li onclick="toggleInfo('newFunction4()', this)">
+                <span class="function-fonction">Condition If</span>
+                <div class="info-dropdown" id="infoDropdownNew4" onclick="preventDropdownClick(event)">
+                    <p>La structure <span class="function-fonction">if</span> est utilisée pour prendre des décisions conditionnelles. Par exemple :<br><code><span class="parentheses">age = <span style="color : #ae81ff">18</span><br><span style="color : #003dd8">if</span> age</span> >= <span style="color : #ae81ff">18</span>: <br><span class="function-fonction">print</span><span class="parentheses">(</span><span class='texte-code'>'Vous êtes majeur.'</span><span class="parentheses">)</span><br><span style="color : #003dd8">else</span>:<br><span class="function-fonction">print</span><span class="parentheses">(</span><span class='texte-code'>'Vous êtes mineur.'</span><span class="parentheses">)</span></span></code><p>
+                </div>
+            </li>
+
+            <li onclick="toggleInfo('newFunction5()', this)">
+                <span class="function-fonction">Le for</span>
+                <div class="info-dropdown" id="infoDropdownNew5" onclick="preventDropdownClick(event)">
+                    <p>Les boucles for sont utilisées pour répéter des blocs de code. Voici un exemple de boucle for :<br><code><span class="parentheses"><span style="color : #003dd8">for</span> i <span style="color : #003dd8">in</span> <span class="function-fonction">range</span>(<span style="color : #e90000">3</span>):<br>&emsp;&ensp;<span class="function-fonction">print</span>(<span class='texte-code'>"Répétition numéro"</span>, i+<span style="color : #ae81ff">1</span>)</span></code></p>
+                </div>
+            </li>
+
+            <li onclick="toggleInfo('newFunction6()', this)">
+                <span class="function-fonction">Le while</span>
+                <div class="info-dropdown" id="infoDropdownNew6" onclick="preventDropdownClick(event)">
+                    <p>La boucle <span class='function-fonction'>while</span> permet d'exécuter un bloc de code tant qu'une condition est vraie. Voici une structure générale :<br><code><span class='parentheses'>compteur = 0<br><span style='color : #003dd8'>while</span> compteur < <span style='color : #ae81ff'>3</span>:<br>&emsp;&ensp;<span class='function-fonction'>print</span>(<span class='texte-code'>'Répétition numéro'</span>, compteur+<span style='color : #ae81ff'>1</span>)<br>&emsp;&ensp;compteur += <span style='color : #ae81ff'>1</span></span></code></p>
+                </div>
+            </li>
+
+        </ul>
+    </div>
+</div>
+
+<script>
+    function toggleMenu() {
+        var menu = document.getElementById("menu");
+        menu.style.right = (menu.style.right === "0px") ? "-375px" : "0";
+    }
+
+    function closeMenu() {
+        document.getElementById("menu").style.right = "-400px";
+    }
+
+    function showInfo(topic, element) {
+        var infoDropdown;
+        switch (topic) {
+            case 'print()':
+                infoDropdown = document.getElementById("infoDropdownPrint");
+                infoDropdown.innerHTML = "La fonction <span class='function-fonction'>print</span><span class='parentheses'>( )</span> est utilisée pour afficher du texte à la console. Par exemple :<br><code><span class='function-fonction'>print</span><span class='parentheses'>(</span><span class='texte-code'>'Bonjour, comment ça va?'</span><span class='parentheses'>)</span></code></p>";
+                break;
+            case 'input()':
+                infoDropdown = document.getElementById("infoDropdownInput");
+                infoDropdown.innerHTML = "La fonction <span class='function-fonction'>input</span><span class='parentheses'>( )</span> permet de recevoir des entrées de l'utilisateur. Voici un exemple simple : <br><code><span class='parentheses'>nom_utilisateur = </span><span class='function-fonction'>input</span><span class='parentheses'>(</span><span class='texte-code'>'Entrez votre nom : '</span><span class='parentheses'>)</span><br><span class='function-fonction'>print</span><span class='parentheses'>(</span><span class='texte-code'>'Bonjour'</span><span class='parentheses'>, nom_utilisateur)</span></code></p>";
+                break;
+            // Ajout des nouvelles fonctions
+            case 'newFunction1()':
+                infoDropdown = document.getElementById("infoDropdownNew1");
+                infoDropdown.innerHTML = "<p>La fonction <span class='function-fonction'>len</span>( ) renvoie la longueur d'un objet. Par exemple :<br><code><span class='parentheses'> mot = <span class='texte-code'>'Python'</span> <br>longueur = </span><span class='function-fonction'>len</span><span class='parentheses'>(mot)</span><br><span class='function-fonction'>print</span><span class='parentheses'>(<span class='texte-code'>'La longueur du mot est :'</span>, longueur)</span></code></p>";
+                break;
+            case 'newFunction2()':
+                infoDropdown = document.getElementById("infoDropdownNew2");
+                infoDropdown.innerHTML = "<p>La fonction <span class='function-fonction'>range</span>( ) génère une séquence d'entiers. Par exemple :<br><code> <span style='color : #003dd8'>for</span> <span class='parentheses'>i</span> <span style='color : #003dd8'>in</span> <span class='function-fonction'>range</span><span class='parentheses'>(<span style='color : #e90000;'>5</span>):</span> <br></span>&emsp;&ensp;<span class='function-fonction'>print</span><span class='parentheses'>(<span class='texte-code'>'Répétition numéro '</span>, i+1)</span></code></p>";
+                break;
+            case 'newFunction3()':
+                infoDropdown = document.getElementById("infoDropdownNew3");
+                infoDropdown.innerHTML = "<p>Les listes sont des structures de données importantes. Voici un exemple :<br><code><span class='parentheses'>ma_liste = [<span style='color : #ae81ff'>1</span>, <span style='color : #ae81ff'>2</span>, <span style='color : #ae81ff'>3</span>, <span style='color : #ae81ff'>4</span>, <span style='color : #ae81ff'>5</span>]</span><br><span class='function-fonction'>print</span><span class='parentheses'>(ma_liste[<span style='color : #ae81ff;'>2</span>])</span><code></p>";
+                break;
+            case 'newFunction4()':
+                infoDropdown = document.getElementById("infoDropdownNew4");
+                infoDropdown.innerHTML = "<p>La structure <span class='function-fonction'>if</span> est utilisée pour prendre des décisions. Par exemple :<br><code><span class='parentheses'>age = <span style='color : #ae81ff'>18</span><br><span style='color : #003dd8'>if</span> age >= <span style='color : #ae81ff'>18</span>:  <br><span class='function-fonction'>&emsp;&ensp;print</span><span class='parentheses'>(</span><span class='texte-code'>'Vous êtes majeur.'</span><span class='parentheses'>)</span><br><span style='color : #003dd8'>else</span>:<br>&emsp;&ensp;<span class='function-fonction'>print</span><span class='parentheses'>(</span><span class='texte-code'>'Vous êtes mineur.'</span><span class='parentheses'>)</span></span></span></code><p>";
+                break;
+            case 'newFunction5()':
+                infoDropdown = document.getElementById("infoDropdownNew5");
+                infoDropdown.innerHTML = "<p>Les boucles for sont utilisées pour répéter des blocs de code. Voici un exemple de boucle for :<br><code><span class='parentheses'><span style='color : #003dd8'>for</span> i <span style='color : #003dd8'>in</span> <span class='function-fonction'>range</span>(<span style='color : #e90000'>3</span>):<br>&emsp;&ensp;<span class='function-fonction'>print</span>(<span class='texte-code'>'Répétition numéro'</span>, i+<span style='color : #ae81ff'>1</span>)</span></code></p>";
+                break;
+            case 'newFunction6()':
+                infoDropdown = document.getElementById("infoDropdownNew6");
+                infoDropdown.innerHTML = "<p>La boucle <span class='function-fonction'>while</span> permet d'exécuter un bloc de code tant qu'une condition est vraie. Voici une structure :<br><code><span class='parentheses'>compteur = <span style='color : #ae81ff'>0</span><br><span style='color : #003dd8'>while</span> compteur < <span style='color : #ae81ff'>3</span>:<br>&emsp;&ensp;<span class='function-fonction'>print</span>(<span class='texte-code'>'Répétition numéro'</span>, compteur +<span style='color : #ae81ff'>1</span>)<br>&emsp;&ensp;compteur += <span style='color : #ae81ff'>1</span></span></code></p>";
+                break;
+        }
+        infoDropdown.style.maxHeight = "300px"; 
+        element.classList.add('info-shown');
+    }
+
+    function toggleInfo(topic, element) {
+        var infoDropdown = element.querySelector('.info-dropdown');
+        if (infoDropdown.style.maxHeight === '300px') {
+            infoDropdown.style.maxHeight = '0';
+            element.classList.remove('info-shown');
+        } else {
+            showInfo(topic, element);
+        }
+    }
+
+    function preventDropdownClick(event) {
+        event.stopPropagation();
+    }
+</script>
+</body>
+</html>

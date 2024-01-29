@@ -108,9 +108,18 @@ if (isset($_SESSION['ctfcookies'])) {
                 $val22 = (int)$matches2[2];
                 $val32 = (int)$matches2[3];
             }
-            $heure = $val1 + $val12;
-            $min = $val2 + $val22;
-            $sec = $val3 + $val32;
+            $heure = $val1 + $val12 + $heure;
+            $min = $val2 + $val22 + $minute;
+            $sec = $val3 + $val32 + $seconde;
+            if ($sec > 60){
+                $sec = $sec - 60;
+                $min = $min + 1;
+            }
+            if ($min > 60){
+                $min = $min - 60;
+                $heure = $heure + 1;
+            }
+
         }
         $time = $heure."h ".$min."min ".$sec."sec";
         $requete3->close();

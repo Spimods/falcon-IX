@@ -42,11 +42,92 @@ if (isset($_SESSION['ctfcookies'])) {
     <title>Pair ou impair ?</title>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/3.0.1/js.cookie.min.js"></script>
-    <link rel="stylesheet" href="editor.css">
-    <link rel="stylesheet" href="select.css">
+    <link rel="stylesheet" href="../css/editor.css">
+    <link rel="stylesheet" href="../css/select.css">
 
 </head>
 <body>
+<div class="container">
+    <div class="toggle-button" onclick="toggleMenu()">
+        <div class="area">
+            <div class="wire"></div>
+            <div class="fixture">
+              <div class="strip"></div>
+              <div class="strip"></div>
+              <div class="strip"></div>
+            </div>
+            <div class="bulb">
+              <div class="zig"></div>
+              <div class="zig"></div>
+              <div class="zig"></div>
+            </div>
+          </div>    </div>
+    
+    
+    <div class="menu" id="menu">
+        <h2 style="text-align: center;">Indices</h2>
+        <ul>
+            <li onclick="toggleInfo('print()', this)">
+                <span class="function-fonction">print</span><span class="parentheses">( )</span>
+                <div class="info-dropdown" id="infoDropdownPrint" onclick="preventDropdownClick(event)">
+                    <p>La fonction print est utilisée pour afficher du texte à la console. Par exemple:
+                        <code>print<span class="parentheses">(</span><span class="texte-code">"Bonjour, comment ça va?"</span><span class="parentheses">)</span></code>
+                </div>
+            </li>
+
+            <li onclick="toggleInfo('input()', this)">
+                <span class="function-fonction">input</span><span class="parentheses">( )</span>
+                <div class="info-dropdown" id="infoDropdownInput" onclick="preventDropdownClick(event)">
+                    <p>Ceci est un exemple de <span class="function-fonction">définition de fonction</span> avec la fonction <code>input()</code>.</p>
+                </div>
+            </li>
+
+            <li onclick="toggleInfo('newFunction1()', this)">
+                <span class="function-fonction">len</span><span class="parentheses">( )</span>
+                <div class="info-dropdown" id="infoDropdownNew1" onclick="preventDropdownClick(event)">
+                    <p>La fonction <span class="function-fonction">len</span>( ) renvoie la longueur d'un objet, comme une chaîne de caractères ou une liste. Par exemple :<br><code> mot = "Python" <br>longueur = <span class='function-fonction'>len</span><span class='parentheses'>(mot)</span><br><span class='function-fonction'>print</span><span class='parentheses'>(<span class='texte-code'>'La longueur du mot est :"</span>, longueur)</span></code></p>
+                </div>
+            </li>
+
+            <li onclick="toggleInfo('newFunction2()', this)">
+                <span class="function-fonction">range</span><span class="parentheses">( )</span>
+                <div class="info-dropdown" id="infoDropdownNew2" onclick="preventDropdownClick(event)">
+                    <p>La fonction <span class="function-fonction">range</span>( ) génère une séquence d'entiers. Par exemple :<br><code> <span style="color : #003dd8">for</span> <span class='parentheses'>i</span> <span style="color : #003dd8">in</span> <span class='function-fonction'>range</span><span class='parentheses'>(<span style="color : #e90000;">5</span>):</span> print(i) <br>longueur = <span class='function-fonction'>len</span><span class='parentheses'>(mot)</span><br><span class='function-fonction'>print</span><span class='parentheses'>(<span class='texte-code'>'La longueur du mot est :"</span>, longueur)</span></code></p>
+                </div>
+            </li>
+
+            <li onclick="toggleInfo('newFunction3()', this)">
+                <span class="function-fonction">Les listes</span>
+                <div class="info-dropdown" id="infoDropdownNew3" onclick="preventDropdownClick(event)">
+                    <p>Les listes sont des structures de données importantes. Voici un exemple de création et d'accès à une liste :<br><code><span class='parentheses'>ma_liste = [<span style="color : #ae81ff">1</span>, <span style="color : #ae81ff">2</span>, <span style="color : #ae81ff">3</span>, <span style="color : #ae81ff">4</span>, <span style="color : #ae81ff">5</span>]</span><br><span class='function-fonction'>range</span><span class='parentheses'>(<span style="color : #e90000;">5</span>):</span> print(i) <br>longueur = <span class='function-fonction'>len</span><span class='parentheses'>(mot)</span><br><span class='function-fonction'>print</span><span class='parentheses'>(<span class='texte-code'>'La longueur du mot est :"</span>, longueur)</span></code></p>
+                </div>
+            </li>
+
+            <li onclick="toggleInfo('newFunction4()', this)">
+                <span class="function-fonction">Condition If</span>
+                <div class="info-dropdown" id="infoDropdownNew4" onclick="preventDropdownClick(event)">
+                    <p>La structure <span class="function-fonction">if</span> est utilisée pour prendre des décisions conditionnelles. Par exemple :<br><code><span class="parentheses">age = <span style="color : #ae81ff">18</span><br><span style="color : #003dd8">if</span> age</span> >= <span style="color : #ae81ff">18</span>: <br><span class="function-fonction">print</span><span class="parentheses">(</span><span class='texte-code'>'Vous êtes majeur.'</span><span class="parentheses">)</span><br><span style="color : #003dd8">else</span>:<br><span class="function-fonction">print</span><span class="parentheses">(</span><span class='texte-code'>'Vous êtes mineur.'</span><span class="parentheses">)</span></span></code><p>
+                </div>
+            </li>
+
+            <li onclick="toggleInfo('newFunction5()', this)">
+                <span class="function-fonction">Le for</span>
+                <div class="info-dropdown" id="infoDropdownNew5" onclick="preventDropdownClick(event)">
+                    <p>Les boucles for sont utilisées pour répéter des blocs de code. Voici un exemple de boucle for :<br><code><span class="parentheses"><span style="color : #003dd8">for</span> i <span style="color : #003dd8">in</span> <span class="function-fonction">range</span>(<span style="color : #e90000">3</span>):<br>&emsp;&ensp;<span class="function-fonction">print</span>(<span class='texte-code'>"Répétition numéro"</span>, i+<span style="color : #ae81ff">1</span>)</span></code></p>
+                </div>
+            </li>
+
+            <li onclick="toggleInfo('newFunction6()', this)">
+                <span class="function-fonction">Le while</span>
+                <div class="info-dropdown" id="infoDropdownNew6" onclick="preventDropdownClick(event)">
+                    <p>La boucle <span class='function-fonction'>while</span> permet d'exécuter un bloc de code tant qu'une condition est vraie. Voici une structure générale :<br><code><span class='parentheses'>compteur = 0<br><span style='color : #003dd8'>while</span> compteur < <span style='color : #ae81ff'>3</span>:<br>&emsp;&ensp;<span class='function-fonction'>print</span>(<span class='texte-code'>'Répétition numéro'</span>, compteur+<span style='color : #ae81ff'>1</span>)<br>&emsp;&ensp;compteur += <span style='color : #ae81ff'>1</span></span></code></p>
+                </div>
+            </li>
+
+        </ul>
+    </div>
+</div>
+
 <div class="loading-bar">
     <div class="progress" id="progress"></div>
     <div class="time" id="time">0:00</div>
@@ -95,7 +176,7 @@ window.onload = function() {
         }
     }
     function redirect(){
-        window.location.href = "http://localhost/ctf/python/save4.php?code=" + encodeURIComponent(ace.edit("editor").getValue());
+        window.location.href = "http://localhost/ctf/python/save7.php?code=" + encodeURIComponent(ace.edit("editor").getValue());
     }
     function restart(){
         editor.setValue(decodeURIComponent(`nombre_a_trouver = int(input())
@@ -280,6 +361,7 @@ def input(val = " " ):
 
 </script>
 </body>
-<script src="timer.js"></script>
+<script src="../js/timer.js"></script>
+<script src="../js/menu.js"></script>
 
 </html>

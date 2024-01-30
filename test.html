@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logo Animé 3D</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+        }
+
+        .scene {
+            perspective: 800px; /* Ajustez la perspective selon vos besoins */
+        }
+
+        .logo-container {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%) rotateX(45deg); /* Ajustez l'angle initial selon vos besoins */
+            transform-style: preserve-3d;
+            animation: rotateLogo 5s linear infinite; /* Ajustez la durée de l'animation selon vos besoins */
+        }
+
+        #logo {
+            width: 100px; /* Ajustez la taille selon vos besoins */
+            height: 100px;
+        }
+
+        @keyframes rotateLogo {
+            from {
+                transform: translateX(-50%) translateY(0) rotateX(45deg) rotateZ(0deg);
+            }
+            to {
+                transform: translateX(-50%) translateY(-50%) rotateX(45deg) rotateZ(360deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="scene">
+        <div class="logo-container">
+            <img src="images/logoarr.png" alt="Logo" id="logo">
+        </div>
+    </div>
+    <script>
+        // Vous pouvez ajouter du JavaScript ici si nécessaire, par exemple, pour interagir avec le logo pendant l'animation.
+    </script>
+</body>
+</html>

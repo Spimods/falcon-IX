@@ -137,14 +137,22 @@ if (isset($_SESSION['ctfcookies'])) {
 <div id="editor-container">
 <button id="restart" onclick="restart()"><svg xmlns="http://www.w3.org/2000/svg" class="bi bi-arrow-counterclockwise" viewBox="0 0 16 16"> <path fill-rule="evenodd" d="M8 3a5 5 0 1 1-4.546 2.914.5.5 0 0 0-.908-.417A6 6 0 1 0 8 2v1z"/> <path d="M8 4.466V.534a.25.25 0 0 0-.41-.192L5.23 2.308a.25.25 0 0 0 0 .384l2.36 1.966A.25.25 0 0 0 8 4.466z"/> </svg></button>
 
-    <div id="editor">#la valeur du input est le maximum possible 
-max = int(input())
+    <div id="editor"># Demander à l'utilisateur de saisir une chaîne
+user_input = input("Entrez un str : ")
+
+def palindrome(s):
+    # Convertir en chaîne pour faciliter la manipulation
+    clean_s = ''.join(s.split()).lower()
+    ...
 </div>
         <div id="tooltip">
             <p>Consignes :</p>
             <ul>
-                <li>Écrivez un programme en Python qui imprime les premiers nombres pairs.</li>
-                <li>Sur une seule ligne.</li>
+                <li>Écrivez un programme en Python qui demande à l'utilisateur de saisir un nombre.</li>
+                <li>Le programme devrait ensuite déterminer si le nombre est un palindrome.</li>
+                <li>Un palindrome est un nombre qui reste le même lorsqu'on lit ses chiffres de gauche à droite ou de droite à gauche.</li>
+
+
             </ul>
         </div>
     </div>
@@ -173,8 +181,13 @@ window.onload = function() {
         window.location.href = "http://localhost/ctf/python/save8.php?code=" + encodeURIComponent(ace.edit("editor").getValue());
     }
     function restart(){
-        editor.setValue(decodeURIComponent(`#la valeur du input est le maximum possible 
-max = int(input())
+        editor.setValue(decodeURIComponent(`# Demander à l'utilisateur de saisir une chaîne
+user_input = input("Entrez un str : ")
+
+def palindrome(s):
+    # Convertir en chaîne pour faciliter la manipulation
+    clean_s = ''.join(s.split()).lower()
+    ...
 `), 1);
 
     }
@@ -238,9 +251,9 @@ def input(val = " " ):
     global values
     val = None
     if ipos==0:
-        lines = data.split("e")
+        lines = data.split("  ")
         for line in lines:
-            vl = [e for e in line.split(' ') if e!='']
+            vl = [e for e in line.split('     ') if e!='']
             values += vl
     if ipos < len(values):
         val = values[ipos]
@@ -265,12 +278,12 @@ def input(val = " " ):
             document.getElementById("svgtroisno").style.display = "none";
             document.getElementById("svgdeuxno").style.display = "none";
 
-            if (result2 == '<?php echo $result2 ?>'){
+            if (result2 == "<?php echo $result2 ?>"){
                 document.getElementById("svgdeux").style.display = "initial";
                 document.getElementById("svgdeuxno").style.display = "none";
                 document.getElementById("svgunno").style.display = "none";
 
-                if (result3 == '<?php echo $result3 ?>'){
+                if (result3 == "<?php echo $result3 ?>"){
                     document.getElementById("validButton").style.display = "block";
                     
                     document.getElementById("svgtrois").style.display = "initial";

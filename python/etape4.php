@@ -138,13 +138,7 @@ if (isset($_SESSION['ctfcookies'])) {
 <div id="editor-container">
 <button id="restart" onclick="restart()"><svg xmlns="http://www.w3.org/2000/svg" class="bi bi-arrow-counterclockwise" viewBox="0 0 16 16"> <path fill-rule="evenodd" d="M8 3a5 5 0 1 1-4.546 2.914.5.5 0 0 0-.908-.417A6 6 0 1 0 8 2v1z"/> <path d="M8 4.466V.534a.25.25 0 0 0-.41-.192L5.23 2.308a.25.25 0 0 0 0 .384l2.36 1.966A.25.25 0 0 0 8 4.466z"/> </svg></button>
 
-    <div id="editor">nombre_a_trouver = int(input())
-liste = eval(input())
-
-def present(nombre_a_trouver, liste):
-    ...
-    
-print(present(nombre_a_trouver, liste))
+<div id="editor">
 
 </div>
         <div id="tooltip">
@@ -179,13 +173,7 @@ window.onload = function() {
         window.location.href = "http://localhost/ctf/python/save4.php?code=" + encodeURIComponent(ace.edit("editor").getValue());
     }
     function restart(){
-        editor.setValue(decodeURIComponent(`nombre_a_trouver = int(input())
-liste = eval(input())
-
-def present(nombre_a_trouver, liste):
-    ...
-    
-print(present(nombre_a_trouver, liste))
+        editor.setValue(decodeURIComponent(`
 `), 1);
 
     }

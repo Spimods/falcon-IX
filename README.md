@@ -51,11 +51,11 @@ Des épreuves impliquant l'utilisation stratégique des médias sociaux seront p
 
 ## 5. Améliorations possibles <a name="améliorations-possibles"></a>
 
-1. **Interface Utilisateur**: Optimisez davantage l'interface utilisateur des défis web pour offrir une expérience utilisateur exceptionnelle.
-2. **Documentation**: Fournissez une documentation exhaustive pour chaque défi, clarifiant les attentes et offrant des conseils supplémentaires.
+1. **Interface Utilisateur**: Optimiser davantage l'interface utilisateur des défis web pour offrir une expérience utilisateur maximale.
+2. **Documentation**: Fournir une documentation pour chaque défi, clarifiant les attentes et offrant des conseils supplémentaires.
 3. **Réseaux sociaux interactifs**: Intégrez davantage les réseaux sociaux dans les défis pour une expérience immersive.
-4. **Événement en temps réel**: Explorez la possibilité d'organiser des sessions en temps réel pour accroître l'interaction entre les participants.
+4. **Événement en temps réel**: Explorer la possibilité d'organiser des sessions en temps réel pour accroître l'interaction entre les participants.
 
 ## 6. Remerciements <a name="remerciements"></a>
 
-Un grand merci à tous les participants et aux contributeurs qui font d'OZANAM CYBERQUEST une expérience exceptionnelle. Rejoignez-nous dans cette aventure unique où le savoir, la créativité, et la collaboration sont célébrés. Bonne chance à tous les participants d'OZANAM CYBERQUEST!
+Un grand merci à tous les participants et aux contributeurs qui font d'OZANAM CYBERQUEST une expérience exceptionnelle. Rejoignez-nous dans cette aventure unique. Bonne chance à tous les participants d'OZANAM CYBERQUEST!

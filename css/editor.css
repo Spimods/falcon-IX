@@ -40,7 +40,8 @@ body {
 #editor-container {
     display: flex;
     width: 80%;
-    margin-bottom: 80px;
+    top: 20px;
+    position: fixed;
 }
 
 #editor {
@@ -90,9 +91,10 @@ body {
 
 #output {
     border-radius: 10px;
-    width: 64.9%;
+    width: 51.9%;
+    top: 60.7%;
+    position: fixed;
     height: 150px;
-    margin-top: -60px;
     padding: 10px;
     border: 1px solid #333;
     white-space: pre-wrap;

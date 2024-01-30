@@ -48,15 +48,15 @@ if (isset($_SESSION['ctfcookies'])) {
         $seconde = 60 + $seconde;
     }
 
-    if ($minute < 2.5) {
+    if ($minute < 4) {
         $notetime = 0;
-    } elseif ($minute <= 5) {
+    } elseif ($minute <= 7) {
         $notetime = 1;
-    } elseif ($minute <= 7.5) {
+    } elseif ($minute <= 8) {
         $notetime = 2;
-    } elseif ($minute <= 10) {
+    } elseif ($minute <= 9) {
         $notetime = 3;
-    } elseif ($minute <= 12.5) {
+    } elseif ($minute <= 13) {
         $notetime = 4;
     } elseif ($minute <= 15) {
         $notetime = 5;
@@ -82,7 +82,7 @@ if (isset($_SESSION['ctfcookies'])) {
     $note = max(0, min(10, $note));
 
 
-    if ($nombre_de_lignes <= 5 and $notetime < 9){
+    if ($nombre_de_lignes <= 7 and $notetime < 9){
         $note = 10;
         $nombre_de_lignes = 0;
         $nombre_de_caracteres = 0;

@@ -138,9 +138,9 @@ if (isset($_SESSION['ctfcookies'])) {
 <div id="editor-container">
 <button id="restart" onclick="restart()"><svg xmlns="http://www.w3.org/2000/svg" class="bi bi-arrow-counterclockwise" viewBox="0 0 16 16"> <path fill-rule="evenodd" d="M8 3a5 5 0 1 1-4.546 2.914.5.5 0 0 0-.908-.417A6 6 0 1 0 8 2v1z"/> <path d="M8 4.466V.534a.25.25 0 0 0-.41-.192L5.23 2.308a.25.25 0 0 0 0 .384l2.36 1.966A.25.25 0 0 0 8 4.466z"/> </svg></button>
 
-    <div id="editor">nombre1 = int(input("Entrez un nombre : "))
-nombre2 = int(input("Entrez un nombre : "))
-nombre3 = int(input("Entrez un nombre : "))
+    <div id="editor">chaine = str(input())
+def inverser(chaine):
+
 </div>
         <div id="tooltip">
             <p>Consignes :</p>
@@ -175,9 +175,9 @@ window.onload = function() {
         window.location.href = "http://localhost/ctf/python/save9.php?code=" + encodeURIComponent(ace.edit("editor").getValue());
     }
     function restart(){
-        editor.setValue(decodeURIComponent(`nombre1 = int(input("Entrez un nombre : "))
-nombre2 = int(input("Entrez un nombre : "))
-nombre3 = int(input("Entrez un nombre : "))
+        editor.setValue(decodeURIComponent(`chaine = str(input())
+def inverser(chaine):
+    
 `), 1);
 
     }
@@ -241,9 +241,9 @@ def input(val = " " ):
     global values
     val = None
     if ipos==0:
-        lines = data.split("e")
+        lines = data.split("  ")
         for line in lines:
-            vl = [e for e in line.split(' ') if e!='']
+            vl = [e for e in line.split('  ') if e!='']
             values += vl
     if ipos < len(values):
         val = values[ipos]
@@ -353,7 +353,6 @@ def input(val = " " ):
 
 </script>
 
-<script src="../js/timer.js"></script>
 <script src="../js/menu.js"></script>
 
 </body>

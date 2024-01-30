@@ -1,6 +1,5 @@
 ﻿# falcon-V
-# OZANAM CYBERQUEST
-<img src="https://spimods.github.io/falcon-V/images/logo.jpg" alt="Logo du concours" style="border-radius: 2em;" width="150" height="150">
+# OZANAM CYBERQUEST <img src="https://spimods.github.io/falcon-V/images/logo.jpg" alt="Logo du concours" width="150" height="150" data-canonical-src="https://spimods.github.io/falcon-V/images/logo.jpg" style="max-width: 100%;border-radius: 2em;">
 
 ## Sommaire
 

@@ -38,7 +38,7 @@ if (isset($_SESSION['ctfcookies'])) {
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title> </title>
+    <title>Le premier gagne ?</title>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/3.0.1/js.cookie.min.js"></script>
     <link rel="stylesheet" href="../css/editor.css">

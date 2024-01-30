@@ -39,7 +39,7 @@ if (isset($_SESSION['ctfcookies'])) {
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title> </title>
+    <title>C'est long ?</title>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/3.0.1/js.cookie.min.js"></script>
     <link rel="stylesheet" href="../css/editor.css">
@@ -138,9 +138,9 @@ if (isset($_SESSION['ctfcookies'])) {
 <div id="editor-container">
 <button id="restart" onclick="restart()"><svg xmlns="http://www.w3.org/2000/svg" class="bi bi-arrow-counterclockwise" viewBox="0 0 16 16"> <path fill-rule="evenodd" d="M8 3a5 5 0 1 1-4.546 2.914.5.5 0 0 0-.908-.417A6 6 0 1 0 8 2v1z"/> <path d="M8 4.466V.534a.25.25 0 0 0-.41-.192L5.23 2.308a.25.25 0 0 0 0 .384l2.36 1.966A.25.25 0 0 0 8 4.466z"/> </svg></button>
 
-    <div id="editor">nombre1 = int(input("Entrez un nombre : "))
-nombre2 = int(input("Entrez un nombre : "))
-nombre3 = int(input("Entrez un nombre : "))
+    <div id="editor">#Demander à l'utilisateur de saisir une chaîne
+Chaine = input('Entrez une chaîne de caractères :')
+
 </div>
         <div id="tooltip">
             <p>Consignes :</p>
@@ -175,9 +175,8 @@ window.onload = function() {
         window.location.href = "http://localhost/ctf/python/save6.php?code=" + encodeURIComponent(ace.edit("editor").getValue());
     }
     function restart(){
-        editor.setValue(decodeURIComponent(`nombre1 = int(input("Entrez un nombre : "))
-nombre2 = int(input("Entrez un nombre : "))
-nombre3 = int(input("Entrez un nombre : "))
+        editor.setValue(decodeURIComponent(`#Demander à l'utilisateur de saisir une chaîne
+Chaine = input('Entrez une chaîne de caractères :')
 `), 1);
 
     }
@@ -268,12 +267,12 @@ def input(val = " " ):
             document.getElementById("svgtroisno").style.display = "none";
             document.getElementById("svgdeuxno").style.display = "none";
 
-            if (result2 == '<?php echo $result2 ?>'){
+            if (result2 == "<?php echo $result2 ?>"){
                 document.getElementById("svgdeux").style.display = "initial";
                 document.getElementById("svgdeuxno").style.display = "none";
                 document.getElementById("svgunno").style.display = "none";
 
-                if (result3 == '<?php echo $result3 ?>'){
+                if (result3 == "<?php echo $result3 ?>"){
                     document.getElementById("validButton").style.display = "block";
                     
                     document.getElementById("svgtrois").style.display = "initial";

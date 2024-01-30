@@ -39,7 +39,7 @@ if (isset($_SESSION['ctfcookies'])) {
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Pair ou impair ?</title>
+    <title>C'est un carré ?</title>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/3.0.1/js.cookie.min.js"></script>
     <link rel="stylesheet" href="../css/editor.css">
@@ -147,8 +147,10 @@ carres = []
         <div id="tooltip">
             <p>Consignes :</p>
             <ul>
-                <li>Écrivez un programme en Python qui prend une liste de nombres initiale, élève chaque nombre au carré, et stocke les résultats dans une nouvelle liste appelée carres. Enfin, affichez la liste des carrés obtenus.</li>
-            </ul>
+            <li>Écrivez un programme en Python qui prend une liste de nombres initiale.</li>
+            <li>Élèvez chaque nombre au carré, et stockez les résultats dans une nouvelle liste appelée carres.</li>
+            <li>Enfin, affichez la liste des carrés obtenus.</li>
+        </ul>
         </div>
     </div>
     <button id="runButton" onclick="verif()">Exécuter</button>
@@ -176,7 +178,12 @@ window.onload = function() {
         window.location.href = "http://localhost/ctf/python/save4.php?code=" + encodeURIComponent(ace.edit("editor").getValue());
     }
     function restart(){
-        editor.setValue(decodeURIComponent(`
+        editor.setValue(decodeURIComponent(`# Liste initiale de nombres
+nombres = eval(input('une liste'))
+# Liste pour stocker les carrés des nombres
+carres = []
+
+
 `), 1);
 
     }

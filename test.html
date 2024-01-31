@@ -5,6 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Logo Animé 3D</title>
     <style>
+        #confetti-canvas {
+            position: fixed; 
+            z-index: 3; 
+            top: 0; 
+            left: 0; 
+            width: 100vw; 
+            height: 100vh; 
+            pointer-events: none;
+        }
+
         html, body {
           width: 100%;
           height: 100%;
@@ -21,9 +31,15 @@
         }
 
         .content__coins {
+          z-index: 5;
           position: relative;
           width: 160px;
           height: 160px;
+          animation-timing-function: ease-in-out;
+          animation-duration: 2s;
+          animation-fill-mode: forwards;
+          animation-name: initial-animation; 
+
         }
 
         .currency-soft-3d {
@@ -33,9 +49,15 @@
           transform: rotateY(0deg);
           transform-origin: center center;
           transform-style: preserve-3d;
-          animation-timing-function: ease-in-out;
-          animation-duration: 5s;
-          animation-iteration-count: infinite;
+        }
+
+        @keyframes initial-animation {
+          0% {
+            transform: translateY(-600px) rotateY(0deg); /* Part du bas de l'écran */
+          }
+          100% {
+            transform: translateY(0) rotateY(0deg); /* Arrive au centre */
+          }
         }
 
         .currency-soft-3d_state_left {
@@ -126,7 +148,7 @@
 <body>
 
     <div class="content">
-        <span class="content__coins">
+        <span class="content__coins" ondblclick="window.location.href='login.html'">
           <span class='currency-soft-3d currency-soft-3d_state_left'>
             <span class="currency-soft-3d__front_inside"></span>
             <span class="currency-soft-3d__front"></span>
@@ -135,32 +157,45 @@
           </span>
         </span>
       </div>
+      <canvas id="confetti-canvas"></canvas>
 
+      <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+      <script type="text/javascript">
+        const canvas = document.querySelector('#confetti-canvas');
+        window.addEventListener("load", (event) => {
+            setTimeout(() => {
+                var myConfetti = confetti.create(canvas, {
+                    resize: true,
+                    useWorker: true
+                });
+                myConfetti({
+                    particleCount: 1000,
+                    spread: 200
+                });
+            }, 2000);
+        });
+    </script>
+          
     <script>
         const container = document.querySelector('.currency-soft-3d');
         let isMouseDown = false;
         let initialX;
-        const speed = 0.5; // Ajout du paramètre de vitesse
-
+        const speed = 0.5; 
         document.addEventListener('mousedown', (event) => {
           if (event.button === 0) {
             isMouseDown = true;
             initialX = event.clientX;
           }
         });
-
         document.addEventListener('mouseup', () => {
           isMouseDown = false;
         });
-
         document.addEventListener('mousemove', (event) => {
           if (isMouseDown) {
             const movementX = event.clientX - initialX;
             container.style.transform = `rotateY(${speed * movementX}deg)`; // Multiplication par le facteur de vitesse
           }
         });
-
-        // Ajoutez d'autres interactions ou modifications JavaScript ici si nécessaire
     </script>
 </body>
 </html>

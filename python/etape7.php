@@ -176,7 +176,7 @@ window.onload = function() {
         }
     }
     function redirect(){
-        window.location.href = "http://localhost/ctf/python/save7.php?code=" + encodeURIComponent(ace.edit("editor").getValue());
+        window.location.href = "save7.php?code=" + encodeURIComponent(ace.edit("editor").getValue());
     }
     function restart(){
         editor.setValue(decodeURIComponent(`nombre_a_trouver = int(input())

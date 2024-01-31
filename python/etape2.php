@@ -173,7 +173,7 @@ window.onload = function() {
         }
     }
     function redirect(){
-        window.location.href = "http://localhost/ctf/python/save2.php?code=" + encodeURIComponent(ace.edit("editor").getValue());
+        window.location.href = "save2.php?code=" + encodeURIComponent(ace.edit("editor").getValue());
     }
     function restart(){
         editor.setValue(decodeURIComponent(`nombre1 = int(input("Entrez un nombre : "))

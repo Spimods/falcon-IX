@@ -170,7 +170,7 @@ window.onload = function() {
         }
     }
     function redirect(){
-        window.location.href = "http://localhost/ctf/python/save5.php?code=" + encodeURIComponent(ace.edit("editor").getValue());
+        window.location.href = "save5.php?code=" + encodeURIComponent(ace.edit("editor").getValue());
     }
     function restart(){
         editor.setValue(decodeURIComponent(`#la valeur du input est le maximum possible 

@@ -172,7 +172,7 @@ window.onload = function() {
         }
     }
     function redirect(){
-        window.location.href = "http://localhost/ctf/python/save6.php?code=" + encodeURIComponent(ace.edit("editor").getValue());
+        window.location.href = "save6.php?code=" + encodeURIComponent(ace.edit("editor").getValue());
     }
     function restart(){
         editor.setValue(decodeURIComponent(`#Demander à l'utilisateur de saisir une chaîne

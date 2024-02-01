@@ -114,4 +114,4 @@ def save_classement_image(rows):
     background_image.save("classement_etape.png")
     print("L'image du classement avec les étapes, une police plus grande, une marge de 10 pixels entre chaque personne, et fond personnalisé a été créée avec succès.")
 
-bot.run('MTIwMTA5ODA2MjYxODE3NzU4OA.GwBlrn.0e0b40LKBTEz_lk024lAGlApCjZuPzTlp3l-KY')
+bot.run('TOKEN')

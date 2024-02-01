@@ -298,8 +298,8 @@ body {
     color: #b80900;
     font-size: 18px;
     font-weight: bold;
-  }
-  .message {
+}
+.message {
     position: fixed;
     top: 0;
     left: 0;
@@ -313,8 +313,8 @@ body {
     font-size: 24px;
     z-index: 1000000;
     display: none;
-  }
-  .container {
+}
+.container {
     position: relative;
     height: 100vh;
 }

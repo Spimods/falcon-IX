@@ -425,7 +425,7 @@ if (isset($_SESSION['ctfcookies'])) {
             display: none;
             display: block;
             text-decoration: none;
-            color: #4e0101;
+            color: #a90000;
             opacity: 0;
             transition: opacity 1s ease-in-out;
             cursor: default;

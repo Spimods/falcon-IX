@@ -3,13 +3,14 @@ from discord.ext import commands, tasks
 from PIL import Image, ImageDraw, ImageFont
 import io
 import mysql.connector
+import asyncio
+import os  # Ajout de l'importation du module os
 
 intents = discord.Intents.default()
 intents.messages = True
 
 bot = commands.Bot(command_prefix='!', intents=intents)
 
-# Configuration de la connexion à la base de données MySQL
 db_config = {
     'host': 'localhost',
     'user': 'root',
@@ -17,67 +18,37 @@ db_config = {
     'database': 'ctf'
 }
 
-# Fonction pour vérifier et ouvrir la connexion à la base de données
-def check_db_connection():
-    if db_conn.is_connected():
-        return
-    else:
-        db_conn.connect()
-
-# Connexion à la base de données
 db_conn = mysql.connector.connect(**db_config)
 
-# Variable globale pour stocker l'ID du message envoyé
-last_message_id = None
+def check_db_connection():
+    if not db_conn.is_connected():
+        db_conn.connect()
 
-@bot.event
-async def on_ready():
-    print(f'Bot prêt en tant que {bot.user.name}')
-    # Démarrer une tâche planifiée pour envoyer automatiquement les informations chaque minute
-    send_top_scores.start()
+def fetch_top_scores():
+    check_db_connection()
+    cursor = db_conn.cursor(dictionary=True)
+    query = 'SELECT * FROM python ORDER BY flag1 DESC, flag2 DESC, flag3 DESC, time_flag_1 ASC, time_flag_2 ASC, time_flag_3 ASC LIMIT 5'
+    cursor.execute(query)
+    rows = cursor.fetchall()
+    cursor.close()
+    return rows
 
-@tasks.loop(minutes=1)  # Répète la tâche toutes les 1 minute
-async def send_top_scores():
-    global last_message_id
-
-    channel_id = 1187730540611252325  # Remplacez cela par l'ID du salon où vous souhaitez envoyer les informations
-    channel = bot.get_channel(channel_id)
-
-    if channel:
-        check_db_connection()  
-        cursor = db_conn.cursor(dictionary=True)
-        query = 'SELECT * FROM python ORDER BY flag1 DESC, flag2 DESC, flag3 DESC, time_flag_1 ASC, time_flag_2 ASC, time_flag_3 ASC LIMIT 5'
-        cursor.execute(query)
-        rows = cursor.fetchall()
-
-        if rows:
-            save_classement_image(rows)
-
-            # Open the image file
-            with open("classement_etape.png", "rb") as file:
-                image = discord.File(io.BytesIO(file.read()), filename="classement_etape.png")
-
-            # Create the Discord embed
-            embed = discord.Embed(title="Top 5 Scores pour l'épreuve Python", color=0x00ff00)
-            embed.set_image(url=f"attachment://classement_etape.png")
-
-            # Retrieve the previous message and edit its content
-            if last_message_id:
-                previous_message = await channel.fetch_message(last_message_id)
-                await previous_message.edit(embed=embed)
-
-            else:
-                # Send a new message with the image embedded
-                message = await channel.send(embed=embed)
-                last_message_id = message.id
-
-        else:
-            await channel.send("Aucun score trouvé dans la base de données.")
-
-        cursor.close()
-
-        # Fermer la connexion après avoir récupéré les données
+def close_db_connection():
+    if db_conn.is_connected():
         db_conn.close()
+
+def create_embed_with_image():
+    # Utilisation d'un chemin absolu pour l'image
+    image_path = os.path.abspath("classement_etape.png")
+
+    with open(image_path, "rb") as file:
+        image_data = file.read()
+
+    embed = discord.Embed(title="Top 5 Scores pour l'épreuve Python", color=0x00ff00)
+    file = discord.File(io.BytesIO(image_data), f"classement_etape.png")
+    embed.set_image(url=f"attachment://{image_path}")
+
+    return embed
 
 def save_classement_image(rows):
     background_image = Image.open("bgbot.png")
@@ -114,4 +85,53 @@ def save_classement_image(rows):
     background_image.save("classement_etape.png")
     print("L'image du classement avec les étapes, une police plus grande, une marge de 10 pixels entre chaque personne, et fond personnalisé a été créée avec succès.")
 
-bot.run('MTIwMTA5ODA2MjYxODE3NzU4OA.GwBlrn.0e0b40LKBTEz_lk024lAGlApCjZuPzTlp3l-KY')
+last_message_id = None
+
+@bot.event
+async def on_ready():
+    print(f'Bot prêt en tant que {bot.user.name}')
+    send_top_scores.start()
+
+@tasks.loop(minutes=1)
+async def send_top_scores():
+    global last_message_id
+    try:
+        channel_id = 1187730540611252325
+        channel = bot.get_channel(channel_id)
+
+        if channel:
+            rows = fetch_top_scores()
+            if rows:
+                save_classement_image(rows)
+                await send_embed_with_image(channel)
+
+            else:
+                await channel.send("Aucun score trouvé dans la base de données.")
+
+    except Exception as e:
+        print(f"Une erreur s'est produite : {e}")
+
+    finally:
+        close_db_connection()
+
+async def send_embed_with_image(channel):
+    global last_message_id
+    embed = create_embed_with_image()
+
+    try:
+        if last_message_id:
+            previous_message = await channel.fetch_message(last_message_id)
+            await previous_message.edit(embed=embed)
+
+        else:
+            message = await channel.send(embed=embed)
+            last_message_id = message.id
+
+        await asyncio.sleep(1)
+
+    except Exception as e:
+        print(f"Une erreur s'est produite lors de l'envoi de l'embed avec l'image : {e}")
+
+bot.run('')
+#MTIwMTA5ODA2MjYxODE3NzU4OA.
+#GVantz.fvj_-1O_B1yDg18alhq4izgTK9puhz92fkjFMU

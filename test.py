@@ -85,4 +85,53 @@ def save_classement_image(rows):
     background_image.save("classement_etape.png")
     print("L'image du classement avec les étapes, une police plus grande, une marge de 10 pixels entre chaque personne, et fond personnalisé a été créée avec succès.")
 
-bot.run('MTIwMTA5ODA2MjYxODE3NzU4OA.GwBlrn.0e0b40LKBTEz_lk024lAGlApCjZuPzTlp3l-KY')
+last_message_id = None
+
+@bot.event
+async def on_ready():
+    print(f'Bot prêt en tant que {bot.user.name}')
+    send_top_scores.start()
+
+@tasks.loop(minutes=1)
+async def send_top_scores():
+    global last_message_id
+    try:
+        channel_id = 1187730540611252325
+        channel = bot.get_channel(channel_id)
+
+        if channel:
+            rows = fetch_top_scores()
+            if rows:
+                save_classement_image(rows)
+                await send_embed_with_image(channel)
+
+            else:
+                await channel.send("Aucun score trouvé dans la base de données.")
+
+    except Exception as e:
+        print(f"Une erreur s'est produite : {e}")
+
+    finally:
+        close_db_connection()
+
+async def send_embed_with_image(channel):
+    global last_message_id
+    embed = create_embed_with_image()
+
+    try:
+        if last_message_id:
+            previous_message = await channel.fetch_message(last_message_id)
+            await previous_message.edit(embed=embed)
+
+        else:
+            message = await channel.send(embed=embed)
+            last_message_id = message.id
+
+        await asyncio.sleep(1)
+
+    except Exception as e:
+        print(f"Une erreur s'est produite lors de l'envoi de l'embed avec l'image : {e}")
+
+bot.run('')
+#MTIwMTA5ODA2MjYxODE3NzU4OA.
+#GVantz.fvj_-1O_B1yDg18alhq4izgTK9puhz92fkjFMU

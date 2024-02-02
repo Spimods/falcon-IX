@@ -4,7 +4,7 @@ from PIL import Image, ImageDraw, ImageFont
 import io
 import mysql.connector
 import asyncio
-import os  # Ajout de l'importation du module os
+import os
 
 intents = discord.Intents.default()
 intents.messages = True
@@ -38,17 +38,16 @@ def close_db_connection():
         db_conn.close()
 
 def create_embed_with_image():
-    # Utilisation d'un chemin absolu pour l'image
     image_path = os.path.abspath("classement_etape.png")
 
     with open(image_path, "rb") as file:
         image_data = file.read()
 
-    embed = discord.Embed(title="Top 5 Scores pour l'épreuve Python", color=0x00ff00)
-    file = discord.File(io.BytesIO(image_data), f"classement_etape.png")
-    embed.set_image(url=f"attachment://{image_path}")
+    embed = discord.Embed(title=":medal:  Top 5 Scores pour l'épreuve Python", color=0x00ff00)
+    embed.set_image(url="attachment://classement_etape.png")  # Utilise set_image pour inclure l'image dans l'embed
+    file = discord.File(io.BytesIO(image_data), filename="classement_etape.png")
 
-    return embed
+    return embed, file
 
 def save_classement_image(rows):
     background_image = Image.open("bgbot.png")
@@ -116,16 +115,15 @@ async def send_top_scores():
 
 async def send_embed_with_image(channel):
     global last_message_id
-    embed = create_embed_with_image()
+    embed, file = create_embed_with_image()
 
     try:
         if last_message_id:
             previous_message = await channel.fetch_message(last_message_id)
-            await previous_message.edit(embed=embed)
+            await previous_message.delete()
 
-        else:
-            message = await channel.send(embed=embed)
-            last_message_id = message.id
+        message = await channel.send(embed=embed, file=file)
+        last_message_id = message.id
 
         await asyncio.sleep(1)
 
@@ -133,5 +131,5 @@ async def send_embed_with_image(channel):
         print(f"Une erreur s'est produite lors de l'envoi de l'embed avec l'image : {e}")
 
 bot.run('')
-#MTIwMTA5ODA2MjYxODE3NzU4OA.
-#GVantz.fvj_-1O_B1yDg18alhq4izgTK9puhz92fkjFMU
+#MTIwMTA5ODA2MjYxODE3NzU4OA
+#.GVantz.fvj_-1O_B1yDg18alhq4izgTK9puhz92fkjFMU

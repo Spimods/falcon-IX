@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "bourbon": "^7.3.0",
     "codemirror": "^6.0.1",
     "discord.js": "^13.0.0",
     "mysql": "^2.18.1"

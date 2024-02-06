@@ -51,7 +51,32 @@ if (isset($_SESSION['ctfcookies']) && isset($_SESSION['ctfId'])) {
     }
     $valeurBaseDeDonneesNom = $nom;
 }
+if (isset($_GET['nom'])){
+    $nomget = $_GET["nom"];
+    $requete2 = $connexion->prepare("SELECT COUNT(*) AS nombre_occurences FROM ctfuser WHERE nom = ?");
+    $requete2->bind_param("s", $nomget);
+    $requete2->execute();
+    $requete2->bind_result($nombre_occurences);
+    $requete2->fetch();
+    if ($nombre_occurences == 0){
+        header('Location: cheat.php');
+        exit();
+    }
+    $requete2->close();
+    $nomget = $_GET["nom"];
+    $requete2 = $connexion->prepare("SELECT COUNT(*) AS nombre_occurences FROM ctfuser WHERE nom = ?");
+    $requete2->bind_param("s", $nomget);
+    $requete2->execute();
+    $requete2->bind_result($nombre_occurences);
+    $requete2->fetch();
+    if ($nombre_occurences == 0){
+        header('Location: cheat.php');
+        exit();
+    }
+    $requete2->close();
 
+} else {
+}
 ?>
 <!DOCTYPE html>
 <html lang="fr">

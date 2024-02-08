@@ -1,0 +1,127 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shape Changer</title>
+    <!-- Ajout du lien vers la bibliothèque ACE -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/ace.js"></script>
+    <!-- Chargement des thèmes et modes nécessaires pour ACE -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/ext-language_tools.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/ext-beautify.js"></script>
+    <style>
+        .editor {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 50px;
+        }
+
+        #css-code {
+            /* width: 400px; */
+            height: 200px;
+            margin-bottom: 20px;
+            resize: none;
+            width: 80%;
+        }
+
+        .output-container {
+            border-radius: 1em;
+            border: 2px solid #333;
+            width: 80%;
+            height: 230px;
+            display: inline-block;
+            position: relative; /* Ajout de position relative pour le positionnement de l'élément interne */
+            overflow: hidden;  /* Masquer tout contenu dépassant */
+            background: white;
+        }
+
+
+        #output {
+            width: 100px;
+            height: 100px;
+            background-color: blue;
+            transition: all 0.3s ease; /* Animation de transition */
+            top: 25%;
+            left : 10%;
+            position: absolute; /* Utilisation de position absolue pour placer #output à l'intérieur de .output-container */
+            box-sizing: border-box; /* inclure la bordure dans la largeur et la hauteur */
+            border: 2px solid transparent; /* Par défaut, pas de bordure */
+            z-index: 1;
+        }
+
+        #case {
+            width: 96px;
+            height: 96px;
+            border-radius: 100%;
+            position: absolute;
+            border-color: red; /* Changement de couleur de la bordure */
+            border-style: dashed; /* Utilisation d'une bordure pointillée */
+            left: 80%;
+            top: 25%;
+            z-index: 2; /* Assure que la bordure pointillée est au-dessus de l'élément #output */
+        }
+    </style>
+</head>
+<body>
+    <div class="editor">
+        <!-- Ajout d'un conteneur pour l'éditeur ACE -->
+        <div id="editor" style="height: 210px; width: 80%; margin-bottom: 3em;">#output {
+    width: 100px;
+    height: 100px;
+    left : 10%; /* Par défaut à gauche */
+    border-radius: 0%; /* Carré par défaut */
+}</div>
+        <div class="output-container">
+            <div id="output"></div>
+            <div id="case"></div>
+        </div>
+    </div>
+
+    <script>
+        // Initialisation de l'éditeur ACE
+        var editor = ace.edit("editor");
+        editor.setTheme("ace/theme/monokai"); // Choix du thème
+        editor.session.setMode("ace/mode/css"); // Définition du mode CSS
+
+        // Déclaration des éléments de sortie
+        const output = document.getElementById('output');
+        const caseElement = document.getElementById('case');
+
+        // Écouteur d'événement pour mettre à jour la sortie en temps réel
+        editor.session.on('change', function() {
+            output.innerHTML = `<style>${editor.getValue()}</style>`;
+            checkOverflow();
+        });
+
+        // Fonction pour vérifier le débordement et ajuster si nécessaire
+        function checkOverflow() {
+            const outputContainer = document.querySelector('.output-container');
+            const outputHeight = output.offsetHeight;
+            const containerHeight = outputContainer.offsetHeight;
+            if (outputHeight > containerHeight) {
+                output.style.transform = `translateY(-${outputHeight - containerHeight}px)`;
+            } else {
+                output.style.transform = `translateY(0)`;
+            }
+        }
+        // Fonction pour vérifier si les styles CSS de #output correspondent à ceux spécifiés
+        function checkCSS() {
+            var outputElement = document.getElementById('output');
+            var leftPixels = parseFloat(window.getComputedStyle(outputElement).getPropertyValue('left'));
+            var parentWidth = outputElement.parentElement.offsetWidth;
+            var leftPercentage = Math.round((leftPixels / parentWidth) * 100) + '%';
+            var heightPixels = parseFloat(window.getComputedStyle(outputElement).getPropertyValue('height')) + 'px';
+            var widthPixels = parseFloat(window.getComputedStyle(outputElement).getPropertyValue('width')) + 'px';
+            var borderRadiusPixels = parseFloat(window.getComputedStyle(outputElement).getPropertyValue('border-radius'));
+            var borderRadiusPercentage = Math.round(borderRadiusPixels) + '%';
+            console.log(leftPercentage, heightPixels, borderRadiusPercentage, widthPixels);
+            if (leftPercentage === '80%' && borderRadiusPercentage === '100%' && widthPixels === '100px' && heightPixels === '100px') {
+                console.log('Trop fort !');
+            }
+        }
+        setInterval(checkCSS, 1000); 
+    </script>
+</body>
+</html>

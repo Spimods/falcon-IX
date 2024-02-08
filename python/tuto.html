@@ -27,14 +27,30 @@
     border-radius: 5px;
     padding: 1px 10px;
     color: black;
-    font-size: 13px;
+    font-size: 15px;
+    position: relative;
+    text-align: center;
+}
+.valid {
+    padding: 5px;
+    cursor: pointer;
+    color: #fff;
+    border: 2px solid #e62117;
+    border-radius: 5px;
+    font-size: 16px;
+    margin-bottom: 10px;
+    transform-style: preserve-3d;
+    perspective: 800px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border 0.3s ease;
+    box-shadow: 0 0 10px rgba(230, 33, 23, 0);
+    background-color: #1a1a1a;
 }
     </style>
 </head>
 <body>
 <div class="messagetuto" id="message">
-    <div class="messagebox" id=""><p id="textebox">Bienvenue dans le tuto.</p>
-        <button class="valid" onclick="tuto()">Exécuter</button>
+    <div class="messagebox" id="messagebox"><p id="textebox">Bienvenue dans le tuto.</p>
+        <button class="valid" id="valid" onclick="tuto()">Continuer</button>
 </div>
 </div>
         
@@ -156,17 +172,69 @@ nombre = int(input("Entrez un nombre : "))
     function tuto(){
         if (nombre == 0){
             document.getElementById("textebox").innerHTML = "Cette partie est cruciale car elle contient l'éditeur de code, tu peux saisir et modifier ton code. ";
-            document.getElementById("editor-container").style.zIndex = "1000000";
+            document.getElementById("editor-container").style.zIndex = "1000001";
             document.getElementById("messagebox").style.zIndex = "1000001";
-            document.getElementById("tooltip").style.zIndex = "1";
+            document.getElementById("tooltip").style.background = "Transparent";
+            document.getElementById("tooltip").style.color = "Transparent";
+            document.getElementById("messagebox").style.top = "9%";
+    } else if (nombre == 1){
+            document.getElementById("textebox").innerHTML = "Ce bouton permet de tester son code, ce qui est essentiel pour vérifier s'il fonctionne comme prévu.";
+            document.getElementById("editor-container").style.zIndex = "1";
+            document.getElementById("messagebox").style.zIndex = "1000001";
+            document.getElementById("runButton").style.zIndex = "1000001";
+            document.getElementById("tooltip").style.background = "#2B2B2B";
+            document.getElementById("tooltip").style.color = "#fff";
+            document.getElementById("messagebox").style.top = "-7%";
+    } else if (nombre == 2){
+            document.getElementById("textebox").innerHTML = "Cette section explique les fonctions de programmation, idéale pour les débutants ou ceux qui découvrent de nouveaux concepts.";
+            document.getElementById("runButton").style.zIndex = "1";
+            document.getElementById("messagebox").style.zIndex = "1000001";
+            document.querySelector('.toggle-button').style.zIndex = "1000001";
+            document.getElementById("messagebox").style.top = "-40%";
+    } else if (nombre == 3){
+            document.getElementById("textebox").innerHTML = "Cette partie affiche les résultats de l'exécution du code, ce qui est utile pour la phase de création et de test du code.";
+            document.querySelector('.toggle-button').style.zIndex = "1";
+            document.getElementById("messagebox").style.zIndex = "1000001";
+            document.getElementById("output").style.zIndex = "1000001";
+            document.getElementById("messagebox").style.top = "1%";
+    } else if (nombre == 4){
+            document.getElementById("textebox").innerHTML = "Les indicateurs de validation affichent des symboles visuels pour signaler les erreurs ou les succès dans le code, offrant ainsi une indication rapide de sa validité.";
+            document.getElementById("output").style.zIndex = "1";
+            document.getElementById("messagebox").style.zIndex = "1000001";
+            document.getElementById("verification").style.zIndex = "1000001";
+            document.getElementById("messagebox").style.top = "1%";
+    } else if (nombre == 5){
+            document.getElementById("textebox").innerHTML = "Cette barre de chargement affiche le temps écoulé, offrant ainsi une indication visuelle du temps passé.";
+            document.getElementById("verification").style.zIndex = "1";
+            document.getElementById("messagebox").style.zIndex = "1000001";
+            document.querySelector('.loading-bar').style.zIndex = "1000001";
+            document.getElementById("messagebox").style.top = "-39%";
+    } else if (nombre == 6){
+            document.getElementById("textebox").innerHTML = "Le bouton Valider apparaît lorsque le code est correct et permet à l'utilisateur de passer à la page suivante où se trouve le score.";
+            document.getElementById("valid").style.display = "none";
+            document.querySelector('.loading-bar').style.zIndex = "1";
+            document.getElementById("messagebox").style.zIndex = "1000001";
+            document.getElementById("validButton").style.display = "block";
+            document.getElementById("validButton").style.zIndex = "1000001";
+            document.getElementById("messagebox").style.top = "32%";
+    } else if (nombre == 7){
+            window.location.href='timestartetape1.php'
         }
-    }
+    nombre = nombre + 1;
+
+}
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/ace.js"></script>
 <script>
 
     function redirect(){
-        window.location.href = "save.php?code=" + encodeURIComponent(ace.edit("editor").getValue());
+        document.getElementById("textebox").innerHTML = "Êtes-vous sûr de vouloir quitter ? Vous allez passer à l'épreuve de programmation. Une fois commencée, vous ne pourrez plus revenir en arrière.";
+        document.getElementById("valid").style.display = "initial";
+        document.getElementById("validButton").style.display = "none";
+        document.querySelector('.loading-bar').style.zIndex = "1";
+        document.getElementById("messagebox").style.top = "0";
+        document.getElementById("valid").innerHTML = "Terminer"
+        document.getElementById("valid").style.border = "2px solid #019b33";
     }
     function restart(){
         editor.setValue(decodeURIComponent(`# Demander à l'utilisateur de saisir un nombre
@@ -200,9 +268,7 @@ nombre = int(input("Entrez un nombre : "))
         document.getElementById("main-content").style.marginRight= "0";
     }
 
-    setInterval(function() {
-        saveEditor();
-    }, 2500);
+
 
 
 </script>

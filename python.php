@@ -103,7 +103,7 @@ if (isset($_SESSION['ctfcookies']) && isset($_SESSION['ctfId'])) {
     echo "<div class='box1end'><span class='text'>$time1</span></div>"; 
 }
 else {
-    echo "<div class='box1' onclick='location.href=`./python/timestartetape1.php`;' ><span class='text'>Novice</span></div>"; 
+    echo "<div class='box1' onclick='location.href=`./python/tuto.html`;' ><span class='text'>Novice</span></div>"; 
 }; 
 if($flag2 != 0){
     echo "<div class='box2end'><span class='text'>$time2</span></div>";

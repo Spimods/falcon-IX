@@ -4,13 +4,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shape Changer</title>
-    <!-- Ajout du lien vers la bibliothèque ACE -->
+    <title>Plus à gauche</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/ace.js"></script>
-    <!-- Chargement des thèmes et modes nécessaires pour ACE -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/ext-language_tools.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/ext-beautify.js"></script>
+
     <style>
+body {
+    overflow: hidden;
+    background: url(../../images/bg.png);
+    background-color: #000000;
+    background-position: right;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position-x: 350px;
+}
+
         .editor {
             display: flex;
             flex-direction: column;
@@ -19,22 +28,21 @@
         }
 
         #css-code {
-            /* width: 400px; */
             height: 200px;
             margin-bottom: 20px;
             resize: none;
-            width: 80%;
+            width: 50%;
         }
 
         .output-container {
             border-radius: 1em;
             border: 2px solid #333;
-            width: 80%;
+            width: 50%;
             height: 230px;
             display: inline-block;
-            position: relative; /* Ajout de position relative pour le positionnement de l'élément interne */
-            overflow: hidden;  /* Masquer tout contenu dépassant */
-            background: white;
+            position: relative; 
+            overflow: hidden; 
+            background: #000000a3;
         }
 
 
@@ -42,12 +50,12 @@
             width: 100px;
             height: 100px;
             background-color: blue;
-            transition: all 0.3s ease; /* Animation de transition */
+            transition: all 0.3s ease; 
             top: 25%;
             left : 10%;
-            position: absolute; /* Utilisation de position absolue pour placer #output à l'intérieur de .output-container */
-            box-sizing: border-box; /* inclure la bordure dans la largeur et la hauteur */
-            border: 2px solid transparent; /* Par défaut, pas de bordure */
+            position: absolute; 
+            box-sizing: border-box; 
+            border: 2px solid transparent; 
             z-index: 1;
         }
 
@@ -56,18 +64,51 @@
             height: 96px;
             border-radius: 100%;
             position: absolute;
-            border-color: red; /* Changement de couleur de la bordure */
-            border-style: dashed; /* Utilisation d'une bordure pointillée */
+            border-color: red; 
+            border-style: dashed; 
             left: 80%;
             top: 25%;
-            z-index: 2; /* Assure que la bordure pointillée est au-dessus de l'élément #output */
+            z-index: 2; 
         }
+        #validButton {
+    display: none;
+    position: fixed;
+    width: 10%;
+    top: 90%;
+    left: 45%;
+    padding: 10px;
+    animation: neon2 1s infinite alternate;
+    cursor: pointer;
+    color: #fff;
+    border: 2px solid #bcbcbc;
+    border-radius: 5px;
+    font-size: 16px;
+    transform-style: preserve-3d;
+    perspective: 800px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border 0.3s ease;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0);
+    background-color: transparent;
+    margin-top: -10px;
+    margin-bottom: 10px;
+    background-color: #1a1a1a;
+}
+
+#validButton:hover {
+    animation: neon2 1s infinite alternate;
+    box-shadow: 0 0 20px rgba(23, 230, 116, 0.8);
+    border: 2px solid #14c65e;
+}
+
+@keyframes neon2 {
+    to {
+        box-shadow: 0 0 40px rgba(184, 184, 184, 0.5);
+    }
+}
     </style>
 </head>
 <body>
     <div class="editor">
-        <!-- Ajout d'un conteneur pour l'éditeur ACE -->
-        <div id="editor" style="height: 210px; width: 80%; margin-bottom: 3em;">#output {
+        <div id="editor" style="height: 210px; width: 50%; margin-bottom: 3em;">#output {
     width: 100px;
     height: 100px;
     left : 10%; /* Par défaut à gauche */
@@ -78,24 +119,18 @@
             <div id="case"></div>
         </div>
     </div>
+    <button id="validButton" onclick="redirect()">Valider</button>
 
     <script>
-        // Initialisation de l'éditeur ACE
         var editor = ace.edit("editor");
-        editor.setTheme("ace/theme/monokai"); // Choix du thème
-        editor.session.setMode("ace/mode/css"); // Définition du mode CSS
-
-        // Déclaration des éléments de sortie
+        editor.setTheme("ace/theme/monokai");
+        editor.session.setMode("ace/mode/css"); 
         const output = document.getElementById('output');
         const caseElement = document.getElementById('case');
-
-        // Écouteur d'événement pour mettre à jour la sortie en temps réel
         editor.session.on('change', function() {
             output.innerHTML = `<style>${editor.getValue()}</style>`;
             checkOverflow();
         });
-
-        // Fonction pour vérifier le débordement et ajuster si nécessaire
         function checkOverflow() {
             const outputContainer = document.querySelector('.output-container');
             const outputHeight = output.offsetHeight;
@@ -106,19 +141,21 @@
                 output.style.transform = `translateY(0)`;
             }
         }
-        // Fonction pour vérifier si les styles CSS de #output correspondent à ceux spécifiés
         function checkCSS() {
             var outputElement = document.getElementById('output');
             var leftPixels = parseFloat(window.getComputedStyle(outputElement).getPropertyValue('left'));
             var parentWidth = outputElement.parentElement.offsetWidth;
-            var leftPercentage = Math.round((leftPixels / parentWidth) * 100) + '%';
+            var leftPercentage = Math.round((leftPixels / parentWidth) * 101) + '%';
             var heightPixels = parseFloat(window.getComputedStyle(outputElement).getPropertyValue('height')) + 'px';
             var widthPixels = parseFloat(window.getComputedStyle(outputElement).getPropertyValue('width')) + 'px';
             var borderRadiusPixels = parseFloat(window.getComputedStyle(outputElement).getPropertyValue('border-radius'));
             var borderRadiusPercentage = Math.round(borderRadiusPixels) + '%';
             console.log(leftPercentage, heightPixels, borderRadiusPercentage, widthPixels);
             if (leftPercentage === '80%' && borderRadiusPercentage === '100%' && widthPixels === '100px' && heightPixels === '100px') {
-                console.log('Trop fort !');
+                document.getElementById('validButton').style.display = "initial"
+            } else {
+                document.getElementById('validButton').style.display = "none"
+
             }
         }
         setInterval(checkCSS, 1000); 

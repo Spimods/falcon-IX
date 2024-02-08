@@ -793,6 +793,7 @@ span.fail:after {
     background-position: center;
     background-size: cover;
     filter: grayscale(50%);
+    cursor: pointer;
 }
 .box1end {
     text-align: center;
@@ -810,6 +811,7 @@ span.fail:after {
     background-position: center;
     background-size: cover;
     filter: grayscale(50%);
+    cursor: pointer;
 }
 .box2end {
     text-align: center;
@@ -827,6 +829,7 @@ span.fail:after {
     background-position: center;
     background-size: cover;
     filter: grayscale(50%);
+    cursor: pointer;
 }
 .box3end {
     text-align: center;

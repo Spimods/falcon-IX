@@ -123,7 +123,7 @@
     background: yellow; 
     border-radius: 100%;
     right : 40%;
-    border: 2px solid blue; /* bordure bleu */
+    border: 2px solid blue; /* bordure bleue */
     background-image: url(../../images/no_image.png);
     background-size: cover;
     background-repeat: no-repeat;

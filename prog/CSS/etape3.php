@@ -4,11 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Plus à gauche</title>
+    <title>Une image imaginaire</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/ace.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/ext-language_tools.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/ext-beautify.js"></script>
-
     <style>
         body {
             overflow: hidden;
@@ -19,21 +18,18 @@
             background-repeat: no-repeat;
             background-position-x: 350px;
         }
-
         .editor {
             display: flex;
             flex-direction: column;
             align-items: center;
             margin-top: 50px;
         }
-
         #css-code {
             height: 200px;
             margin-bottom: 20px;
             resize: none;
             width: 50%;
         }
-
         .output-container {
             border-radius: 1em;
             border: 2px solid #333;
@@ -44,21 +40,22 @@
             overflow: hidden; 
             background: #000000a3;
         }
-
-
         #output {
             width: 100px;
             height: 100px;
-            background-color: blue;
+            background: yellow;
             transition: all 0.3s ease; 
             top: 25%;
-            left : 10%;
+            right : 40%;
+            border: 2px solid blue;
+            border-radius: 100%;
             position: absolute; 
             box-sizing: border-box; 
-            border: 2px solid transparent; 
             z-index: 1;
+            background-image: url(../../images/no_image.png);
+            background-size: cover;
+            background-repeat: no-repeat;
         }
-
         #case {
             width: 96px;
             height: 96px;
@@ -66,7 +63,7 @@
             position: absolute;
             border-color: red; 
             border-style: dashed; 
-            left: 80%;
+            right : 40%;
             top: 25%;
             z-index: 2; 
         }
@@ -92,13 +89,11 @@
             margin-bottom: 10px;
             background-color: #1a1a1a;
         }
-
         #validButton:hover {
             animation: neon2 1s infinite alternate;
             box-shadow: 0 0 20px rgba(23, 230, 116, 0.8);
             border: 2px solid #14c65e;
         }
-
         @keyframes neon2 {
             to {
                 box-shadow: 0 0 40px rgba(184, 184, 184, 0.5);
@@ -125,8 +120,13 @@
         <div id="editor" style="left: -10%; height: 210px; width: 30%; margin-bottom: 1em;">#output {
     width: 100px;
     height: 100px;
-    left : 10%; /* Par défaut à gauche */
-    border-radius: 0%; /* Carré par défaut */
+    background: yellow; 
+    border-radius: 100%;
+    right : 40%;
+    border: 2px solid blue; /* bordure bleu */
+    background-image: url(../../images/no_image.png);
+    background-size: cover;
+    background-repeat: no-repeat;
 }</div>
 <div id="tooltip">
             <p>Consignes :</p>
@@ -165,15 +165,20 @@
         }
         function checkCSS() {
             var outputElement = document.getElementById('output');
-            var leftPixels = parseFloat(window.getComputedStyle(outputElement).getPropertyValue('left'));
+            var rightPixels = parseFloat(window.getComputedStyle(outputElement).getPropertyValue('right'));
             var parentWidth = outputElement.parentElement.offsetWidth;
-            var leftPercentage = Math.round((leftPixels / parentWidth) * 101) + '%';
+            var rightPercentage = Math.round((rightPixels / parentWidth) * 101) + '%';
             var heightPixels = parseFloat(window.getComputedStyle(outputElement).getPropertyValue('height')) + 'px';
             var widthPixels = parseFloat(window.getComputedStyle(outputElement).getPropertyValue('width')) + 'px';
             var borderRadiusPixels = parseFloat(window.getComputedStyle(outputElement).getPropertyValue('border-radius'));
             var borderRadiusPercentage = Math.round(borderRadiusPixels) + '%';
-            console.log(leftPercentage, heightPixels, borderRadiusPercentage, widthPixels);
-            if (leftPercentage === '80%' && borderRadiusPercentage === '100%' && widthPixels === '100px' && heightPixels === '100px') {
+            var backcolor = window.getComputedStyle(outputElement).getPropertyValue('background-color');
+            var backimage = window.getComputedStyle(outputElement).getPropertyValue('background-image');
+            var backsizeimage = window.getComputedStyle(outputElement).getPropertyValue('background-size');
+            var backrepeatimage = window.getComputedStyle(outputElement).getPropertyValue('background-repeat');
+            var border = window.getComputedStyle(outputElement).getPropertyValue('border');
+            console.log(rightPercentage, heightPixels, borderRadiusPercentage, widthPixels, backimage, backsizeimage, backrepeatimage, border);
+            if (rightPercentage === '40%' && borderRadiusPercentage === '100%' && widthPixels === '100px' && heightPixels === '100px' && backcolor == 'rgb(255, 255, 0)' && backrepeatimage == 'no-repeat' && backsizeimage == 'cover' && backimage == 'url("http://localhost/falcon-V/images/image.png")' && border == '4px solid rgb(255, 0, 0)') {
                 document.getElementById('validButton').style.display = "initial"
             } else {
                 document.getElementById('validButton').style.display = "none"

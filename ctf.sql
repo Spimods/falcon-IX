@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : lun. 12 fév. 2024 à 18:56
--- Version du serveur : 10.4.28-MariaDB
--- Version de PHP : 8.2.4
+-- Généré le : lun. 12 fév. 2024 à 21:30
+-- Version du serveur : 10.4.32-MariaDB
+-- Version de PHP : 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -46,7 +46,7 @@ CREATE TABLE `ctfuser` (
 --
 
 INSERT INTO `ctfuser` (`id`, `nom`, `errors`, `keyword`, `finish`, `time_finish`, `ip`, `cookie`, `n_modele`, `n_connect`, `No`) VALUES
-(4, 'grgoire', NULL, NULL, NULL, NULL, '::1', '65c9d10576f33', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36', NULL, NULL);
+(1, 'grgoire', NULL, NULL, NULL, NULL, '::1', '65ca5d2ccb0e9', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -71,7 +71,7 @@ CREATE TABLE `prog` (
 --
 
 INSERT INTO `prog` (`id`, `nom`, `flag1`, `flag2`, `flag3`, `time_flag_1`, `time_flag_2`, `time_flag_3`, `cookie`) VALUES
-(4, 'grgoire', 0, 1, 0, '0', '16h 12min 1', '0', '65c9d10576f33');
+(1, 'grgoire', 0, 1, 0, '0', '20h 14min 20sec', '0', '65ca5d2ccb0e9');
 
 -- --------------------------------------------------------
 
@@ -96,7 +96,7 @@ CREATE TABLE `python` (
 --
 
 INSERT INTO `python` (`id`, `nom`, `flag1`, `flag2`, `flag3`, `time_flag_1`, `time_flag_2`, `time_flag_3`, `cookie`) VALUES
-(5, 'grgoire', '0', '0', '0', '0', '0', '0', '65c9d10576f33');
+(1, 'grgoire', '0', '0', '0', '0', '0', '0', '65ca5d2ccb0e9');
 
 -- --------------------------------------------------------
 
@@ -138,82 +138,48 @@ CREATE TABLE `score` (
 --
 
 INSERT INTO `score` (`nom`, `note`, `timetotal`, `caracteretotal`, `lignetotal`, `codecomplet`, `etape`, `cookie`) VALUES
-('grgoire', '', '33-9-9', '', '', '', 'progCSS', '65c9d10576f33'),
-('grgoire', '', '8-15-35', '', '', '', 'progCSS', '65c9d10576f33'),
-('grgoire', '', '33-9-54', '', '', '', 'progCSS', '65c9d10576f33'),
-('grgoire', '', '33-11-8', '', '', '', 'progCSS', '65c9d10576f33'),
-('grgoire', '', '8-18-9', '', '', '', 'progCSS', '65c9d10576f33'),
-('grgoire', '', '8-18-10', '', '', '', 'progCSS', '65c9d10576f33'),
-('grgoire', '', '33-12-31', '', '', '', 'progCSS', '65c9d10576f33'),
-('grgoire', '', '8-19-8', '', '', '', 'progCSS', '65c9d10576f33'),
-('grgoire', '', '33-13-25', '', '', '', 'progCSS', '65c9d10576f33'),
-('grgoire', '', '8-22-5', '', '', '', 'progCSS', '65c9d10576f33'),
-('grgoire', '1', '0-4-32', '', '', '', 'progCSS', '65c9d10576f33'),
-('grgoire', '4', '0-11-28', '', '', '', 'progCSS', '65c9d10576f33'),
-('grgoire', '10', '8-47-32', '', '', '', 'progCSS', '65c9d10576f33'),
-('grgoire', '0', '0-0-15', '', '', '', 'progCSS', '65c9d10576f33'),
-('grgoire', '10', '8-48-0', '', '', '', 'progCSS', '65c9d10576f33'),
-('grgoire', '2', '9-7-51', '', '', '', 'progCSS', '65c9d10576f33'),
-('grgoire', '3', '9-9-30', '', '', '', 'progCSS', '65c9d10576f33'),
-('grgoire', '3', '9-10-45', '', '', '', 'progCSS', '65c9d10576f33'),
-('grgoire', '0', '0-0-18', '', '', '', 'progCSS', '65c9d10576f33'),
-('grgoire', '0', '0-0-7', '', '', '', 'progCSS', '65c9d10576f33'),
-('grgoire', '4', '9-11-19', '', '', '', 'progCSS', '65c9d10576f33'),
-('grgoire', '7', '9-17-11', '', '', '', 'progCSS', '65c9d10576f33'),
-('grgoire', '7', '9-17-13', '', '', '', 'progCSS', '65c9d10576f33'),
-('grgoire', '7', '9-17-20', '', '', '', 'progCSS', '65c9d10576f33'),
-('grgoire', '7', '9-17-21', '', '', '', 'progCSS', '65c9d10576f33'),
-('grgoire', '7', '9-17-21', '', '', '', 'progCSS', '65c9d10576f33'),
-('grgoire', '7', '9-17-49', '', '', '', 'progCSS', '65c9d10576f33'),
-('grgoire', '7', '9-17-49', '', '', '', 'progCSS', '65c9d10576f33'),
-('grgoire', '7', '9-17-50', '', '', '', 'progCSS', '65c9d10576f33'),
-('grgoire', '10', '9-24-12', '', '', '', 'progCSS', '65c9d10576f33'),
-('grgoire', '0', '0-0-17', '', '', '', 'progCSS', '65c9d10576f33'),
-('grgoire', '0', '0-0-14', '', '', '', 'progCSS', '65c9d10576f33'),
-('grgoire', '0', '0-0-12', '', '', '', 'progCSS', '65c9d10576f33'),
-('grgoire', '0', '0-0-6', '', '', '', 'progCSS', '65c9d10576f33'),
-('grgoire', '0', '0-3-44', '', '', '', 'progCSS', '65c9d10576f33'),
-('grgoire', '10', '9-40-44', '', '', '', 'progCSS', '65c9d10576f33'),
-('grgoire', '10', '9-44-1', '', '', '', 'progCSS', '65c9d10576f33'),
-('grgoire', '0', '0-0-21', '', '', '', 'progCSS', '65c9d10576f33'),
-('grgoire', '10', '9-46-29', '', '', '', 'progCSS', '65c9d10576f33'),
-('grgoire', '0', '0-0-9', '', '', '', 'progCSS', '65c9d10576f33'),
-('grgoire', '10', '9-52-57', '', '', '', 'progCSS', '65c9d10576f33'),
-('grgoire', '0', '0-0-15', '', '', '', 'progCSS', '65c9d10576f33'),
-('grgoire', '10', '9-53-25', '', '', '', 'progCSS', '65c9d10576f33'),
-('grgoire', '0', '0-0-13', '', '', '', 'progCSS', '65c9d10576f33'),
-('grgoire', '0', '0-0-11', '', '', '', 'progCSS', '65c9d10576f33'),
-('grgoire', '0', '0-0-7', '', '', '', 'progCSS', '65c9d10576f33'),
-('grgoire', '0', '0-0-17', '', '', '', 'progCSS', '65c9d10576f33'),
-('grgoire', '0', '59-0-30', '', '', '', 'progCSS', '65c9d10576f33'),
-('grgoire', '3', '10-8-47', '', '', '', 'progCSS', '65c9d10576f33'),
-('grgoire', '0', '59-0-15', '', '', '', 'progCSS', '65c9d10576f33'),
-('grgoire', '4', '10-12-7', '', '', '', 'progCSS', '65c9d10576f33'),
-('grgoire', '0', '59-0-8', '', '', '', 'progCSS', '65c9d10576f33'),
-('grgoire', '0', '59-0-23', '', '', '', 'progCSS', '65c9d10576f33'),
-('grgoire', '10', '49-45-21', '', '', '', 'progCSS', '65c9d10576f33'),
-('grgoire', '10', '49-43-56', '', '', '', 'progCSS', '65c9d10576f33'),
-('grgoire', '10', '49-43-41', '', '', '', 'progCSS', '65c9d10576f33'),
-('grgoire', '10', '49-43-36', '', '', '', 'progCSS', '65c9d10576f33'),
-('grgoire', '0', '1--1-45', '', '', '', 'progCSS', '65c9d10576f33'),
-('grgoire', '0', '59-0-38', '', '', '', 'progCSS', '65c9d10576f33'),
-('grgoire', '8', '11-20-9', '', '', '', 'progCSS', '65c9d10576f33'),
-('grgoire', '0', '0-2-2', '', '', '', 'progCSS', '65c9d10576f33'),
-('grgoire', '10', '11-22-20', '', '', '', 'progCSS', '65c9d10576f33'),
-('grgoire', '1', '0-4-9', '', '', '', 'progCSS', '65c9d10576f33'),
-('grgoire', '0', '11-23-32', '', '', '', 'progCSS', '65c9d10576f33'),
-('grgoire', '9', '0-5-6', '', '', '', 'progCSS', '65c9d10576f33'),
-('grgoire', '0', '11-29-59', '', '', '', 'progCSS', '65c9d10576f33'),
-('grgoire', '5', '0-11-38', '', '', '', 'progCSS', '65c9d10576f33'),
-('grgoire', '0', '11-32-11', '', '', '', 'progCSS', '65c9d10576f33'),
-('grgoire', '3', '0-15-26', '', '', '', 'progCSS', '65c9d10576f33'),
-('grgoire', '0', '0-1-36', '', '', '', 'progCSS', '65c9d10576f33'),
-('grgoire', '0', '0-0-16', '', '', '', 'progCSS', '65c9d10576f33'),
-('grgoire', '0', '0-0-18', '', '', '', 'progCSS', '65c9d10576f33'),
-('grgoire', '0', '15-54-33', '', '', '', 'progCSS', '65c9d10576f33'),
-('grgoire', '10', '0-0-11', '', '', '', 'progCSS', '65c9d10576f33'),
-('grgoire', '0', '15-56-6', '', '', '', 'progCSS', '65c9d10576f33'),
-('grgoire', '0', '15-56-35', '', '', '', 'progCSS', '65c9d10576f33');
+('grgoire', '10', '0-0-17', '', '', '', 'progCSS', '65ca5d2ccb0e9'),
+('grgoire', '10', '0-0-24', '', '', '', 'progCSS', '65ca5d2ccb0e9'),
+('grgoire', '9', '0-3-34', '', '', '', 'progCSS', '65ca5d2ccb0e9'),
+('grgoire', '10', '0-0-8', '', '', '', 'progCSS', '65ca5d2ccb0e9'),
+('grgoire', '10', '0-0-3', '', '', '', 'progCSS', '65ca5d2ccb0e9'),
+('grgoire', '10', '0-0-8', '', '', '', 'progCSS', '65ca5d2ccb0e9'),
+('grgoire', '9', '59-5-35', '', '', '', 'progCSS', '65ca5d2ccb0e9'),
+('grgoire', '6', '18-8-32', '', '', '', 'progCSS', '65ca5d2ccb0e9'),
+('grgoire', '7', '59-6-19', '', '', '', 'progCSS', '65ca5d2ccb0e9'),
+('grgoire', '6', '18-9-10', '', '', '', 'progCSS', '65ca5d2ccb0e9'),
+('grgoire', '7', '59-6-54', '', '', '', 'progCSS', '65ca5d2ccb0e9'),
+('grgoire', '0', '18-28-43', '', '', '', 'progCSS', '65ca5d2ccb0e9'),
+('grgoire', '0', '18-41-1', '', '', '', 'progCSS', '65ca5d2ccb0e9'),
+('grgoire', '0', '59-38-58', '', '', '', 'progCSS', '65ca5d2ccb0e9'),
+('grgoire', '0', '18-55-45', '', '', '', 'progCSS', '65ca5d2ccb0e9'),
+('grgoire', '0', '59-53-28', '', '', '', 'progCSS', '65ca5d2ccb0e9'),
+('grgoire', '0', '59-55-43', '', '', '', 'progCSS', '65ca5d2ccb0e9'),
+('grgoire', '9', '-1-4-42', '', '', '', 'progCSS', '65ca5d2ccb0e9'),
+('grgoire', '10', '19-0-6', '', '', '', 'progCSS', '65ca5d2ccb0e9'),
+('grgoire', '9', '-1-5-15', '', '', '', 'progCSS', '65ca5d2ccb0e9'),
+('grgoire', '0', '-1-58-39', '', '', '', 'progCSS', '65ca5d2ccb0e9'),
+('grgoire', '10', '0--1-11', '', '', '', 'progCSS', '65ca5d2ccb0e9'),
+('grgoire', '10', '20-2-24', '', '', '', 'progCSS', '65ca5d2ccb0e9'),
+('grgoire', '10', '1-0-10', '', '', '', 'progCSS', '65ca5d2ccb0e9'),
+('grgoire', '0', '1-2-51', '', '', '', 'progCSS', '65ca5d2ccb0e9'),
+('grgoire', '10', '0-1-14', '', '', '', 'progCSS', '65ca5d2ccb0e9'),
+('grgoire', '0', '1-1-21', '', '', '', 'progCSS', '65ca5d2ccb0e9'),
+('grgoire', '0', '20-9-51', '', '', '', 'progCSS', '65ca5d2ccb0e9'),
+('grgoire', '10', '0-2-17', '', '', '', 'progCSS', '65ca5d2ccb0e9'),
+('grgoire', '10', '0-1-19', '', '', '', 'progCSS', '65ca5d2ccb0e9'),
+('grgoire', '10', '0-1-49', '', '', '', 'progCSS', '65ca5d2ccb0e9'),
+('grgoire', '10', '0-1-27', '', '', '', 'progCSS', '65ca5d2ccb0e9'),
+('grgoire', '0', '1-2-52', '', '', '', 'progCSS', '65ca5d2ccb0e9'),
+('grgoire', '0', '19-35-41', '', '', '', 'progCSS', '65ca5d2ccb0e9'),
+('grgoire', '10', '0-0-6', '', '', '', 'progCSS', '65ca5d2ccb0e9'),
+('grgoire', '0', '19-36-2', '', '', '', 'progCSS', '65ca5d2ccb0e9'),
+('grgoire', '10', '0-2-12', '', '', '', 'progCSS', '65ca5d2ccb0e9'),
+('grgoire', '0', '19-38-42', '', '', '', 'progCSS', '65ca5d2ccb0e9'),
+('grgoire', '0', '19-38-43', '', '', '', 'progCSS', '65ca5d2ccb0e9'),
+('grgoire', '0', '19-38-43', '', '', '', 'progCSS', '65ca5d2ccb0e9'),
+('grgoire', '10', '0-2-26', '', '', '', 'progCSS', '65ca5d2ccb0e9'),
+('grgoire', '10', '0-0-7', '', '', '', 'progCSS', '65ca5d2ccb0e9');
 
 -- --------------------------------------------------------
 
@@ -244,7 +210,7 @@ CREATE TABLE `timeprog` (
 --
 
 INSERT INTO `timeprog` (`id`, `nom`, `cookie`, `time1`, `time2`, `time3`, `time4`, `time5`, `time6`, `key1`, `key2`, `key3`, `key4`, `key5`, `key6`) VALUES
-(0, 'grgoire', '65c9d10576f33', '0h15min26sec', '0h0min16sec', '0h0min13sec', '0h0min11sec', '0h0min7sec', '15h56min35sec', 1, 1, 1, 1, 1, 1);
+(0, 'grgoire', '65ca5d2ccb0e9', '0h0min7sec', '0h2min17sec', '19h38min43sec', '19h38min43sec', '19h38min42sec', '0h2min12sec', 1, 1, 1, 1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -281,7 +247,7 @@ CREATE TABLE `timepython` (
 --
 
 INSERT INTO `timepython` (`id`, `nom`, `cookie`, `time1`, `time2`, `time3`, `time4`, `time5`, `time6`, `time7`, `time8`, `time9`, `key1`, `key2`, `key3`, `key4`, `key5`, `key6`, `key7`, `key8`, `key9`) VALUES
-(0, 'grgoire', '65c9d10576f33', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+(0, 'grgoire', '65ca5d2ccb0e9', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -295,44 +261,6 @@ CREATE TABLE `triche` (
   `etape` varchar(20) NOT NULL,
   `cookie` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Déchargement des données de la table `triche`
---
-
-INSERT INTO `triche` (`id`, `nom`, `etape`, `cookie`) VALUES
-(1, 'grgoire', 'etape7', '65af66b18ce07'),
-(2, 'grgoire', 'etape8', '65af66b18ce07'),
-(3, 'grgoire', 'etape1', '65af66b18ce07'),
-(4, 'grgoire', 'etape2', '65af66b18ce07'),
-(5, 'grgoire', 'etape3', '65af66b18ce07'),
-(6, 'grgoire', 'etape2', '65af66b18ce07'),
-(7, 'grgoire', 'etape4', '65af66b18ce07'),
-(8, 'grgoire', 'etape6', '65af66b18ce07'),
-(9, 'grgoire', 'etape7', '65af66b18ce07'),
-(10, 'grgoire', 'etape6', '65af66b18ce07'),
-(11, 'grgoire', 'etape8', '65af66b18ce07'),
-(12, 'grgoire', 'etape9', '65af66b18ce07'),
-(13, 'grgoire', 'etape8', '65af66b18ce07'),
-(14, 'grgoire', 'etape8', '65af66b18ce07'),
-(15, 'grgoire', 'etape4', '65af66b18ce07'),
-(16, 'grgoire', 'etape4', '65af66b18ce07'),
-(17, 'grgoire', 'etape4', '65af66b18ce07'),
-(18, 'grgoire', 'etape4', '65af66b18ce07'),
-(19, 'grgoire', 'etape4', '65af66b18ce07'),
-(20, 'grgoire', 'etape7', '65af66b18ce07'),
-(21, 'grgoire', 'etape6', '65af66b18ce07'),
-(22, 'grgoire', 'etape6', '65af66b18ce07'),
-(23, 'grgoire', 'etape6', '65af66b18ce07'),
-(24, 'grgoire', 'etape6', '65af66b18ce07'),
-(25, 'grgoire', 'etape9', '65af66b18ce07'),
-(26, 'grgoire', 'etape9', '65af66b18ce07'),
-(27, 'grgoire', '', '65af66b18ce07'),
-(28, 'grgoire', '', '65af66b18ce07'),
-(29, 'grgoire', 'tuto', '65af66b18ce07'),
-(30, 'grgoire', 'etape3', '65af66b18ce07'),
-(31, 'grgoire', 'etape3', '65af66b18ce07'),
-(32, 'grgoire', 'etape4', '65af66b18ce07');
 
 -- --------------------------------------------------------
 
@@ -349,21 +277,6 @@ CREATE TABLE `valeur python` (
   `result_3` varchar(50) NOT NULL,
   `nom` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
-
---
--- Déchargement des données de la table `valeur python`
---
-
-INSERT INTO `valeur python` (`valeur_1`, `result_1`, `valeur_2`, `result_2`, `valeur_3`, `result_3`, `nom`) VALUES
-('98', 'pair', '121', 'impair', '18', 'pair', 'partie1'),
-('12 23 22', '23', '58 21 32', '58', '23 34 97', '97', 'partie2'),
-('12.25 14.50 18.25', '15.0', '8.5 12.0 14.0', '11.5', '16.0 13.5 19.25', '16.25', 'partie3'),
-('[9,68,7,50,98]', '[81, 4624, 49, 2500, 9604]', '[53,19,49,68,25]', '[2809, 361, 2401, 4624, 625]', '[23,46,52,43,25]', '[529, 2116, 2704, 1849, 625]', 'partie4'),
-('12', '2 4 6 8 10', '23', '2 4 6 8 10 12 14 16 18 20 22', '3', '2', 'partie5'),
-('El0izzz', '7', 'Aubin', '5', 'grgoire', '6', 'partie6'),
-('12 [11,12,23,27,1]', 'True', '23 [248,234,19,24,91]', 'False', '3 [1,2,3]', 'True', 'partie7'),
-('la mariee ira mal', '\' la mariee ira mal \' est un palindrome.', 'Coucou', '\' Coucou \' n\'est pas un palindrome.', 'Ta bete te bat', '\' Ta bete te bat \' est un palindrome.', 'partie8'),
-('Bonjour, monde !', ' ! ednom ,ruojnoB', 'Merci les participants', ' stnapicitrap sel icreM', 'Site dev par Spimods', ' sdomipS rap ved etiS', 'partie9');
 
 --
 -- Index pour les tables déchargées
@@ -425,19 +338,19 @@ ALTER TABLE `valeur python`
 -- AUTO_INCREMENT pour la table `ctfuser`
 --
 ALTER TABLE `ctfuser`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT pour la table `prog`
 --
 ALTER TABLE `prog`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT pour la table `python`
 --
 ALTER TABLE `python`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT pour la table `rsociaux`
@@ -449,7 +362,7 @@ ALTER TABLE `rsociaux`
 -- AUTO_INCREMENT pour la table `triche`
 --
 ALTER TABLE `triche`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

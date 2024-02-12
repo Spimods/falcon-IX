@@ -67,7 +67,9 @@ if (isset($_SESSION['ctfcookies'])) {
     } else {
         $notetime = 0;
     }
-
+    if ($heure >= 1){
+        $notetime = 0;
+    }
     $time = $heure . "-" . $minute . "-" . $seconde;
     $timeend = $heure . "h" . $minute . "min" . $seconde . "sec" ;
     $requete->close();
@@ -291,7 +293,7 @@ if (isset($_SESSION['ctfcookies'])) {
             transform: translateZ(0);
             border-radius: 50%;
             background-color: #FD002E;
-            background-image: url('../images/piecepython1.png');
+            background-image: url('../../images/pieceprogCSS1.png');
             background-repeat: no-repeat;
             background-position: center center;
             background-size: 108%;
@@ -321,7 +323,7 @@ if (isset($_SESSION['ctfcookies'])) {
             transform: rotateY(180deg) translateZ(20px);
             border-radius: 50%;
             background-color: #FD002E;
-            background-image: url('../images/piecepython1.png');
+            background-image: url('../../images/pieceprogCSS1.png');
             background-repeat: no-repeat;
             background-position: center center;
             background-size: 108%;
@@ -410,8 +412,8 @@ if (isset($_SESSION['ctfcookies'])) {
     <div class="message" id="message">
     </div>
     <div class="texte-fondu">
-    Félicitations pour avoir brillamment achevé l'épreuve de Python du Ozanam CyberQuest ! <br>
-    Votre maîtrise rapide et précise de la programmation démontre un talent exceptionnel. Continuez ainsi !<br>
+    Bien joué pour avoir brillamment terminé la tâche CSS de l'Ozanam CyberQuest !<br>
+    Votre habileté rapide et précise dans la création de styles démontre un talent exceptionnel. Continuez sur cette lancée !<br>
     <a class='fin' href="../../prog.php">Terminer</a>
     </div>
 
@@ -455,17 +457,17 @@ if (isset($_SESSION['ctfcookies'])) {
             if (nombre == 0) {
                 back.style.backgroundColor = "#270013";
                 back2.style.backgroundColor = "#270013";
-                back.style.backgroundImage = "url(../images/piecepythoncasse1.png)";
-                back2.style.backgroundImage = "url(../images/piecepythoncasse1.png)";
+                back.style.backgroundImage = "url(../../images/pieceprogCSScasse1.png)";
+                back2.style.backgroundImage = "url(../../images/pieceprogCSScasse1.png)";
             } else if (nombre == 1) {
-                back.style.backgroundImage = "url(../images/piecepythoncasse2.png)";
-                back2.style.backgroundImage = "url(../images/piecepythoncasse2.png)";
+                back.style.backgroundImage = "url(../../images/pieceprogCSScasse2.png)";
+                back2.style.backgroundImage = "url(../../images/pieceprogCSScasse2.png)";
             } else if (nombre == 2) {
-                back.style.backgroundImage = "url(../images/piecepythoncasse3.png)";
-                back2.style.backgroundImage = "url(../images/piecepythoncasse3.png)";
+                back.style.backgroundImage = "url(../../images/pieceprogCSScasse3.png)";
+                back2.style.backgroundImage = "url(../../images/pieceprogCSScasse3.png)";
             } else if (nombre == 3) {
-                back.style.backgroundImage = "url(../images/piecepythoncasse4.png)";
-                back2.style.backgroundImage = "url(../images/piecepythoncasse4.png)";
+                back.style.backgroundImage = "url(../../images/pieceprogCSScasse4.png)";
+                back2.style.backgroundImage = "url(../../images/pieceprogCSScasse4.png)";
             } else if (nombre == 4) {
                 document.querySelector('.content__coins').classList.add('end');
                 setTimeout(() => {

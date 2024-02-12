@@ -69,7 +69,9 @@ if (isset($_SESSION['ctfcookies'])) {
     } else {
         $notetime = 0;
     }
-
+    if ($heure >= 1){
+        $notetime = 0;
+    }
     $time = $heure . "-" . $minute . "-" . $seconde;
     $timeend = $heure . "h" . $minute . "min" . $seconde . "sec" ;
     $requete->close();

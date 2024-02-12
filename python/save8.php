@@ -91,7 +91,7 @@ if (isset($_SESSION['ctfcookies'])) {
     $time = $heure . "-" . $minute . "-" . $seconde;
     $timeend = $heure . "h" . $minute . "min" . $seconde . "sec" ;
     $requete->close();
-    $requete2 = $connexion->prepare("INSERT INTO score (nom, note, timetotal, caracteretotal, lignetotal, codecomplet, cookie) VALUES (?, ?, ?, ?, ?,? ,?)");
+    $requete2 = $connexion->prepare("INSERT INTO score (nom, note, timetotal, caracteretotal, lignetotal, codecomplet, cookie, etape) VALUES (?, ?, ?, ?, ?,? ,?, 'python')");
     $requete2->bind_param("sssssss",$name, $note, $time, $nombre_de_caracteres, $nombre_de_lignes, $code, $idcookie);
     $requete2->execute();
     $requete3 = $connexion->prepare("UPDATE timepython SET time8 = ?, key8 = 1  WHERE cookie = ?");

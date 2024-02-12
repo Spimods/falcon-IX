@@ -13,7 +13,7 @@
         body {
             overflow: hidden;
             background: url(../../images/bg.png);
-            background-color: #000000;
+            background-color: #000309;
             background-position: right;
             background-size: cover;
             background-repeat: no-repeat;
@@ -182,7 +182,7 @@
         }
         setInterval(checkCSS, 1000); 
         function redirect(){
-            window.location.href = "save.php?code=" + encodeURIComponent(ace.edit("editor").getValue());
+            window.location.href = "save.php";
         }
 
     </script>

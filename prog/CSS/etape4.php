@@ -12,7 +12,7 @@
         body {
             overflow: hidden;
             background: url(../../images/bg.png);
-            background-color: #000000;
+            background-color: #000309;
             background-position: right;
             background-size: cover;
             background-repeat: no-repeat;
@@ -134,8 +134,7 @@
 <div id="tooltip">
             <p>Consignes :</p>
             <ul>
-                <li>Appliquez un style CSS pour dessiner un cercle en utilisant les propriétés border-radius.</li>
-                <li>Positionnez le cercle pour qu'il soit placé à 80% de la gauche, en utilisant la propriété left.</li>
+                <li>Modifiez la propriété filter pour appliquer un flou de 2 pixels et réduire la luminosité à 80% à l'image.</li>
             </ul>
         </div>
 
@@ -191,7 +190,7 @@
         }
         setInterval(checkCSS, 1000); 
         function redirect(){
-            window.location.href = "save.php?code=" + encodeURIComponent(ace.edit("editor").getValue());
+            window.location.href = "save4.php";
         }
 
     </script>

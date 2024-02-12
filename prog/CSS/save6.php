@@ -1,7 +1,6 @@
 <?php
 session_start();
 
-
 $serveur = "localhost";
 $utilisateur = "root";
 $motDePasse = "";
@@ -18,7 +17,7 @@ if ($connexion->connect_error) {
 if (isset($_SESSION['ctfcookies'])) {
     $idcookie = $_SESSION['ctfcookies'];
     $name = $_SESSION['ctfNOM'];
-    $requete = $connexion->prepare("SELECT time9 FROM timepython WHERE cookie = ?");
+    $requete = $connexion->prepare("SELECT time6 FROM timeprog WHERE cookie = ?");
     $requete->bind_param("s", $idcookie);
     $requete->execute();
     $requete->bind_result($timedebut);
@@ -35,6 +34,7 @@ if (isset($_SESSION['ctfcookies'])) {
     $heure = $heurefin - $heuredebut;
     $minute = $minfin - $mindebut;
     $seconde = $secfin - $secdebut;
+    
     if ($heure < 0){
         $jour = $jour -1;
         $heure = 60 + $heure;
@@ -48,56 +48,36 @@ if (isset($_SESSION['ctfcookies'])) {
         $seconde = 60 + $seconde;
     }
 
-    if ($minute < 4) {
-        $notetime = 0;
-    } elseif ($minute <= 7) {
-        $notetime = 1;
-    } elseif ($minute <= 8) {
-        $notetime = 2;
-    } elseif ($minute <= 9) {
-        $notetime = 3;
-    } elseif ($minute <= 13) {
-        $notetime = 4;
-    } elseif ($minute <= 15) {
-        $notetime = 5;
-    } elseif ($minute <= 17.5) {
-        $notetime = 7;
-    } elseif ($minute <= 20) {
-        $notetime = 8;
-    } else {
+    if ($minute < 2.5) {
         $notetime = 10;
+    } elseif ($minute <= 5) {
+        $notetime = 9;
+    } elseif ($minute <= 7.5) {
+        $notetime = 7;
+    } elseif ($minute <= 10) {
+        $notetime = 6;
+    } elseif ($minute <= 12.5) {
+        $notetime = 5;
+    } elseif ($minute <= 15) {
+        $notetime = 3;
+    } elseif ($minute <= 17.5) {
+        $notetime = 1;
+    } elseif ($minute <= 20) {
+        $notetime = 0;
+    } else {
+        $notetime = 0;
     }
 
-
-    $code = $_GET['code'];
-
-    $lignes = explode("\n", $code);
-    $lignes_de_code = array_filter($lignes, function ($ligne) {
-        return !trim($ligne) || strpos(trim($ligne), '#') !== 0;
-    });
-    $nombre_de_lignes = count($lignes_de_code);
-    $nombre_de_caracteres = array_sum(array_map('strlen', $lignes_de_code));
-
-    $note = 10 - (($nombre_de_lignes * 0.1)/2 + ($notetime/2) + $nombre_de_caracteres * 0.01);
-    $note = max(0, min(10, $note));
-
-
-    if ($nombre_de_lignes <= 7 and $notetime < 9){
-        $note = 10;
-        $nombre_de_lignes = 0;
-        $nombre_de_caracteres = 0;
-        $notetime = 0;
-    };
     $time = $heure . "-" . $minute . "-" . $seconde;
     $timeend = $heure . "h" . $minute . "min" . $seconde . "sec" ;
     $requete->close();
-    $requete2 = $connexion->prepare("INSERT INTO score (nom, note, timetotal, caracteretotal, lignetotal, codecomplet, cookie, etape) VALUES (?, ?, ?, ?, ?,? ,?, 'python')");
-    $requete2->bind_param("sssssss",$name, $note, $time, $nombre_de_caracteres, $nombre_de_lignes, $code, $idcookie);
+    $requete2 = $connexion->prepare("INSERT INTO score (nom, note,  timetotal, cookie, etape) VALUES (?, ?, ?, ?, 'progCSS')");
+    $requete2->bind_param("ssss",$name,$notetime,  $time, $idcookie);
     $requete2->execute();
-    $requete3 = $connexion->prepare("SELECT time7, time8 FROM timepython WHERE cookie = ?");
+    $requete3 = $connexion->prepare("SELECT time1, time2, time3, time4 ,time5, time6 FROM timeprog WHERE cookie = ?");
     $requete3->bind_param("s",$idcookie);
     $requete3->execute();
-    $requete3->bind_result($time1, $time2);
+    $requete3->bind_result($time1, $time2, $time3, $time4, $time5, $time6);
     $requete3->fetch();
 
     if (preg_match('/(\d+)h(\d+)min(\d+)sec/', $time1, $matches)) {
@@ -123,10 +103,10 @@ if (isset($_SESSION['ctfcookies'])) {
     }
     $time = $heure."h ".$min."min ".$sec."sec";
     $requete3->close();
-    $requete4 = $connexion->prepare("UPDATE python SET time_flag_3 = ?, flag3 = 1 WHERE cookie = ?");
+    $requete4 = $connexion->prepare("UPDATE prog SET time_flag_2 = ?, flag2 = 1 WHERE cookie = ?");
     $requete4->bind_param("ss",$time, $idcookie);
     $requete4->execute();    
-    $requete5 = $connexion->prepare("UPDATE timepython SET time9 = ?, key9 = 1  WHERE cookie = ?");
+    $requete5 = $connexion->prepare("UPDATE timeprog SET time6 = ?, key6 = 1  WHERE cookie = ?");
     $requete5->bind_param("ss",$timeend, $idcookie);
     $requete5->execute();
 }
@@ -137,7 +117,7 @@ if (isset($_SESSION['ctfcookies'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Score</title>
-    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../../css/main.css">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -183,34 +163,12 @@ if (isset($_SESSION['ctfcookies'])) {
             border-radius: 10px;
             overflow: hidden;
         }
-        .progress {
-            height: 100%;
-            background-color: #b90012;
-            border-radius: 10px;
-            width: <?php 
-            if (($nombre_de_lignes*2) < 100) {
-                echo 100 - $nombre_de_lignes*2 . "%";
-            } else {
-                echo 4 . "%";
-            } ?>;
-        }
-        .progress2 {
-            height: 100%;
-            background-color: #b90012;
-            border-radius: 10px;
-            width: <?php 
-            if (($nombre_de_caracteres/4) < 100) {
-                echo 100 - $nombre_de_caracteres/4 . "%";
-            } else {
-                echo 4 . "%";
-            } ?>; 
-        }
         .progress3 {
             height: 100%;
             background-color: #b90012;
             border-radius: 10px;
             width: <?php 
-            echo 100 - $notetime * 10 . "%";
+            echo $notetime * 10 . "%";
             ?>; 
         }
         p {
@@ -441,10 +399,8 @@ if (isset($_SESSION['ctfcookies'])) {
 </head>
 <body>
     <div class="container">
-        <div class="note"><?php echo $note;?> / 10</div>
+        <div class="note"><?php echo $notetime;?> / 10</div>
         <div class="details">
-            <p>Nombre de lignes :</p><div class="progress-bar"><div class="progress"></div></div>
-            <p>Nombre de caractères :</p><div class="progress-bar"><div class="progress2"></div></div>
             <p>Temps total :</p><div class="progress-bar"><div class="progress3"></div></div>
         </div>
         <button class="button" onclick="start()">Niveau Suivant <svg xmlns="http://www.w3.org/2000/svg" class="svgfleche" class="bi bi-chevron-double-right" viewBox="0 0 16 16"> <path fill-rule="evenodd" d="M3.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L9.293 8 3.646 2.354a.5.5 0 0 1 0-.708z"/> <path fill-rule="evenodd" d="M7.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L13.293 8 7.646 2.354a.5.5 0 0 1 0-.708z"/> </svg></button>
@@ -456,7 +412,7 @@ if (isset($_SESSION['ctfcookies'])) {
     <div class="texte-fondu">
     Félicitations pour avoir brillamment achevé l'épreuve de Python du Ozanam CyberQuest ! <br>
     Votre maîtrise rapide et précise de la programmation démontre un talent exceptionnel. Continuez ainsi !<br>
-    <a class='fin' href="../python.php">Terminer</a>
+    <a class='fin' href="../../prog.php">Terminer</a>
     </div>
 
     <div class="content">

@@ -12,7 +12,7 @@
         body {
             overflow: hidden;
             background: url(../../images/bg.png);
-            background-color: #000000;
+            background-color: #000309;
             background-position: right;
             background-size: cover;
             background-repeat: no-repeat;
@@ -124,8 +124,8 @@
 <div id="tooltip">
             <p>Consignes :</p>
             <ul>
-                <li>Appliquez un style CSS pour dessiner un cercle en utilisant les propriétés border-radius.</li>
-                <li>Positionnez le cercle pour qu'il soit placé à 80% de la gauche, en utilisant la propriété left.</li>
+                <li>Définissez la propriété border-radius à 20%. Ajoutez une couleur de fond jaune avec la propriété background-color.</li>
+                <li>Positionnez le carré pour qu'il soit placé à 80% de la droite, en utilisant la propriété right.</li>
             </ul>
         </div>
 
@@ -160,14 +160,14 @@
             var outputElement = document.getElementById('output');
             var rightPixels = parseFloat(window.getComputedStyle(outputElement).getPropertyValue('right'));
             var parentWidth = outputElement.parentElement.offsetWidth;
-            var rightPercentage = Math.round((rightPixels / parentWidth) * 101) + '%';
+            var rightPercentage = Math.round((rightPixels / parentWidth) * 100) + '%';
             var heightPixels = parseFloat(window.getComputedStyle(outputElement).getPropertyValue('height')) + 'px';
             var widthPixels = parseFloat(window.getComputedStyle(outputElement).getPropertyValue('width')) + 'px';
             var borderRadiusPixels = parseFloat(window.getComputedStyle(outputElement).getPropertyValue('border-radius'));
             var borderRadiusPercentage = Math.round(borderRadiusPixels) + '%';
             var backcolor = window.getComputedStyle(outputElement).getPropertyValue('background-color');
-            console.log(rightPercentage, heightPixels, borderRadiusPercentage, widthPixels, backcolor);
-            if (rightPercentage === '80%' && borderRadiusPercentage === '20%' && widthPixels === '100px' && heightPixels === '100px' && backcolor == 'rgb(255, 255, 0)') {
+            console.log(rightPercentage,rightPixels, heightPixels, borderRadiusPercentage, widthPixels, backcolor);
+            if ((rightPercentage === '80%' || rightPercentage === '79%' || rightPercentage === '81%')&& borderRadiusPercentage === '20%' && widthPixels === '100px' && heightPixels === '100px' && backcolor == 'rgb(255, 255, 0)') {
                 document.getElementById('validButton').style.display = "initial"
             } else {
                 document.getElementById('validButton').style.display = "none"
@@ -176,7 +176,7 @@
         }
         setInterval(checkCSS, 1000); 
         function redirect(){
-            window.location.href = "save.php?code=" + encodeURIComponent(ace.edit("editor").getValue());
+            window.location.href = "save2.php";
         }
 
     </script>

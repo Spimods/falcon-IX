@@ -12,7 +12,7 @@
         body {
             overflow: hidden;
             background: url(../../images/bg.png);
-            background-color: #000000;
+            background-color: #000309;
             background-position: right;
             background-size: cover;
             background-repeat: no-repeat;
@@ -56,6 +56,7 @@
             background-size: cover;
             background-repeat: no-repeat;
             filter: blur(2px) brightness(80%);
+            box-shadow: 0 0 6px 5px rgba(0, 255, 0, 0.7);
             scale: 2;
         }
         #case {
@@ -116,10 +117,30 @@
             font-size: 14px;
             font-family: Arial, sans-serif;
         }
-
-    </style>
+        #output2 {
+            width: 200px;
+            height: 200px;
+            background: yellow;
+            transition: all 0.3s ease;
+            top: 25%;
+            right: 40%;
+            border: 4px solid red;
+            border-radius: 100%;
+            position: absolute;
+            box-sizing: border-box;
+            z-index: 30;
+            background-image: url(../../images/image.png);
+            background-size: cover;
+            background-repeat: no-repeat;
+            box-shadow: 0 0 6px 5px rgba(255, 0, 0, 0.7);
+            scale: 2;
+            display: none;
+        } 
+</style>
 </head>
 <body>
+<div id="output2"></div>
+
     <div class="editor">
         <div id="editor" style="left: -10%; height: 210px; width: 30%; margin-bottom: 1em;">#output {
     width: 100px;
@@ -133,12 +154,13 @@
     background-repeat: no-repeat;
     filter: blur(2px) brightness(80%);
     scale: 2;
+    box-shadow: 0 0 6px 5px rgba(0, 255, 0, 0.7);
 }</div>
 <div id="tooltip">
             <p>Consignes :</p>
             <ul>
-                <li>Appliquez un style CSS pour dessiner un cercle en utilisant les propriétés border-radius.</li>
-                <li>Positionnez le cercle pour qu'il soit placé à 80% de la gauche, en utilisant la propriété left.</li>
+                <li>Réglez le composant vert à zéro et ajustez le composant rouge sur 255 dans la propriété box-shadow.</li>
+                <li>Pour rappel, rgb(rouge, vert, bleu).</li>
             </ul>
         </div>
 
@@ -185,8 +207,9 @@
             var filter = window.getComputedStyle(outputElement).getPropertyValue('filter');
             var border = window.getComputedStyle(outputElement).getPropertyValue('border');
             var scale = window.getComputedStyle(outputElement).getPropertyValue('scale');
-            console.log(rightPercentage, heightPixels, borderRadiusPercentage, widthPixels, backimage, backsizeimage, backrepeatimage, border, filter, scale);
-            if (rightPercentage === '40%' && borderRadiusPercentage === '100%' && widthPixels === '100px' && heightPixels === '100px' && backcolor == 'rgb(255, 255, 0)' && backrepeatimage == 'no-repeat' && backsizeimage == 'cover' && backimage == 'url("http://localhost/falcon-V/images/image.png")' && border == '4px solid rgb(255, 0, 0)' && filter == 'blur(2px) brightness(0.8)' && scale == '2') {
+            var boxshadow = window.getComputedStyle(outputElement).getPropertyValue('box-shadow');
+            console.log(rightPercentage, heightPixels, borderRadiusPercentage, widthPixels, backimage, backsizeimage, backrepeatimage, border, filter, scale, boxshadow);
+            if (rightPercentage === '40%' && borderRadiusPercentage === '100%' && widthPixels === '100px' && heightPixels === '100px' && backcolor == 'rgb(255, 255, 0)' && backrepeatimage == 'no-repeat' && backsizeimage == 'cover' && backimage == 'url("http://localhost/falcon-V/images/image.png")' && border == '4px solid rgb(255, 0, 0)' && filter == 'blur(2px) brightness(0.8)' && scale == '2' && boxshadow == 'rgba(255, 0, 0, 0.7) 0px 0px 6px 5px') {
                 document.getElementById('validButton').style.display = "initial"
             } else {
                 document.getElementById('validButton').style.display = "none"
@@ -195,7 +218,7 @@
         }
         setInterval(checkCSS, 1000); 
         function redirect(){
-            window.location.href = "save.php?code=" + encodeURIComponent(ace.edit("editor").getValue());
+            window.location.href = "save6.php";
         }
 
     </script>

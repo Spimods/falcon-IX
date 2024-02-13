@@ -131,7 +131,7 @@ if (isset($_SESSION['ctfcookies'])) {
 <div class="loading-bar">
     <div class="progress" id="progress"></div>
     <div class="time" id="time">0:00</div>
-  </div>
+</div>
 <div class="message" id="message">
 <p>La sortie de cette page est interdite sous peine d'invalidation du flag.</p>
 </div>

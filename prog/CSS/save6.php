@@ -17,100 +17,128 @@ if ($connexion->connect_error) {
 if (isset($_SESSION['ctfcookies'])) {
     $idcookie = $_SESSION['ctfcookies'];
     $name = $_SESSION['ctfNOM'];
-    $requete = $connexion->prepare("SELECT time6 FROM timeprog WHERE cookie = ?");
-    $requete->bind_param("s", $idcookie);
-    $requete->execute();
-    $requete->bind_result($timedebut);
-    $requete->fetch();
-    
-    $tempsFin = new DateTime();
-    $tempsFinTimestamp = $tempsFin->getTimestamp();
-    $tempsFin = gmdate("d H i s", $tempsFinTimestamp);
-
-    list($jourfin, $heurefin, $minfin, $secfin) = explode(" ", $tempsFin);
-    list($jourdebut, $heuredebut, $mindebut, $secdebut) = explode(" ", $timedebut);
-
-    $jour = $jourfin - $jourdebut;
-    $heure = $heurefin - $heuredebut;
-    $minute = $minfin - $mindebut;
-    $seconde = $secfin - $secdebut;
-    
-    if ($heure < 0){
-        $jour = $jour -1;
-        $heure = 60 + $heure;
-    }
-    if ($minute < 0){
-        $heure = $heure -1;
-        $minute = 60 + $minute;
-    }
-    if ($seconde < 0){
-        $minute = $minute -1;
-        $seconde = 60 + $seconde;
-    }
-
-    if ($minute < 2.5) {
-        $notetime = 10;
-    } elseif ($minute <= 5) {
-        $notetime = 9;
-    } elseif ($minute <= 7.5) {
-        $notetime = 7;
-    } elseif ($minute <= 10) {
-        $notetime = 6;
-    } elseif ($minute <= 12.5) {
-        $notetime = 5;
-    } elseif ($minute <= 15) {
-        $notetime = 3;
-    } elseif ($minute <= 17.5) {
-        $notetime = 1;
-    } elseif ($minute <= 20) {
-        $notetime = 0;
+    $requeteverif = $connexion->prepare("SELECT key6 FROM timeprog WHERE cookie = ?");
+    $requeteverif->bind_param("s",$idcookie);
+    $requeteverif->execute();
+    $requeteverif->bind_result($valeur1);
+    $requeteverif->fetch();
+    if ($valeur1 == 1) {
+        header('Location: ../../prog.php');
+        exit();
     } else {
-        $notetime = 0;
-    }
-    if ($heure >= 1){
-        $notetime = 0;
-    }
-    $time = $heure . "-" . $minute . "-" . $seconde;
-    $timeend = $heure . "h" . $minute . "min" . $seconde . "sec" ;
-    $requete->close();
-    $requete2 = $connexion->prepare("INSERT INTO score (nom, note,  timetotal, cookie, etape) VALUES (?, ?, ?, ?, 'progCSS')");
-    $requete2->bind_param("ssss",$name,$notetime,  $time, $idcookie);
-    $requete2->execute();
-    $requete3 = $connexion->prepare("SELECT time1, time2, time3, time4 ,time5, time6 FROM timeprog WHERE cookie = ?");
-    $requete3->bind_param("s",$idcookie);
-    $requete3->execute();
-    $requete3->bind_result($time1, $time2, $time3, $time4, $time5, $time6);
-    $requete3->fetch();
+        $requeteverif->close();
+        $requete = $connexion->prepare("SELECT time6 FROM timeprog WHERE cookie = ?");
+        $requete->bind_param("s", $idcookie);
+        $requete->execute();
+        $requete->bind_result($timedebut);
+        $requete->fetch();
+        $tempsFin = new DateTime();
+        $tempsFinTimestamp = $tempsFin->getTimestamp();
+        $tempsFin = gmdate("d H i s", $tempsFinTimestamp);
 
-    if (preg_match('/(\d+)h(\d+)min(\d+)sec/', $time1, $matches)) {
-        $val1 = (int)$matches[1]; 
-        $val2 = (int)$matches[2];
-        $val3 = (int)$matches[3];
-        if (preg_match('/(\d+)h(\d+)min(\d+)sec/', $time2, $matches2)) {
-            $val12 = (int)$matches2[1]; 
-            $val22 = (int)$matches2[2];
-            $val32 = (int)$matches2[3];
+        list($jourfin, $heurefin, $minfin, $secfin) = explode(" ", $tempsFin);
+        list($jourdebut, $heuredebut, $mindebut, $secdebut) = explode(" ", $timedebut);
+
+        $jour = $jourfin - $jourdebut;
+        $heure = $heurefin - $heuredebut;
+        $minute = $minfin - $mindebut;
+        $seconde = $secfin - $secdebut;
+        
+        if ($heure < 0){
+            $jour = $jour -1;
+            $heure = 60 + $heure;
         }
-        $heure = $val1 + $val12 + $heure;
-        $min = $val2 + $val22 + $minute;
-        $sec = $val3 + $val32 + $seconde;
-        if ($sec > 60){
-            $sec = $sec - 60;
-            $min = $min + 1;
+        if ($minute < 0){
+            $heure = $heure -1;
+            $minute = 60 + $minute;
         }
-        if ($min > 60){
-            $min = $min - 60;
-            $heure = $heure + 1;
+        if ($seconde < 0){
+            $minute = $minute -1;
+            $seconde = 60 + $seconde;
+        }
+
+        if ($minute < 2.5) {
+            $notetime = 10;
+        } elseif ($minute <= 5) {
+            $notetime = 9;
+        } elseif ($minute <= 7.5) {
+            $notetime = 7;
+        } elseif ($minute <= 10) {
+            $notetime = 6;
+        } elseif ($minute <= 12.5) {
+            $notetime = 5;
+        } elseif ($minute <= 15) {
+            $notetime = 3;
+        } elseif ($minute <= 17.5) {
+            $notetime = 1;
+        } elseif ($minute <= 20) {
+            $notetime = 0;
+        } else {
+            $notetime = 0;
+        }
+        if ($heure >= 1){
+            $notetime = 0;
+        }
+        $time = $heure . "-" . $minute . "-" . $seconde;
+        $timeend = $heure . "h" . $minute . "min" . $seconde . "sec" ;
+        $requete->close();
+        $requete2 = $connexion->prepare("INSERT INTO score (nom, note,  timetotal, cookie, etape) VALUES (?, ?, ?, ?, 'progCSS')");
+        $requete2->bind_param("ssss",$name,$notetime,  $time, $idcookie);
+        $requete2->execute();
+        $requete3 = $connexion->prepare("SELECT time1, time2, time3, time4 ,time5 FROM timeprog WHERE cookie = ?");
+        $requete3->bind_param("s",$idcookie);
+        $requete3->execute();
+        $requete3->bind_result($time1, $time2, $time3, $time4, $time5);
+        $requete3->fetch();
+
+        if (preg_match('/(\d+)h(\d+)min(\d+)sec/', $time1, $matches)) {
+            $val1 = (int)$matches[1]; 
+            $val2 = (int)$matches[2];
+            $val3 = (int)$matches[3];
+            if (preg_match('/(\d+)h(\d+)min(\d+)sec/', $time2, $matches2)) {
+                $val12 = (int)$matches2[1]; 
+                $val22 = (int)$matches2[2];
+                $val32 = (int)$matches2[3];
+                if (preg_match('/(\d+)h(\d+)min(\d+)sec/', $time3, $matches3)) {
+                    $val13 = (int)$matches3[1]; 
+                    $val23 = (int)$matches3[2];
+                    $val33 = (int)$matches3[3];
+                    if (preg_match('/(\d+)h(\d+)min(\d+)sec/', $time4, $matches4)) {
+                        $val14 = (int)$matches4[1]; 
+                        $val24 = (int)$matches4[2];
+                        $val34 = (int)$matches4[3];
+                        if (preg_match('/(\d+)h(\d+)min(\d+)sec/', $time5, $matches5)) {
+                            $val15 = (int)$matches5[1]; 
+                            $val25 = (int)$matches5[2];
+                            $val35 = (int)$matches5[3];
+
+            $heure = $val1 + $val12 + $val13 + $val14 + $val15 + $heure;
+            $min = $val2 + $val22 + $val23 + $val24 + $val25 + $minute;
+            $sec = $val3 + $val32 + $val33 + $val34 +  $val35 + $seconde;
+            if ($sec > 60){
+                $sec = $sec - 60;
+                $min = $min + 1;
+            }
+            if ($min > 60){
+                $min = $min - 60;
+                $heure = $heure + 1;
+            }
         }
     }
-    $time = $heure."h ".$min."min ".$sec."sec";
-    $requete3->close();
-    $requete4 = $connexion->prepare("UPDATE prog SET time_flag_2 = ?, flag2 = 1 WHERE cookie = ?");
-    $requete4->bind_param("ss",$time, $idcookie);
-    $requete4->execute();    
-    $requete5 = $connexion->prepare("UPDATE timeprog SET time6 = ?, key6 = 1  WHERE cookie = ?");
-    $requete5->bind_param("ss",$timeend, $idcookie);
-    $requete5->execute();
+    }
+    }
+    }
+
+
+        $time = $heure."h ".$min."min ".$sec."sec";
+        $requete3->close();
+        $requete4 = $connexion->prepare("UPDATE prog SET time_flag_2 = ?, flag2 = 1 WHERE cookie = ?");
+        $requete4->bind_param("ss",$time, $idcookie);
+        $requete4->execute();    
+        $requete5 = $connexion->prepare("UPDATE timeprog SET time6 = ?, key6 = 1  WHERE cookie = ?");
+        $requete5->bind_param("ss",$timeend, $idcookie);
+        $requete5->execute();
+    }
 }
 ?>
 <!DOCTYPE html>

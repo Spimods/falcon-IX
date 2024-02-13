@@ -1,4 +1,36 @@
+<?php
+session_start();
 
+$serveur = "localhost";
+$utilisateur = "root";
+$motDePasse = "";
+$baseDeDonnees = "ctf";
+
+date_default_timezone_set('Europe/Paris');
+
+$connexion = new mysqli($serveur, $utilisateur, $motDePasse, $baseDeDonnees);
+
+if ($connexion->connect_error) {
+    die("Échec de la connexion à la base de données : " . $connexion->connect_error);
+}
+
+if (isset($_SESSION['ctfcookies'])) {
+    $valeurCookie = $_SESSION['ctfcookies'];
+    $valeurCookieNOM = $_SESSION['ctfNOM'];
+    $requeteverif = $connexion->prepare("SELECT key2 FROM timeprog WHERE cookie = ?");
+    $requeteverif->bind_param("s",$valeurCookie);
+    $requeteverif->execute();
+    $requeteverif->bind_result($valeur1);
+    $requeteverif->fetch();
+    if ($valeur1 != NULL) {
+        header('Location: timestartetape3.php');
+        exit();
+    } else {
+        $requeteverif->close();
+    }
+}
+
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -109,10 +141,39 @@
             font-size: 14px;
             font-family: Arial, sans-serif;
         }
+        .loading-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background-color: rgb(66, 66, 66);
+            z-index: 13;
+        }
 
+        .progress {
+            height: 100%;
+            width: 0;
+            background-color: #b80900;
+            transition: width 1s ease;
+        }
+
+        .time {
+            font-family: Arial, sans-serif;
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            color: #b80900;
+            font-size: 18px;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
+<div class="loading-bar">
+    <div class="progress" id="progress"></div>
+    <div class="time" id="time">0:00</div>
+</div>
     <div class="editor">
         <div id="editor" style="left: -10%; height: 210px; width: 30%; margin-bottom: 1em;">#output {
     width: 100px;
@@ -180,5 +241,7 @@
         }
 
     </script>
+    <script src="../../js/timerCSS.js"></script>
+
 </body>
 </html>

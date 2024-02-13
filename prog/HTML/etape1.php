@@ -6,7 +6,9 @@
     <title>Plus à gauche</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/ace.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/ext-language_tools.js"></script>
-    <style>
+
+</head>
+<style>
         body {
             overflow: hidden;
             background: url(../../images/bg.png);
@@ -40,19 +42,6 @@
             position: relative; 
             overflow: hidden; 
             background: #000000a3;
-        }
-
-        #output {
-            width: 100px;
-            height: 100px;
-            background-color: blue;
-            transition: all 0.3s ease; 
-            top: 25%;
-            left : 10%;
-            position: absolute; 
-            box-sizing: border-box; 
-            border: 2px solid transparent; 
-            z-index: 1;
         }
 
         #case {
@@ -115,17 +104,42 @@
             font-size: 14px;
             font-family: Arial, sans-serif;
         }
+        .loading-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background-color: rgb(66, 66, 66);
+            z-index: 13;
+        }
+
+        .progress {
+            height: 100%;
+            width: 0;
+            background-color: #b80900;
+            transition: width 1s ease;
+        }
+
+        .time {
+            font-family: Arial, sans-serif;
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            color: #b80900;
+            font-size: 18px;
+            font-weight: bold;
+        }
 
     </style>
-</head>
+
 <body>
 <div class="loading-bar">
     <div class="progress" id="progress"></div>
     <div class="time" id="time">0:00</div>
 </div>
 <div class="editor">
-    <div id="editor" style="left: -10%; height: 210px; width: 30%; margin-bottom: 1em;">&lt;div id="output"&gt;
-    &lt;/div&gt;</div>
+    <div id="editor" style="left: -10%; height: 210px; width: 30%; margin-bottom: 1em;">&lt;img id="output" src="votre_image_ici.png" style="height:200px; width:200px"/&gt;</div>
     <div id="tooltip">
         <p>Consignes :</p>
         <ul>
@@ -144,39 +158,20 @@
     editor.setTheme("ace/theme/monokai");
     editor.session.setMode("ace/mode/html");
     
-    const output = document.getElementById('output-container');
+    const outputContainer = document.querySelector('.output-container');
+    const caseElement = document.getElementById('case');
 
     editor.session.on('change', function() {
-        output.innerHTML = editor.getValue();
+        outputContainer.innerHTML = editor.getValue();
         checkOverflow();
-        checkCSS();
     });
 
     function checkOverflow() {
-        const outputContainer = document.querySelector('.output-container');
-        const outputHeight = output.offsetHeight;
-        const containerHeight = outputContainer.offsetHeight;
-        if (outputHeight > containerHeight) {
-            output.style.transform = `translateY(-${outputHeight - containerHeight}px)`;
-        } else {
-            output.style.transform = `translateY(0)`;
-        }
-    }
-
-    function checkCSS() {
-        var outputElement = document.getElementById('output-container');
-        var leftPixels = parseFloat(window.getComputedStyle(outputElement).getPropertyValue('left'));
-        var parentWidth = outputElement.parentElement.offsetWidth;
-        var leftPercentage = Math.round((leftPixels / parentWidth) * 101) + '%';
-        var heightPixels = parseFloat(window.getComputedStyle(outputElement).getPropertyValue('height')) + 'px';
-        var widthPixels = parseFloat(window.getComputedStyle(outputElement).getPropertyValue('width')) + 'px';
-        var borderRadiusPixels = parseFloat(window.getComputedStyle(outputElement).getPropertyValue('border-radius'));
-        var borderRadiusPercentage = Math.round(borderRadiusPixels) + '%';
-        console.log(leftPercentage, heightPixels, borderRadiusPercentage, widthPixels);
-        if (leftPercentage === '80%' && borderRadiusPercentage === '100%' && widthPixels === '100px' && heightPixels === '100px') {
-            document.getElementById('validButton').style.display = "initial"
-        } else {
-            document.getElementById('validButton').style.display = "none"
+        var monElement = document.getElementById("output");
+        if (monElement) {
+            if (monElement.tagName === "IMG" && window.getComputedStyle(monElement).getPropertyValue('height')=="200px" && window.getComputedStyle(monElement).getPropertyValue('width')=="200px" && monElement.getAttribute("src")=="image.png") {
+                    document.getElementById("validButton").style.display = "initial" 
+            }
         }
     }
 
@@ -185,5 +180,7 @@
     }
 
 </script>
+<script src="../../js/timerHTML.js"></script>
+
 </body>
 </html>

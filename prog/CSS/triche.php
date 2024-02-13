@@ -55,7 +55,6 @@ if (isset($_SESSION['ctfcookies']) ) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Suspicion de triche</title>
     <link rel="stylesheet" href="../../css/main.css">
-
     <style>
         body {
             margin: 0;

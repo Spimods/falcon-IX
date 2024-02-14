@@ -81,7 +81,7 @@ if (isset($_SESSION['ctfcookies']) && isset($_SESSION['ctfId'])) {
 <?php if($flag1 != 0){
     echo "<div class='box1end'><span class='text'>$time1</span></div>"; 
 } else {
-    echo "<div class='box1' onclick='location.href=`./prog/etape1.php`;' ><span class='text'>HTML</span></div>"; 
+    echo "<div class='box1' onclick='location.href=`./prog/html/timestartetape1.php`;' ><span class='text'>HTML</span></div>"; 
 }; 
 if($flag2 != 0){
     echo "<div class='box2end'><span class='text'>$time2</span></div>";
@@ -91,7 +91,7 @@ if($flag2 != 0){
 if($flag3 != 0){
     echo "<div class='box3end'><span class='text'>$time3</span></div>";
 }else{
-    echo "<div class='box3' onclick='location.href=`./prog/etape3.html`;'><span class='text'>SQL</span></div>";
+    echo "<div class='box3' onclick='location.href=`./prog/sql/timestartetape1.php`;'><span class='text'>SQL</span></div>";
 }?>
 </body>
 </html>

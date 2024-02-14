@@ -30,7 +30,7 @@ if (isset($_SESSION['ctfcookies'])) {
     list($jourfin, $heurefin, $minfin, $secfin) = explode(" ", $tempsFin);
     list($jourdebut, $heuredebut, $mindebut, $secdebut) = explode(" ", $timedebut);
 
-    $jour = ($jourfin-1) - $jourdebut;
+    $jour = $jourfin - $jourdebut;
     $heure = $heurefin - $heuredebut;
     $minute = $minfin - $mindebut;
     $seconde = $secfin - $secdebut;

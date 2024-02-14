@@ -178,17 +178,50 @@ if (isset($_SESSION['ctfcookies'])) {
     <div class="time" id="time">0:00</div>
 </div>
     <div class="editor">
-        <div id="editor" style="left: -10%; height: 210px; width: 30%; margin-bottom: 1em;">#output {
-    width: 100px;
-    height: 100px;
-    background: yellow; 
-    border-radius: 100%;
-    right : 40%;
-    border: 2px solid blue; /* bordure bleue */
-    background-image: url(../../images/no_image.png);
-    background-size: cover;
-    background-repeat: no-repeat;
-}</div>
+        <div id="editor" style="left: -10%; height: 210px; width: 30%; margin-bottom: 1em;">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Ma Carte Postale&lt;/title&gt;
+    &lt;style&gt;
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 20px;
+        }
+        .carte {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        .carte img {
+            width: 100%;
+            display: block;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+        .carte .message {
+            padding: 20px;
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class="carte"&gt;
+        &lt;img src="lien_vers_votre_image.jpg" alt="Image de la carte postale"&gt;
+        &lt;div class="message"&gt;
+            &lt;h2&gt;Bonjour !&lt;/h2&gt;
+            &lt;p&gt;J'espère que cette carte postale vous trouve en bonne santé. Je profite de l'occasion pour vous envoyer quelques mots depuis cet endroit magnifique.&lt;/p&gt;
+            &lt;p&gt;À bientôt !&lt;/p&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</div>
 <div id="tooltip">
             <p>Consignes :</p>
             <ul>
@@ -227,7 +260,7 @@ if (isset($_SESSION['ctfcookies'])) {
     }
 
     function redirect() {
-        window.location.href = "save.php";
+        window.location.href = "save3.php";
     }
 
 </script>

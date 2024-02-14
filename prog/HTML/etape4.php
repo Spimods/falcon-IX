@@ -229,7 +229,7 @@ if (isset($_SESSION['ctfcookies'])) {
     }
 
     function redirect() {
-        window.location.href = "save.php";
+        window.location.href = "save4.php";
     }
 
 </script>

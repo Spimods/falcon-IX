@@ -82,7 +82,7 @@ if (isset($_SESSION['ctfcookies'])) {
         $time = $heure . "-" . $minute . "-" . $seconde;
         $timeend = $heure . "h" . $minute . "min" . $seconde . "sec" ;
         $requete->close();
-        $requete2 = $connexion->prepare("INSERT INTO score (nom, note,  timetotal, cookie, etape) VALUES (?, ?, ?, ?, 'progCSS')");
+        $requete2 = $connexion->prepare("INSERT INTO score (nom, note,  timetotal, cookie, etape) VALUES (?, ?, ?, ?, 'progHTML')");
         $requete2->bind_param("ssss",$name,$notetime,  $time, $idcookie);
         $requete2->execute();
         $requete3 = $connexion->prepare("SELECT time1, time2, time3, time4 ,time5 FROM timeproghtml WHERE cookie = ?");
@@ -129,10 +129,9 @@ if (isset($_SESSION['ctfcookies'])) {
     }
     }
 
-
         $time = $heure."h ".$min."min ".$sec."sec";
         $requete3->close();
-        $requete4 = $connexion->prepare("UPDATE prog SET time_flag_2 = ?, flag2 = 1 WHERE cookie = ?");
+        $requete4 = $connexion->prepare("UPDATE prog SET time_flag_1 = ?, flag1 = 1 WHERE cookie = ?");
         $requete4->bind_param("ss",$time, $idcookie);
         $requete4->execute();    
         $requete5 = $connexion->prepare("UPDATE timeproghtml SET time6 = ?, key6 = 1  WHERE cookie = ?");

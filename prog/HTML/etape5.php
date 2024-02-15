@@ -183,7 +183,7 @@ if (isset($_SESSION['ctfcookies'])) {
 <div id="tooltip">
             <p>Consignes :</p>
             <ul>
-            <li>Voici un exemple de code HTML simple accompagné d'un peu de CSS. Vous avez la liberté de le modifier ou de le quitter à votre convenance.</li>
+            <li>Voici un exemple de code HTML simple avec un iframe. Vous avez la liberté de le modifier ou de le quitter à votre convenance.</li>
             </ul>
         </div>
 

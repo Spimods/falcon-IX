@@ -143,8 +143,7 @@
     <div id="tooltip">
         <p>Consignes :</p>
         <ul>
-            <li>Appliquez un style CSS pour dessiner un cercle en utilisant les propriétés border-radius.</li>
-            <li>Positionnez le cercle pour qu'il soit placé à 80% de la gauche, en utilisant la propriété left.</li>
+            <li>Modifiez l'attribut src de la balise img dans le code HTML pour changer le nom de l'image de "votre_image_ici.png" à "image.png".</li>
         </ul>
     </div>
 

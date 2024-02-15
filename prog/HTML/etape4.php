@@ -175,24 +175,76 @@ if (isset($_SESSION['ctfcookies'])) {
     </style>
 </head>
 <body>
-<div class="loading-bar">
-    <div class="progress" id="progress"></div>
-    <div class="time" id="time">0:00</div>
-</div>
-    <div class="editor">
-        <div id="editor" style="left: -10%; height: 210px; width: 30%; margin-bottom: 1em;">
 
-    </div>
+    <div class="editor">
+        <div id="editor" style="left: -10%; height: 210px; width: 30%; margin-bottom: 1em;">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Formulaire de Contact&lt;/title&gt;
+    &lt;style&gt;
+        form {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 10px 50px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        input[type="text"],
+        input[type="email"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        input[value="Envoyer"] {
+            background-color: #4CAF50;
+            color: white;
+            width: 50px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        input[value="Envoyer"]:hover {
+            background-color: #45a049;
+        }
+        .error {
+            color: red;
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;form id="contactForm"&gt;
+        &lt;div&gt;
+            &lt;label for="name"&gt;Nom :&lt;/label&gt;
+            &lt;input type="text" id="name" name="name" required&gt;
+        &lt;/div&gt;
+        &lt;div&gt;
+            &lt;label for="email"&gt;Email :&lt;/label&gt;
+            &lt;input type="email" id="email" name="email" required&gt;
+        &lt;/div&gt;
+        &lt;div&gt;
+            &lt;input value="Envoyer"&gt;
+        &lt;/div&gt;
+    &lt;/form&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</div>
 <div id="tooltip">
             <p>Consignes :</p>
             <ul>
-                <li>Modifiez la propriété filter pour appliquer un flou de 2 pixels et réduire la luminosité à 80% à l'image.</li>
+            <li>Voici un exemple de code HTML simple accompagné d'un peu de CSS. Vous avez la liberté de le modifier ou de le quitter à votre convenance.</li>
             </ul>
         </div>
 
         <div class="output-container">
-            <div id="output"></div>
-            <div id="case"></div>
         </div>
     </div>
     <button id="validButton" onclick="redirect()">Valider</button>
@@ -207,25 +259,16 @@ if (isset($_SESSION['ctfcookies'])) {
 
     editor.session.on('change', function() {
         outputContainer.innerHTML = editor.getValue();
-        checkOverflow();
     });
     window.onload = function() {
         outputContainer.innerHTML = editor.getValue();
+        document.getElementById("validButton").style.display = "initial" 
     };
-    function checkOverflow() {
-        var monElement = document.getElementById("output");
-        if (monElement) {
-            if (monElement.tagName === "IMG" && window.getComputedStyle(monElement).getPropertyValue('height')=="200px" && window.getComputedStyle(monElement).getPropertyValue('width')=="200px" && monElement.getAttribute("src")=="image.png") {
-                    document.getElementById("validButton").style.display = "initial" 
-            }
-        }
-    }
 
     function redirect() {
         window.location.href = "save4.php";
     }
 
 </script>
-<script src="../../js/timerHTML.js"></script>
 </body>
 </html>

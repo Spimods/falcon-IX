@@ -177,34 +177,17 @@ if (isset($_SESSION['ctfcookies'])) {
     </style>
 </head>
 <body>
-<div class="loading-bar">
-    <div class="progress" id="progress"></div>
-    <div class="time" id="time">0:00</div>
-</div>
     <div class="editor">
-        <div id="editor" style="left: -10%; height: 210px; width: 30%; margin-bottom: 1em;">#output {
-    width: 100px;
-    height: 100px;
-    background: yellow;
-    border-radius: 100%;
-    right : 40%;
-    border: 4px solid red;
-    background-image: url(../../images/image.png);
-    background-size: cover;
-    background-repeat: no-repeat;
-    filter: blur(2px) brightness(80%);
-    scale: 1;
-}</div>
+        <div id="editor" style="left: -10%; height: 210px; width: 30%; margin-bottom: 1em;">&lt;iframe width="100%" height="100%" src="https://www.openstreetmap.org/export/embed.html?bbox=-0.004017949104309083%2C51.47612752641776%2C0.00030577182769775396%2C51.478569861898606&amp;layer=mapnik"&gt;&lt;/iframe&gt;
+</div>
 <div id="tooltip">
             <p>Consignes :</p>
             <ul>
-                <li>Modifiez la propriété transform pour augmenter l'échelle de l'image de 1 à 2.</li>
+            <li>Voici un exemple de code HTML simple accompagné d'un peu de CSS. Vous avez la liberté de le modifier ou de le quitter à votre convenance.</li>
             </ul>
         </div>
 
         <div class="output-container">
-            <div id="output"></div>
-            <div id="case"></div>
         </div>
     </div>
     <button id="validButton" onclick="redirect()">Valider</button>
@@ -219,25 +202,18 @@ if (isset($_SESSION['ctfcookies'])) {
 
     editor.session.on('change', function() {
         outputContainer.innerHTML = editor.getValue();
-        checkOverflow();
     });
 
-    function checkOverflow() {
-        var monElement = document.getElementById("output");
-        if (monElement) {
-            if (monElement.tagName === "IMG" && window.getComputedStyle(monElement).getPropertyValue('height')=="200px" && window.getComputedStyle(monElement).getPropertyValue('width')=="200px" && monElement.getAttribute("src")=="image.png") {
-                    document.getElementById("validButton").style.display = "initial" 
-            }
-        }
-    }
+
 
     function redirect() {
         window.location.href = "save5.php";
     }
     window.onload = function() {
         outputContainer.innerHTML = editor.getValue();
+        document.getElementById("validButton").style.display = "initial" 
+
     };
 </script>
-<script src="../../js/timerHTML.js"></script>
 </body>
 </html>

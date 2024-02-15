@@ -197,38 +197,20 @@ if (isset($_SESSION['ctfcookies'])) {
 </style>
 </head>
 <body>
-<div class="loading-bar">
-    <div class="progress" id="progress"></div>
-    <div class="time" id="time">0:00</div>
-</div>
+
 <div id="output2"></div>
 
     <div class="editor">
-        <div id="editor" style="left: -10%; height: 210px; width: 30%; margin-bottom: 1em;">#output {
-    width: 100px;
-    height: 100px;
-    background: yellow; 
-    border-radius: 100%; 
-    right : 40%; 
-    border: 4px solid red; 
-    background-image: url(../../images/image.png);
-    background-size: cover;
-    background-repeat: no-repeat;
-    filter: blur(2px) brightness(80%);
-    scale: 2;
-    box-shadow: 0 0 6px 5px rgba(0, 255, 0, 0.7);
-}</div>
+    <div id="editor" style="left: -10%; height: 210px; width: 30%; margin-bottom: 1em;">&lt;iframe width="100%" height="100%" src="https://github.com/Spimods/falcon-V"&gt;&lt;/iframe&gt;
+</div>
 <div id="tooltip">
             <p>Consignes :</p>
             <ul>
-                <li>Réglez le composant vert à zéro et ajustez le composant rouge sur 255 dans la propriété box-shadow.</li>
-                <li>Pour rappel, rgb(rouge, vert, bleu).</li>
+            <li>Voici un exemple de code HTML simple accompagné d'un peu de CSS. Vous avez la liberté de le modifier ou de le quitter à votre convenance.</li>
             </ul>
         </div>
 
         <div class="output-container">
-            <div id="output"></div>
-            <div id="case"></div>
         </div>
     </div>
     <button id="validButton" onclick="redirect()">Valider</button>
@@ -243,25 +225,15 @@ if (isset($_SESSION['ctfcookies'])) {
 
     editor.session.on('change', function() {
         outputContainer.innerHTML = editor.getValue();
-        checkOverflow();
     });
-
-    function checkOverflow() {
-        var monElement = document.getElementById("output");
-        if (monElement) {
-            if (monElement.tagName === "IMG" && window.getComputedStyle(monElement).getPropertyValue('height')=="200px" && window.getComputedStyle(monElement).getPropertyValue('width')=="200px" && monElement.getAttribute("src")=="image.png") {
-                    document.getElementById("validButton").style.display = "initial" 
-            }
-        }
-    }
 
     function redirect() {
         window.location.href = "save6.php";
     }
     window.onload = function() {
+        document.getElementById("validButton").style.display = "initial" 
         outputContainer.innerHTML = editor.getValue();
     };
 </script>
-<script src="../../js/timerHTML.js"></script>
 </body>
 </html>

@@ -174,10 +174,7 @@ if (isset($_SESSION['ctfcookies'])) {
     </style>
 </head>
 <body>
-<div class="loading-bar">
-    <div class="progress" id="progress"></div>
-    <div class="time" id="time">0:00</div>
-</div>
+
     <div class="editor">
         <div id="editor" style="left: -10%; height: 210px; width: 30%; margin-bottom: 1em;">&lt;!DOCTYPE html&gt;
 &lt;html lang="fr"&gt;
@@ -215,8 +212,6 @@ if (isset($_SESSION['ctfcookies'])) {
         </div>
 
         <div class="output-container">
-            <div id="output"></div>
-            <div id="case"></div>
         </div>
     </div>
     <button id="validButton" onclick="redirect()">Valider</button>
@@ -245,6 +240,5 @@ if (isset($_SESSION['ctfcookies'])) {
     }
 
 </script>
-<script src="../../js/timerHTML.js"></script>
 </body>
 </html>

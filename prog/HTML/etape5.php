@@ -234,7 +234,9 @@ if (isset($_SESSION['ctfcookies'])) {
     function redirect() {
         window.location.href = "save5.php";
     }
-
+    window.onload = function() {
+        outputContainer.innerHTML = editor.getValue();
+    };
 </script>
 <script src="../../js/timerHTML.js"></script>
 </body>

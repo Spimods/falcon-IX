@@ -145,6 +145,7 @@ if (isset($_SESSION['ctfcookies'])) {
             font-family: Arial, sans-serif;
         }
         .loading-bar {
+            display: none;
             position: fixed;
             top: 0;
             left: 0;
@@ -185,48 +186,31 @@ if (isset($_SESSION['ctfcookies'])) {
     &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
     &lt;title&gt;Ma Carte Postale&lt;/title&gt;
     &lt;style&gt;
-        body {
+        .container{
+            text-align: center;
             font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
-            margin: 0;
-            padding: 20px;
-        }
-        .carte {
-            max-width: 600px;
-            margin: 0 auto;
-            background-color: #fff;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-        }
-        .carte img {
-            width: 100%;
-            display: block;
-            border-top-left-radius: 10px;
-            border-top-right-radius: 10px;
-        }
-        .carte .message {
-            padding: 20px;
+            font-weight: 600;
+            color: white;
+            background: rgba(230, 33, 23, 0.2);
+            padding : 15px;
         }
     &lt;/style&gt;
 &lt;/head&gt;
 &lt;body&gt;
-    &lt;div class="carte"&gt;
-        &lt;img src="lien_vers_votre_image.jpg" alt="Image de la carte postale"&gt;
-        &lt;div class="message"&gt;
-            &lt;h2&gt;Bonjour !&lt;/h2&gt;
-            &lt;p&gt;J'espère que cette carte postale vous trouve en bonne santé. Je profite de l'occasion pour vous envoyer quelques mots depuis cet endroit magnifique.&lt;/p&gt;
-            &lt;p&gt;À bientôt !&lt;/p&gt;
-        &lt;/div&gt;
-    &lt;/div&gt;
+&lt;div class="container"&gt;
+    &lt;img src="image.png" alt="Image de la carte postale" width="100"&gt;
+    &lt;p&gt;Bonjour !&lt;/p&gt;
+    &lt;p&gt;J'espère que cette carte postale vous trouve en bonne santé.&lt;/p&gt;
+    &lt;p&gt;À bientôt !&lt;/p&gt;
+&lt;/div&gt;
+
 &lt;/body&gt;
 &lt;/html&gt;
 </div>
 <div id="tooltip">
             <p>Consignes :</p>
             <ul>
-                <li>Remplacez l'image no_image.png par image.png.</li>
-                <li>Ajouter une bordure de 4 pixels de couleur rouge.</li>
+                <li>Voici un exemple de code HTML simple accompagné d'un peu de CSS. Vous avez la liberté de le modifier ou de le quitter à votre convenance.</li>
             </ul>
         </div>
 
@@ -238,6 +222,11 @@ if (isset($_SESSION['ctfcookies'])) {
     <button id="validButton" onclick="redirect()">Valider</button>
 
     <script>
+    window.onload = function() {
+        outputContainer.innerHTML = editor.getValue();
+        document.getElementById("validButton").style.display = "initial" 
+    };
+
     var editor = ace.edit("editor");
     editor.setTheme("ace/theme/monokai");
     editor.session.setMode("ace/mode/html");
@@ -250,14 +239,6 @@ if (isset($_SESSION['ctfcookies'])) {
         checkOverflow();
     });
 
-    function checkOverflow() {
-        var monElement = document.getElementById("output");
-        if (monElement) {
-            if (monElement.tagName === "IMG" && window.getComputedStyle(monElement).getPropertyValue('height')=="200px" && window.getComputedStyle(monElement).getPropertyValue('width')=="200px" && monElement.getAttribute("src")=="image.png") {
-                    document.getElementById("validButton").style.display = "initial" 
-            }
-        }
-    }
 
     function redirect() {
         window.location.href = "save3.php";

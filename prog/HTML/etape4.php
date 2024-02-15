@@ -180,18 +180,9 @@ if (isset($_SESSION['ctfcookies'])) {
     <div class="time" id="time">0:00</div>
 </div>
     <div class="editor">
-        <div id="editor" style="left: -10%; height: 210px; width: 30%; margin-bottom: 1em;">#output {
-    width: 100px;
-    height: 100px;
-    background: yellow;
-    border-radius: 100%; 
-    right : 40%; 
-    border: 4px solid red; 
-    background-image: url(../../images/image.png);
-    background-size: cover;
-    background-repeat: no-repeat;
-    filter: blur(0px) brightness(100%);
-}</div>
+        <div id="editor" style="left: -10%; height: 210px; width: 30%; margin-bottom: 1em;">
+
+    </div>
 <div id="tooltip">
             <p>Consignes :</p>
             <ul>
@@ -218,7 +209,9 @@ if (isset($_SESSION['ctfcookies'])) {
         outputContainer.innerHTML = editor.getValue();
         checkOverflow();
     });
-
+    window.onload = function() {
+        outputContainer.innerHTML = editor.getValue();
+    };
     function checkOverflow() {
         var monElement = document.getElementById("output");
         if (monElement) {

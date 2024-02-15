@@ -51,19 +51,19 @@ if (isset($_SESSION['ctfcookies'])) {
     if ($minute < 2.5) {
         $notetime = 10;
     } elseif ($minute <= 5) {
-        $notetime = 9;
+        $notetime = 10;
     } elseif ($minute <= 7.5) {
-        $notetime = 7;
+        $notetime = 10;
     } elseif ($minute <= 10) {
-        $notetime = 6;
+        $notetime = 10;
     } elseif ($minute <= 12.5) {
-        $notetime = 5;
+        $notetime = 10;
     } elseif ($minute <= 15) {
-        $notetime = 3;
+        $notetime = 10;
     } elseif ($minute <= 17.5) {
-        $notetime = 1;
+        $notetime = 10;
     } elseif ($minute <= 20) {
-        $notetime = 0;
+        $notetime = 10;
     } else {
         $notetime = 0;
     }

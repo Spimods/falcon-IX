@@ -174,7 +174,9 @@
             }
         }
     }
-
+    window.onload = function() {
+        outputContainer.innerHTML = editor.getValue();
+    };
     function redirect() {
         window.location.href = "save.php";
     }

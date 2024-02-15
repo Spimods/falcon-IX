@@ -231,7 +231,9 @@ if (isset($_SESSION['ctfcookies'])) {
             }
         }
     }
-
+    window.onload = function() {
+        outputContainer.innerHTML = editor.getValue();
+    };
     function redirect() {
         window.location.href = "save2.php";
     }

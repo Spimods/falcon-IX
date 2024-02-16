@@ -17,7 +17,7 @@ if ($connexion->connect_error) {
 if (isset($_SESSION['ctfcookies'])) {
     $idcookie = $_SESSION['ctfcookies'];
     $name = $_SESSION['ctfNOM'];
-    $requeteverif = $connexion->prepare("SELECT key6 FROM timeprog WHERE cookie = ?");
+    $requeteverif = $connexion->prepare("SELECT key6 FROM timeprogsql WHERE cookie = ?");
     $requeteverif->bind_param("s",$idcookie);
     $requeteverif->execute();
     $requeteverif->bind_result($valeur1);
@@ -27,7 +27,7 @@ if (isset($_SESSION['ctfcookies'])) {
         exit();
     } else {
         $requeteverif->close();
-        $requete = $connexion->prepare("SELECT time6 FROM timeprog WHERE cookie = ?");
+        $requete = $connexion->prepare("SELECT time6 FROM timeprogsql WHERE cookie = ?");
         $requete->bind_param("s", $idcookie);
         $requete->execute();
         $requete->bind_result($timedebut);
@@ -82,10 +82,10 @@ if (isset($_SESSION['ctfcookies'])) {
         $time = $heure . "-" . $minute . "-" . $seconde;
         $timeend = $heure . "h" . $minute . "min" . $seconde . "sec" ;
         $requete->close();
-        $requete2 = $connexion->prepare("INSERT INTO score (nom, note,  timetotal, cookie, etape) VALUES (?, ?, ?, ?, 'progCSS')");
+        $requete2 = $connexion->prepare("INSERT INTO score (nom, note,  timetotal, cookie, etape) VALUES (?, ?, ?, ?, 'progSQL')");
         $requete2->bind_param("ssss",$name,$notetime,  $time, $idcookie);
         $requete2->execute();
-        $requete3 = $connexion->prepare("SELECT time1, time2, time3, time4 ,time5 FROM timeprog WHERE cookie = ?");
+        $requete3 = $connexion->prepare("SELECT time1, time2, time3, time4 ,time5 FROM timeprogsql WHERE cookie = ?");
         $requete3->bind_param("s",$idcookie);
         $requete3->execute();
         $requete3->bind_result($time1, $time2, $time3, $time4, $time5);
@@ -132,10 +132,10 @@ if (isset($_SESSION['ctfcookies'])) {
 
         $time = $heure."h ".$min."min ".$sec."sec";
         $requete3->close();
-        $requete4 = $connexion->prepare("UPDATE prog SET time_flag_2 = ?, flag2 = 1 WHERE cookie = ?");
+        $requete4 = $connexion->prepare("UPDATE prog SET time_flag_3 = ?, flag3 = 1 WHERE cookie = ?");
         $requete4->bind_param("ss",$time, $idcookie);
         $requete4->execute();    
-        $requete5 = $connexion->prepare("UPDATE timeprog SET time6 = ?, key6 = 1  WHERE cookie = ?");
+        $requete5 = $connexion->prepare("UPDATE timeprogsql SET time6 = ?, key6 = 1  WHERE cookie = ?");
         $requete5->bind_param("ss",$timeend, $idcookie);
         $requete5->execute();
     }

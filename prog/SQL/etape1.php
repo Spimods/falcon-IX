@@ -66,14 +66,18 @@ if (isset($_SESSION['ctfcookies'])) {
         }
 
         .output-container {
+            padding: 20px;
+            font-family: Arial, sans-serif;
             border-radius: 1em;
+            color: white;
             border: 2px solid #333;
             width: 50%;
-            height: 230px;
+            height: 160px;
             display: inline-block;
-            position: relative; 
-            overflow: hidden; 
+            position: fixed;
+            overflow: hidden;
             background: #000000a3;
+            top: 55%;
         }
         .loading-bar {
             position: fixed;
@@ -131,7 +135,7 @@ if (isset($_SESSION['ctfcookies'])) {
             display: none;
             position: fixed;
             width: 10%;
-            top: 90%;
+            top: 92.5%;
             left: 45%;
             padding: 10px;
             animation: neon2 1s infinite alternate;
@@ -154,6 +158,38 @@ if (isset($_SESSION['ctfcookies'])) {
             animation: neon2 1s infinite alternate;
             box-shadow: 0 0 20px rgba(23, 230, 116, 0.8);
             border: 2px solid #14c65e;
+        }
+        #runButton {
+            position: fixed;
+            width: 10%;
+            top: 48%;
+            left: 45%;
+            padding: 10px;
+            animation: neon 1s infinite alternate;
+            cursor: pointer;
+            color: #fff;
+            border: 2px solid #e62117;
+            border-radius: 5px;
+            font-size: 16px;
+            transform-style: preserve-3d;
+            perspective: 800px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border 0.3s ease;
+            box-shadow: 0 0 10px rgba(230, 33, 23, 0);
+            background-color: transparent;
+            margin-top: -10px;
+            margin-bottom: 10px;
+            background-color: #1a1a1a;
+        }
+        #runButton:hover {
+            animation: neon 1s infinite alternate;
+            box-shadow: 0 0 20px rgba(230, 33, 23, 0.8);
+            border: 2px solid #c61a14;
+        }
+
+        @keyframes neon {
+            to {
+                box-shadow: 0 0 40px rgba(230, 33, 23, 0.8);
+            }
         }
 
         @keyframes neon2 {
@@ -178,75 +214,62 @@ if (isset($_SESSION['ctfcookies'])) {
     </style>
 </head>
 <body>
-<div class="loading-bar">
-    <div class="progress" id="progress"></div>
-    <div class="time" id="time">0:00</div>
-</div>
     <div class="editor">
-        <div id="editor" style="left: -10%; height: 210px; width: 30%; margin-bottom: 1em;">#output {
-    width: 100px;
-    height: 100px;
-    left : 10%; /* Par défaut à gauche */
-    border-radius: 0%; /* Carré par défaut */
-}</div>
+            <div id="editor" style="left: -10%; height: 210px; width: 30%; margin-bottom: 1em;">CREATE TABLE users (id INT PRIMARY KEY, name VARCHAR(50), age INT);</div>
 <div id="tooltip">
-            <p>Consignes :</p>
+            <p>Informations :</p>
             <ul>
-                <li>Appliquez un style CSS pour dessiner un cercle en utilisant les propriétés border-radius.</li>
-                <li>Positionnez le cercle pour qu'il soit placé à 80% de la gauche, en utilisant la propriété left.</li>
+                <li>Cette commande SQL crée une table appelée "users" avec trois colonnes : "id" de type INT comme clé primaire, "name" de type VARCHAR avec une longueur maximale de 50 caractères, et "age" de type INT pour stocker des valeurs numériques représentant l'âge.</li>
             </ul>
         </div>
+        <button id="runButton" onclick="executeQuery()">Run</button>
 
         <div class="output-container">
-            <div id="output"></div>
-            <div id="case"></div>
+            <div id="result"></div>
         </div>
     </div>
     <button id="validButton" onclick="redirect()">Valider</button>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/ace.js" type="text/javascript" charset="utf-8"></script>
 
     <script>
-        var editor = ace.edit("editor");
-        editor.setTheme("ace/theme/monokai");
-        editor.session.setMode("ace/mode/sql"); 
-        const output = document.getElementById('output');
-        const caseElement = document.getElementById('case');
-        editor.session.on('change', function() {
-            output.innerHTML = `<style>${editor.getValue()}</style>`;
-            checkOverflow();
-        });
-        function checkOverflow() {
-            const outputContainer = document.querySelector('.output-container');
-            const outputHeight = output.offsetHeight;
-            const containerHeight = outputContainer.offsetHeight;
-            if (outputHeight > containerHeight) {
-                output.style.transform = `translateY(-${outputHeight - containerHeight}px)`;
-            } else {
-                output.style.transform = `translateY(0)`;
-            }
+    const database = {};
+    var button = document.getElementById("validButton");
+    const editor = ace.edit("editor");
+    editor.setTheme("ace/theme/monokai");
+    editor.session.setMode("ace/mode/sql");
+    function executeQuery() {
+        const query = editor.getValue();
+        const resultElement = document.getElementById('result');
+        try {
+            const resultSet = simulateQueryExecution(query);
+            displayResults(resultSet);
+        } catch (error) {
+            resultElement.innerText = `Error: ${error.message}`;
         }
-        function checkCSS() {
-            var outputElement = document.getElementById('output');
-            var leftPixels = parseFloat(window.getComputedStyle(outputElement).getPropertyValue('left'));
-            var parentWidth = outputElement.parentElement.offsetWidth;
-            var leftPercentage = Math.round((leftPixels / parentWidth) * 101) + '%';
-            var heightPixels = parseFloat(window.getComputedStyle(outputElement).getPropertyValue('height')) + 'px';
-            var widthPixels = parseFloat(window.getComputedStyle(outputElement).getPropertyValue('width')) + 'px';
-            var borderRadiusPixels = parseFloat(window.getComputedStyle(outputElement).getPropertyValue('border-radius'));
-            var borderRadiusPercentage = Math.round(borderRadiusPixels) + '%';
-            console.log(leftPercentage, heightPixels, borderRadiusPercentage, widthPixels);
-            if (leftPercentage === '80%' && borderRadiusPercentage === '100%' && widthPixels === '100px' && heightPixels === '100px') {
-                document.getElementById('validButton').style.display = "initial"
-            } else {
-                document.getElementById('validButton').style.display = "none"
+    }
+    function simulateQueryExecution(query) {
+        if (query.toLowerCase().includes('create table')) {
+            const tableName = query.match(/create\s+table\s+(\w+)/i)[1];
+            setTimeout(afficherBouton, 1000);
+            return { message: `Table '${tableName}' created successfully.` };
+        } else {
+            throw new Error('Only CREATE TABLE statements are supported in this simulation.');
+        }
+    }
+    function displayResults(resultSet) {
+        const resultElement = document.getElementById('result');
+        resultElement.innerHTML = resultSet.message;
+    }
 
-            }
+        function afficherBouton() {
+            button.style.display = "initial";
         }
-        setInterval(checkCSS, 1000); 
+
+
         function redirect(){
             window.location.href = "save.php";
         }
 
     </script>
-    <script src="../../js/timerCSS.js"></script>
 </body>
 </html>

@@ -16,7 +16,7 @@ if ($connexion->connect_error) {
 
 if (isset($_SESSION['ctfcookies'])) {
     $valeurCookie = $_SESSION['ctfcookies'];
-    $requete = $connexion->prepare("SELECT `key2` FROM `timeprog` WHERE `cookie`= ?");
+    $requete = $connexion->prepare("SELECT `key2` FROM `timeprogsql` WHERE `cookie`= ?");
     $requete->bind_param("s", $valeurCookie);
     $requete->execute();
     $requete->bind_result($valeur1);
@@ -29,7 +29,7 @@ if (isset($_SESSION['ctfcookies'])) {
         $tempsDebut = $tempsDebut->getTimestamp();
         $tempsDebut = gmdate("d H i s", $tempsDebut);
         $requete->close();
-        $requeteUpdate = $connexion->prepare("UPDATE timeprog SET time2 = ? WHERE cookie = ?");
+        $requeteUpdate = $connexion->prepare("UPDATE timeprogsql SET time2 = ? WHERE cookie = ?");
         $requeteUpdate->bind_param("ss", $tempsDebut, $valeurCookie);
         $requeteUpdate->execute();
         header('Location: etape2.php');

@@ -2,16 +2,314 @@
 <html lang="en" >
 <head>
   <meta charset="UTF-8">
-  <title>CodePen - MS-DOS in React</title>
+  <title>Bienvenue</title>
   <link rel="stylesheet" href="./style.css">
 
 </head>
 <body>
-<!-- partial:index.partial.html -->
-<div id="root"></div>
-<!-- partial -->
+  
+  <div id="monitor" class="monitor">
+    <div class="start" id="start" >
+
+      <div class="start__button">
+        <div class="start__logo">
+        </div>
+        <p class="start__text">
+          Start
+        </p>
+      </div>
+      <div class="start__menu" id="start__menu" onclick="openpage()">
+        <img class="img-dos" src="https://upload.wikimedia.org/wikipedia/commons/3/3d/Msdos-icon.png" alt="DOS"/>
+        <p class="text-dos">MS-DOS Prompt</p>
+      </div>
+
+      <div class="start__time">
+        <p class="start__time-text">
+        </p>
+      </div>
+    </div>
+    <div class="start__menu-main">
+      <div class="start__menu-main-side">
+          <div class="start__menu-main-side-text text">
+            <p class="ninefive">95</p>
+            <p class="windows">Windows</p>
+          </div>
+      </div>
+      <div class="start__menu-main-items">
+         <ul class="start__menu-main-items-list1">
+           <li class="start__menu-main-items-item programs">
+             <img class="programs-img icon" src="https://raw.githubusercontent.com/trapd00r/win95-winxp_icons/master/icons/w2k-programs.ico" alt="Programs"/>
+             <p class="start__menu-main-items-item-title programs"><span class="underline">P</span>rograms</p>
+             <div class="start__menu-main-items-item-arrowright"></div>
+             <ul class="start__menu-sub sub__programs">
+               <li class="start__menu-sub-items-item sub__programs-items">
+                 <img class="accessories-img icon" src="https://raw.githubusercontent.com/trapd00r/win95-winxp_icons/master/icons/w2k-programs.ico" alt="Accessories"/>
+                 <p class="start__menu-sub-items-item-title accessories">Accessories</p>
+                 <div class="start__menu-main-items-item-arrowright"></div>
+               </li>
+               
+               <li class="start__menu-sub-items-item sub__programs-items">
+                 <img class="startup-img icon" src="https://raw.githubusercontent.com/trapd00r/win95-winxp_icons/master/icons/w2k-programs.ico" alt="StartUp"/>
+                 <p class="start__menu-sub-items-item-title startup">StartUp</p>
+                 <div class="start__menu-main-items-item-arrowright"></div>
+               </li>
+               
+               <li class="start__menu-sub-items-item sub__programs-items">
+                 <img class="dos-img icon" src="https://upload.wikimedia.org/wikipedia/commons/3/3d/Msdos-icon.png" alt="DOS"/>
+                 <p class="start__menu-sub-items-item-title dos">MS-DOS Prompt</p>
+                 <div class="start__menu-main-items-item-arrowright"></div>
+               </li>
+             </ul>
+           </li>
+           <li class="start__menu-main-items-item documents">
+             <img class="documents-img icon" src="https://raw.githubusercontent.com/trapd00r/win95-winxp_icons/master/icons/w95_21.ico" alt="Documents"/>
+             <p class="start__menu-main-items-item-title documents"><span class="underline">D</span>ocuments</p>
+             <div class="start__menu-main-items-item-arrowright"></div>
+             
+           </li>
+           <li class="start__menu-main-items-item settings">
+             <div class="settings-img icon bg-img"/></div>
+             <p class="start__menu-main-items-item-title settings"><span class="underline">S</span>ettings</p>
+             <div class="start__menu-main-items-item-arrowright"></div>
+          
+           </li>
+      
+           <li class="start__menu-main-items-item find">
+             <div class="find-img icon bg-img"/></div>
+             <p class="start__menu-main-items-item-title find"><span class="underline">F</span>ind</p>
+             <div class="start__menu-main-items-item-arrowright"></div>
+      
+           </li>
+    
+           <li class="start__menu-main-items-item help">
+             <img class="help-img icon" src="https://raw.githubusercontent.com/trapd00r/win95-winxp_icons/master/icons/w95_24.ico" alt="Help"/>
+             <p class="start__menu-main-items-item-title help"><span class="underline">H</span>elp</p>
+           </li>
+    
+           <li class="start__menu-main-items-item run">
+             <div class="run-img icon bg-img"/></div>
+             <p class="start__menu-main-items-item-title run"><span class="underline">R</span>un...</p>
+           </li>
+
+         </ul>
+
+         <ul class="start__menu-main-items-list2">
+           <li class="start__menu-main-items-item shutdown">
+             <div class="shutdown-img icon bg-img"/></div>
+             <p class="start__menu-main-items-item-title shutdown">Sh<span class="underline">u</span>t Down...</p>
+           </li>
+         </ul>
+       </div>
+    </div>
+
+    <div class="computer desktop-icon">
+      <div class="computer__icon desktop-icon__icon">
+      </div>
+      <p class="computer__text desktop-icon__text">
+        My Computer
+      </p>
+    </div>
+
+<div class="recycle desktop-icon">
+      <div class="recycle__icon desktop-icon__icon">
+      </div>
+      <p class="recycle__text desktop-icon__text">
+        Recycle Bin
+      </p>
+    </div>
+  </div>
+  <div id="root"></div>
   <script src='https://cdnjs.cloudflare.com/ajax/libs/react/16.8.6/umd/react.production.min.js'></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.8.6/umd/react-dom.production.min.js'></script><script  src="./script.js"></script>
+<script>
+function openpage() {
+  if (document.getElementById('root').style.display == "none"){
+    document.getElementById('root').style.display = "initial";
+    document.getElementById('start__menu').classList.addClass("active")
+  } else {
+    document.getElementById('root').style.display = "none";
+    document.getElementById('start__menu').classList.removeClass("active")
+  }
+}
+function closepage() {
+  document.getElementById('root').style.display = "none";
+}
+document.addEventListener("DOMContentLoaded", function() {
+    const container = document.body;
+    const draggableElement = document.getElementById('root');
+    const start = document.getElementById('start');
+    const monitor = document.getElementById('monitor');
 
+    let offsetX, offsetY;
+
+    function startDragging(e) {
+        offsetX = e.clientX - draggableElement.getBoundingClientRect().left;
+        offsetY = e.clientY - draggableElement.getBoundingClientRect().top;
+
+        document.addEventListener('mousemove', whileDragging);
+        document.addEventListener('mouseup', stopDragging);
+    }
+
+    function whileDragging(e) {
+        let newX = e.clientX - offsetX;
+        let newY = e.clientY - offsetY;
+
+        if (newX < monitor.offsetLeft) {
+            newX = monitor.offsetLeft;
+        } else if (newX > monitor.offsetLeft + monitor.offsetWidth - draggableElement.offsetWidth) {
+            newX = monitor.offsetLeft + monitor.offsetWidth - draggableElement.offsetWidth;
+        }
+        if (newY < monitor.offsetTop) {
+            newY = monitor.offsetTop;
+        } else if (newY >  monitor.clientHeight  - start.clientHeight - draggableElement.offsetHeight) {
+            newY = monitor.offsetTop + monitor.clientHeight - start.clientHeight - draggableElement.offsetHeight;
+        }
+
+        draggableElement.style.left = newX + 'px';
+        draggableElement.style.top = newY + 'px';
+    }
+
+    // Fonction pour arrêter le déplacement
+    function stopDragging() {
+        // Supprimez les écouteurs d'événements sur le mouvement de la souris et la fin du déplacement
+        document.removeEventListener('mousemove', whileDragging);
+        document.removeEventListener('mouseup', stopDragging);
+    }
+
+    // Ajoutez un écouteur d'événements sur le début du déplacement
+    draggableElement.addEventListener('mousedown', startDragging);
+});
+
+function updateTime(){
+  var today = new Date();
+  var hours24 = today.getHours();
+  var hours12;
+  var minutes = today.getMinutes();
+  var suffix = '';
+
+  if (hours24 >= 12) {
+    suffix = " PM";
+    hours12 = hours24 % 12;
+  } else {
+    suffix = " AM";
+    hours12 = hours24;
+  }
+  
+  if (minutes % 10 == 0) {
+    //minutes = minutes + "0";
+  } else if (minutes < 10) {
+    minutes = "0" + minutes;
+  }
+
+  var time = hours12 + ":" + minutes + suffix;
+
+  var timeBox = document.querySelector(".start__time-text");
+
+  timeBox.innerHTML = time;
+}
+
+setInterval(updateTime, 1000);
+
+// Store the necessary objects
+
+var startButton = document.querySelector(".start__button");
+
+var startMenu = document.querySelector(".start__menu-main");
+
+var body = document.querySelector("body");
+
+let programsItem = document.querySelector(".programs");
+
+let programsMenu = document.querySelector(".sub__programs");
+
+// Start menu appear on click of start button and disappear on click of start button or anything else except the menu
+
+body.onclick = function(e) {
+  for (var i = 0, l = e.target.classList.length; i < l; ++i) {
+    if(/start__.*/.test(e.target.classList[i])) {
+        break;
+    } else {
+      startMenu.classList.remove("menu-open");
+    }
+  }
+}
+
+// Show/hide menu on click
+
+function menuDisplay(menu) {
+  if (menu.classList.contains("menu-open")) {
+    menu.classList.remove("menu-open");
+  } else {
+    menu.classList.add("menu-open");
+  }
+}
+
+startButton.addEventListener("click", function() {
+  menuDisplay(startMenu);
+});
+
+programsItem.addEventListener("click", function() {
+  menuDisplay(programsMenu);
+});
+
+// Make the desktop icons draggable
+
+var desktopIcons = document.getElementsByClassName("desktop-icon");
+var monitor = document.getElementById('monitor');
+var start = document.getElementById('start');
+
+for (let i = 0; i < desktopIcons.length; i++) {
+  dragElement(desktopIcons[i]);
+}
+
+function dragElement(elmnt) {
+  var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+  elmnt.onmousedown = dragMouseDown;
+
+  function dragMouseDown(e) {
+    e = e || window.event;
+    e.preventDefault();
+    // get the mouse cursor position at startup:
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+    document.onmouseup = closeDragElement;
+    // call a function whenever the cursor moves:
+    document.onmousemove = elementDrag;
+  }
+
+  function elementDrag(e) {
+    e = e || window.event;
+    e.preventDefault();
+    // calculate the new cursor position:
+    pos1 = pos3 - e.clientX;
+    pos2 = pos4 - e.clientY;
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+    
+    // calculate the new position taking into account the monitor boundaries:
+    var newX = elmnt.offsetLeft - pos1;
+    var newY = elmnt.offsetTop - pos2;
+    var maxX = monitor.offsetWidth - elmnt.offsetWidth;
+    var maxY = monitor.offsetHeight - elmnt.offsetHeight - start.offsetHeight/2;
+
+    // ensure the element stays within the boundaries of the monitor:
+    newX = Math.max(0, Math.min(newX, maxX));
+    newY = Math.max(0, Math.min(newY, maxY));
+
+    // set the element's new position:
+    elmnt.style.left = newX + "px";
+    elmnt.style.top = newY + "px";
+    elmnt.style.right = "auto";
+    elmnt.style.bottom = "auto";
+  }
+
+  function closeDragElement() {
+    // stop moving when mouse button is released:
+    document.onmouseup = null;
+    document.onmousemove = null;
+  }
+}
+
+</script>
 </body>
 </html>

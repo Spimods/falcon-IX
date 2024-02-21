@@ -1,114 +1,110 @@
 const Component = React.Component;
 
-const fileTree = {
-  "WINDOWS": {
-    "Users": {
-      "Evan": {
-        'Documents': {
-          "resume.txt": "this is my resume" },
-
-        "Downloads": {
-          "St.John_Fisher_College.txt": "B.S. Biology",
-          "SUNY_Cortland.txt": "M.S. Exercise Science" },
-
-        "Applications": {
-          "This!.txt": "look a round at the code!" } },
-
-
-      "world.txt": 'Hello World!' } } };
-
-
-
-
 class CommandPrompt extends Component {
   constructor(props) {
     super(props);
     this.state = {
       path: 'WINDOWS',
-      cwd: fileTree['WINDOWS'],
-      text: `Microsoft(R) Windows 95\n    (C)Copyright Microsoft Corp 1981-1995.\n\nC:\\WINDOWS> ` };
+      cwd: {},
+      currentQuestionIndex: 0,
+      text: '',
+      questions: [
+        {
+          question: "Microsoft(R) Windows 95\n    (C)Copyright Microsoft Corp 1981-1995.\n\nAvez-vous déjà utilisé un framework PHP ou un autre outil pour créer des sites web ?",
+          options: ["1. Jamais       ", "2. Une seule fois       ", "3. Occasionnellement       ", "4. Expérimenté\n"]
+        },
+        {
+          question: "Cochez les fonctionnalités que vous avez déjà développées en utilisant PHP :",
+          options: ["1. Formulaire de contact       ", "2. Intégration de services de paiement en ligne     ", " 3. Autre     "," 4. Aucune\n"]
+        },
+        {
+          question: "Avez-vous créé des mises en page avec du CSS, même des plus simples ?",
+          options: ["1. Jamais       ", "2. Une seule fois       ", "3. Occasionnellement       ", "4. Expérimenté\n"]
+        },
+        {
+          question: "Cochez les fonctionnalités que vous avez déjà développées en utilisant CSS :",
+          options: [" 1. Mise en page responsive       ", "2. Styling des éléments HTML     ", "3. Autre\n", "4. Aucune\n"]
+        },
+        {
+          question: "Avez-vous déjà créé une page web en utilisant HTML  ?",
+          options: ["1. Jamais       ", "2. Une seule fois       ", "3. Occasionnellement       ", "4. Expérimenté\n"]
+        },
+        {
+          question: "Cochez les fonctionnalités que vous avez déjà développées en utilisant HTML :",
+          options: [" 1. Création de formulaires de connexion     ", "2. Un site web pour une petite entreprise\n", "3. Autre     ", "4. Aucune\n"]
+        },
+        {
+          question: "Avez-vous déjà créé une page web en utilisant JS ?",
+          options: ["1. Jamais       ", "2. Une seule fois       ", "3. Occasionnellement       ", "4. Expérimenté\n"]
+        },
+        {
+          question: "Cochez les fonctionnalités que vous avez déjà développées en utilisant JS :",
+          options: [" 1. Créez une animation de site web     ", "2. Création de formulaires avec du JS\n", "3. Autre     ", "4. Aucune\n"]
+        },
+        {
+          question: "Avez-vous écrit des requêtes SQL ?",
+          options: ["1. Jamais       ", "2. Une seule fois       ", "3. Occasionnellement       ", "4. Expérimenté\n"]
+        },
+        {
+          question: "Cochez les fonctionnalités que vous avez déjà développées en utilisant SQL :",
+          options: [" 1. Créé une basse de données     ", "2. Faire une sélection dans une basse de données\n", "3. Autre     ", "4. Aucune\n"]
+        }
+      ]
+    };
 
     this.input = this.input.bind(this);
-    this.evaluate = this.evaluate.bind(this);
-  }
-  // cmd prompt functions
-  type(args) {this.setState({ text: this.state.text + `\n${this.state.cwd[args]}` });}
-  cls() {this.setState({ text: '' });}
-  date() {this.setState({ text: this.state.text += " " + Date() });}
-  echo(args) {this.setState({ text: this.state.text + `\n${args.join(' ')}` });}
-  mkdir(dirname) {
-    this.state.cwd[dirname] = {};
-    this.setState({ cwd: this.state.cwd });
-  }
-  rmdir(dirname) {
-    delete this.state.cwd[dirname];
-    this.setState({ cwd: this.state.cwd });
-  }
-  dir() {
-    let newText = `\n`;
-    for (let object of Object.keys(this.state.cwd)) {
-      newText += `${object}\t`;
-    }
-    this.setState({ text: this.state.text += newText });
-  }
-  cd(args) {
-    for (let arg of args) {
-      if (arg === '..') {
-        if (this.state.cwd === fileTree['WINDOWS']) return;
-        const directories = this.state.path.split('\\');
-        let cwd = fileTree;
-        directories.pop(directories.length - 1);
-        let newPath = directories.join('\\');
-        console.log('new path', newPath);
-        while (directories.length) {
-          cwd = cwd[directories[0]];
-          directories.shift(0);
-        }
-        this.setState({
-          path: newPath,
-          cwd: cwd });
-
-      } else if (this.state.cwd[arg]) {
-        this.setState({
-          path: this.state.path += arg === 'WINDOWS' ? `${arg}` : `\\${arg}`,
-          cwd: this.state.cwd[arg] });
-
-      } else {
-        this.setState({ text: this.state.text += '\nNo such file or directory' });
-      }
-    }
   }
 
-  async evaluate(cmd) {
-    if (cmd === '') return;
-    let args = cmd.split(' ');
-    if (this[args[0]]) await this[args[0]](args.slice(1));else
-    this.state.text += `\n'${args[0]}' is not recognized as an internal or external command,operable program or batch file\n`;
-  }
   async input(e) {
+    const allowedKeys = ['1', '2', '3', '4'];
     if (e.key === "Enter") {
-      const commands = this.state.text.split(/C:\\.+> /);
-      await this.evaluate(commands[commands.length - 1].trim());
-      this.setState({ text: this.state.text + `${this.state.text !== "" ? `\n` : ``}C:\\${this.state.path}> ` });
+        if (this.state.currentQuestionIndex === this.state.questions.length) {
+            window.location.href = "../../home.php";
+            return;
+        }
+        const userResponse = parseInt(this.state.text.slice(-1));
+        if (!isNaN(userResponse) && userResponse >= 1 && userResponse <= 4) {
+            console.log("Réponse de l'utilisateur :", userResponse);
+            const currentQuestion = this.state.questions[this.state.currentQuestionIndex];
+            const newCommand = `${this.state.text}\nC:\\WINDOWS> `;
+            this.setState(prevState => ({ text: '', currentQuestionIndex: prevState.currentQuestionIndex + 1 }));
+        }
     } else if (e.key === "Backspace") {
-      if (this.state.text.slice(-12) === `C:\\${this.state.path.split(/\\/).join('\\')}> `) return;
-      this.setState({ text: this.state.text.slice(0, -1) });
+        if (this.state.text.slice(-12) === `C:\\${this.state.path}> `) return;
+        this.setState({ text: this.state.text.slice(0, -1) });
     } else if (e.key === "Shift" ||
-    e.key === "Alt" ||
-    e.key === "Control" ||
-    e.key === "Meta" ||
-    e.key === "Tab" ||
-    e.key === "CapsLock") {
-      return;
+        e.key === "Alt" ||
+        e.key === "Control" ||
+        e.key === "Meta" ||
+        e.key === "Tab" ||
+        e.key === "CapsLock") {
+        return;
     } else {
-      this.setState({ text: this.state.text + e.key });
+        if (allowedKeys.includes(e.key)) {
+            this.setState({ text: this.state.text + e.key });
+        }
     }
-  }
-  render() {
-    return /*#__PURE__*/(
-      React.createElement("textarea", { className: "command", contenteditable: "true", onKeyDown: this.input, value: this.state.text }));
-  }}
+    
+    if (this.state.currentQuestionIndex === this.state.questions.length) {
+        console.log("Appuyez sur Entrée pour quitter.");
+    }
+}
 
+
+  render() {
+    const { text, currentQuestionIndex, questions } = this.state;
+    let questionDisplay = '';
+    if (currentQuestionIndex < questions.length) {
+      const currentQuestion = questions[currentQuestionIndex];
+      questionDisplay = `${currentQuestion.question}\n${currentQuestion.options.join(' ')}\nC:\\WINDOWS> ${text}`;
+    } else {
+      questionDisplay = "[====================================== 100% ======================================]\n\nThe operation completed successfully. \n\nMicrosoft(R) Windows 95\n    (C)Copyright Microsoft Corp 1981-1995.\n\nC:\\WINDOWS> press ENTER to exit ...\n";
+    }
+    return /*#__PURE__*/(
+      React.createElement("textarea", { className: "command", contenteditable: "true", value: questionDisplay, autoFocus: true, onKeyDown: this.input, readOnly: currentQuestionIndex === questions.length })
+    );
+  }
+}
 
 function Menubar() {
   return /*#__PURE__*/(
@@ -118,13 +114,10 @@ function Menubar() {
     React.createElement("span", null, "MS-DOS Prompt")), /*#__PURE__*/
 
     React.createElement("div", { className: "window__buttons" }, /*#__PURE__*/
-    React.createElement("button", null, "_"), /*#__PURE__*/
+    React.createElement("button", { onClick: () => {closepage()}}, "_"), /*#__PURE__*/
     React.createElement("button", null, "\u2610"), /*#__PURE__*/
-    React.createElement("button", null, "X"))));
-
-
-
-}
+    React.createElement("button", { onClick: () => {closepage()}}, "X"))));
+  }
 
 class TerminalWindow extends Component {
   render() {
@@ -133,8 +126,8 @@ class TerminalWindow extends Component {
       React.createElement(Menubar, null), /*#__PURE__*/
       React.createElement(CommandPrompt, null)));
 
-  }}
-
+  }
+}
 
 ReactDOM.render( /*#__PURE__*/React.createElement(TerminalWindow, null),
 document.querySelector('#root'));

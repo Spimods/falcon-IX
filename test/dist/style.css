@@ -11,8 +11,290 @@ html {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: teal;
   font-family: "MS Sans Serif", sans-serif;
+}
+body {
+  background: black;
+  font-family: Tahoma;
+}
+
+.monitor {
+  position: relative;
+  width: 1000px;
+  height: 600px;
+  background: #008080;
+  margin: auto;
+  /* margin-top: 15vh; */
+}
+
+.start {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 35px;
+  background: #c3c6cd;
+  border-top: 3px solid #deebf3;
+  display: flex;
+  justify-content: space-between;
+}
+.start__button {
+  width: 80px;
+  height: 90%;
+  background: #c3c6cd;
+  border-top: 2px solid #deebf3;
+  border-left: 2px solid #deebf3;
+  border-right: 2px solid black;
+  border-bottom: 2px solid black;
+  margin: 2px;
+  display: flex;
+  align-items: center;
+}
+.start__button:active {
+  border-top: 2px solid black;
+  border-left: 2px solid black;
+  border-right: 2px solid #deebf3;
+  border-bottom: 2px solid #deebf3;
+}
+.start__button:hover {
+  cursor: pointer;
+}
+.start__logo {
+  width: 35px;
+  height: 18px;
+  position: relative;
+}
+.start__logo::after {
+  content: "";
+  background: url(https://banner2.kisspng.com/20180821/hrt/kisspng-windows-95-windows-98-microsoft-windows-transparen-windows-95-telegram-stickers-directory-5b7c3cffc178a8.4526616315348687357925.jpg) transparent;
+  background-size: contain;
+  mix-blend-mode: multiply;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+}
+.start__text {
+  font-size: 14px;
+  font-weight: bold;
+}
+.start__time {
+  width: 80px;
+  height: 72%;
+  background: #c3c6cd;
+  border-top: 2px solid #85888f;
+  border-left: 2px solid #85888f;
+  border-right: 2px solid #deebf3;
+  border-bottom: 2px solid #deebf3;
+  margin: 3px;
+  display: flex;
+  align-items: center;
+}
+.start__time-text {
+  margin: auto;
+  font-size: 12px;
+}
+.start__menu-main {
+  background: #c3c6cd;
+  border-top: 2px solid #deebf3;
+  border-left: 2px solid #deebf3;
+  border-right: 2px solid black;
+  border-bottom: 2px solid black;
+  width: 20%;
+  display: none;
+  position: absolute;
+  bottom: 35px;
+}
+.start__menu-main-side {
+  background: #85888f;
+  width: 15%;
+}
+.start__menu-main-side-text {
+  position: relative;
+  margin-top: 202px;
+}
+.start__menu-main-side-text .windows {
+  font-weight: bold;
+  color: #c3c6cd;
+  transform: rotate(270deg);
+  margin-bottom: 12px;
+}
+.start__menu-main-side-text .ninefive {
+  color: white;
+  transform: rotate(270deg);
+  margin-bottom: 56px;
+}
+.start__menu-main-items {
+  padding: 0;
+  width: 100%;
+}
+.start__menu-main-items .icon {
+  width: 40px;
+  height: 30px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+.start__menu-main-items-item {
+  font-size: 12px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+.start__menu-main-items-item:hover {
+  background: #00207d;
+}
+.start__menu-main-items-item:hover .start__menu-main-items-item-title {
+  color: white;
+}
+.start__menu-main-items-item:hover .start__menu-main-items-item-arrowright {
+  border-top: 4px solid transparent;
+  border-bottom: 4px solid transparent;
+  border-left: 4px solid white;
+}
+.start__menu-main-items-list1 {
+  margin: 0;
+  padding: 0;
+  border-bottom: 1px solid #85888f;
+}
+.start__menu-main-items-list2 {
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid #deebf3;
+}
+.start__menu-sub {
+  background: #c3c6cd;
+  border-top: 2px solid #deebf3;
+  border-left: 2px solid #deebf3;
+  border-right: 2px solid black;
+  border-bottom: 2px solid black;
+  flex-direction: column;
+  width: 180px;
+  left: 156px;
+  padding: 0;
+  display: none;
+  position: absolute;
+}
+.start__menu-sub .icon {
+  width: 35px;
+  height: 23px;
+}
+.start__menu-sub-items-item {
+  display: flex;
+  align-items: center;
+}
+.start__menu-sub-items-item:hover {
+  background: #00207d;
+}
+.start__menu-sub-items-item:hover .start__menu-sub-items-item-title {
+  color: white;
+}
+.start__menu-sub-items-item:hover .start__menu-sub-items-item-arrowright {
+  border-top: 4px solid transparent;
+  border-bottom: 4px solid transparent;
+  border-left: 4px solid white;
+}
+.start__menu-sub-items-item-title {
+  margin: 7px 0;
+}
+
+.sub__programs {
+  bottom: 226px;
+}
+
+.desktop-icon {
+  position: absolute;
+  height: 100px;
+  width: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.desktop-icon__icon {
+  height: 50px;
+}
+.desktop-icon__text {
+  color: white;
+  font-size: 12px;
+  margin-top: 5px;
+  margin-bottom: 0;
+}
+.desktop-icon:hover {
+  cursor: pointer;
+}
+
+.computer {
+  top: 20px;
+  left: 10px;
+}
+.computer__icon {
+  width: 55px;
+  background: url("https://www.pngkey.com/png/full/44-448393_windows-95-icons-png-picture-free-stock-icon.png");
+  background-size: contain;
+}
+.computer__icon:hover {
+  filter: brightness(0.5);
+}
+.recycle {
+  top: 120px;
+  left: 10px;
+}
+.recycle__icon {
+  width: 53px;
+  background: url("https://telegram-stickers.github.io/public/stickers/windows-95/27.png");
+  background-size: contain;
+}
+.recycle__icon:hover {
+  filter: brightness(0.5);
+}
+
+.start__menu-main-items-item-arrowright {
+  width: 0;
+  height: 0;
+  border-top: 4px solid transparent;
+  border-bottom: 4px solid transparent;
+  border-left: 4px solid black;
+  margin-left: auto;
+  margin-right: 7px;
+}
+
+.underline {
+  text-decoration: underline;
+}
+
+.menu-open {
+  display: flex;
+  z-index: 1000;
+}
+
+.icon-clicked {
+  border: 1px dashed black;
+}
+
+.bg-img {
+  background-image: url(https://i.pinimg.com/originals/96/17/c0/9617c03faeb0986659acd2fa7ff87a26.png);
+  object-fit: cover;
+  width: 200px;
+  height: 200px;
+  mix-blend-mode: multiply;
+}
+
+.settings-img {
+  background-position: 87% 21%;
+}
+
+.find-img {
+  background-position: 25% 22%;
+}
+
+.run-img {
+  background-position: 0% 80%;
+}
+
+.shutdown-img {
+  background-position: 75% 79%;
 }
 
 .window {
@@ -21,12 +303,13 @@ html {
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  max-width: 900px;
+  max-width: 760px;
   width: 90vw;
   height: 60vh;
   max-height: 500px;
   border: 3px outset lightgrey;
   box-shadow: 1px 1px black;
+
 }
 .window__menubar {
   padding: 3px 0px 3px 2px;
@@ -81,4 +364,45 @@ html {
   flex: 100%;
   outline: none;
   border: 2px inset lightgrey;
+}
+#root{
+  position: absolute;
+  cursor: grab;
+  left: 275px;
+  top: 126px;
+}
+.start__menu {
+  width: 150px;
+  height: 95%;
+  display: flex;
+  left: -325px;
+  position: relative;
+  background: #c3c6cd;
+  border-top: 2px solid #deebf3;
+  border-left: 2px solid #deebf3;
+  border-right: 2px solid black;
+  border-bottom: 2px solid black;
+  margin: 1px;
+}
+.active,.start__menu:active  {
+  border-top: 2px solid black;
+  border-left: 2px solid black;
+  border-right: 2px solid #deebf3;
+  border-bottom: 2px solid #deebf3;
+  background-image: radial-gradient( circle at center, #a0a0a0 0.5px, transparent 0 ), radial-gradient(circle at center, #a0a0a0 0.5px, transparent 0);
+  background-size: 2px 2px;
+  background-position: 0 0, 0.8px 5px;
+}
+.start__menu:hover {
+  cursor: pointer;
+}
+.img-dos {
+width: 20px;
+height: 20px;
+margin: auto;
+}
+.text-dos {
+  font-size: 12px;
+  font-weight: 700;
+  margin: auto 10px;  
 }

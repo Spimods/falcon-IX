@@ -1,0 +1,84 @@
+@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600&display=swap");
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: teal;
+  font-family: "MS Sans Serif", sans-serif;
+}
+
+.window {
+  color: white;
+  background: black;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  max-width: 900px;
+  width: 90vw;
+  height: 60vh;
+  max-height: 500px;
+  border: 3px outset lightgrey;
+  box-shadow: 1px 1px black;
+}
+.window__menubar {
+  padding: 3px 0px 3px 2px;
+  font-weight: bold;
+  font-size: 16px;
+  width: 100%;
+  height: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: blue;
+  border: 2px solid lightgrey;
+  border-top: none;
+}
+.window__buttons {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-right: 3px;
+}
+.window__buttons button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  line-height: 16px;
+  font-size: 16px;
+  font-weight: bold;
+  margin: 2px;
+  height: 19px;
+  width: 21px;
+  background: lightgrey;
+  outline: none;
+}
+.window__logo {
+  height: 25px;
+  width: auto;
+  margin-right: 3px;
+}
+.window__program {
+  display: flex;
+  align-items: center;
+}
+
+.command {
+  font-family: monospace;
+  color: white;
+  font-size: 15px;
+  padding: 15px;
+  position: relative;
+  background: black;
+  width: 100%;
+  flex: 100%;
+  outline: none;
+  border: 2px inset lightgrey;
+}

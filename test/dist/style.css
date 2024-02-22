@@ -364,6 +364,7 @@ body {
   flex: 100%;
   outline: none;
   border: 2px inset lightgrey;
+  resize: none;
 }
 #root{
   position: absolute;

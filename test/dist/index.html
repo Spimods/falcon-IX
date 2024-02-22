@@ -122,17 +122,20 @@
   <script src='https://cdnjs.cloudflare.com/ajax/libs/react/16.8.6/umd/react.production.min.js'></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.8.6/umd/react-dom.production.min.js'></script><script  src="./script.js"></script>
 <script>
+document.getElementById('start__menu').classList.add("active")
+
 function openpage() {
   if (document.getElementById('root').style.display == "none"){
     document.getElementById('root').style.display = "initial";
-    document.getElementById('start__menu').classList.addClass("active")
+    document.getElementById('start__menu').classList.add("active")
   } else {
     document.getElementById('root').style.display = "none";
-    document.getElementById('start__menu').classList.removeClass("active")
+    document.getElementById('start__menu').classList.remove("active")
   }
 }
 function closepage() {
   document.getElementById('root').style.display = "none";
+  document.getElementById('start__menu').classList.remove("active")
 }
 document.addEventListener("DOMContentLoaded", function() {
     const container = document.body;
@@ -169,14 +172,11 @@ document.addEventListener("DOMContentLoaded", function() {
         draggableElement.style.top = newY + 'px';
     }
 
-    // Fonction pour arrêter le déplacement
     function stopDragging() {
-        // Supprimez les écouteurs d'événements sur le mouvement de la souris et la fin du déplacement
         document.removeEventListener('mousemove', whileDragging);
         document.removeEventListener('mouseup', stopDragging);
     }
 
-    // Ajoutez un écouteur d'événements sur le début du déplacement
     draggableElement.addEventListener('mousedown', startDragging);
 });
 
@@ -210,8 +210,6 @@ function updateTime(){
 
 setInterval(updateTime, 1000);
 
-// Store the necessary objects
-
 var startButton = document.querySelector(".start__button");
 
 var startMenu = document.querySelector(".start__menu-main");
@@ -222,7 +220,6 @@ let programsItem = document.querySelector(".programs");
 
 let programsMenu = document.querySelector(".sub__programs");
 
-// Start menu appear on click of start button and disappear on click of start button or anything else except the menu
 
 body.onclick = function(e) {
   for (var i = 0, l = e.target.classList.length; i < l; ++i) {
@@ -234,7 +231,6 @@ body.onclick = function(e) {
   }
 }
 
-// Show/hide menu on click
 
 function menuDisplay(menu) {
   if (menu.classList.contains("menu-open")) {
@@ -252,7 +248,6 @@ programsItem.addEventListener("click", function() {
   menuDisplay(programsMenu);
 });
 
-// Make the desktop icons draggable
 
 var desktopIcons = document.getElementsByClassName("desktop-icon");
 var monitor = document.getElementById('monitor');
@@ -269,34 +264,28 @@ function dragElement(elmnt) {
   function dragMouseDown(e) {
     e = e || window.event;
     e.preventDefault();
-    // get the mouse cursor position at startup:
     pos3 = e.clientX;
     pos4 = e.clientY;
     document.onmouseup = closeDragElement;
-    // call a function whenever the cursor moves:
     document.onmousemove = elementDrag;
   }
 
   function elementDrag(e) {
     e = e || window.event;
     e.preventDefault();
-    // calculate the new cursor position:
     pos1 = pos3 - e.clientX;
     pos2 = pos4 - e.clientY;
     pos3 = e.clientX;
     pos4 = e.clientY;
     
-    // calculate the new position taking into account the monitor boundaries:
     var newX = elmnt.offsetLeft - pos1;
     var newY = elmnt.offsetTop - pos2;
     var maxX = monitor.offsetWidth - elmnt.offsetWidth;
     var maxY = monitor.offsetHeight - elmnt.offsetHeight - start.offsetHeight/2;
 
-    // ensure the element stays within the boundaries of the monitor:
     newX = Math.max(0, Math.min(newX, maxX));
     newY = Math.max(0, Math.min(newY, maxY));
 
-    // set the element's new position:
     elmnt.style.left = newX + "px";
     elmnt.style.top = newY + "px";
     elmnt.style.right = "auto";
@@ -304,7 +293,6 @@ function dragElement(elmnt) {
   }
 
   function closeDragElement() {
-    // stop moving when mouse button is released:
     document.onmouseup = null;
     document.onmousemove = null;
   }

@@ -1,4 +1,5 @@
 const Component = React.Component;
+var  liste_final = []
 
 class CommandPrompt extends Component {
   constructor(props) {
@@ -59,12 +60,19 @@ class CommandPrompt extends Component {
     const allowedKeys = ['1', '2', '3', '4'];
     if (e.key === "Enter") {
         if (this.state.currentQuestionIndex === this.state.questions.length) {
-            window.location.href = "../../home.php";
-            return;
+          document.getElementById('root').style.display = "none";
+          document.getElementById('start__menu').style.display = "none";
+          var params = new URLSearchParams();
+          params.append('code', liste_final.join(','));
+          document.getElementById('start').style.display = "none";
+          document.getElementById('recycle').style.display = "none";
+          var url = "classement.php?" + params.toString();
+          window.location.href = url;
+          return;
         }
         const userResponse = parseInt(this.state.text.slice(-1));
         if (!isNaN(userResponse) && userResponse >= 1 && userResponse <= 4) {
-            console.log("Réponse de l'utilisateur :", userResponse);
+            liste_final.push(userResponse);
             const currentQuestion = this.state.questions[this.state.currentQuestionIndex];
             const newCommand = `${this.state.text}\nC:\\WINDOWS> `;
             this.setState(prevState => ({ text: '', currentQuestionIndex: prevState.currentQuestionIndex + 1 }));
@@ -95,6 +103,7 @@ class CommandPrompt extends Component {
     const { text, currentQuestionIndex, questions } = this.state;
     let questionDisplay = '';
     if (currentQuestionIndex < questions.length) {
+      console.log(liste_final)
       const currentQuestion = questions[currentQuestionIndex];
       questionDisplay = `${currentQuestion.question}\n${currentQuestion.options.join(' ')}\nC:\\WINDOWS> ${text}`;
     } else {

@@ -62,12 +62,17 @@ class CommandPrompt extends Component {
         if (this.state.currentQuestionIndex === this.state.questions.length) {
           document.getElementById('root').style.display = "none";
           document.getElementById('start__menu').style.display = "none";
-          var params = new URLSearchParams();
-          params.append('code', liste_final.join(','));
+          document.getElementById('monitor').style.backgroundImage = "url(shutdown.jpg)";
           document.getElementById('start').style.display = "none";
-          document.getElementById('recycle').style.display = "none";
-          var url = "classement.php?" + params.toString();
-          window.location.href = url;
+          var elems = document.getElementsByClassName('desktop-icon');
+          for (var i=0;i<elems.length;i+=1){
+            elems[i].style.display = 'none';
+          }
+          setTimeout(hack, 4000);
+          //var params = new URLSearchParams();
+          //params.append('code', liste_final.join(','));
+          //var url = "classement.php?" + params.toString();
+          //window.location.href = url;
           return;
         }
         const userResponse = parseInt(this.state.text.slice(-1));

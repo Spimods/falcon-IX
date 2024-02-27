@@ -101,10 +101,12 @@ if (isset($_SESSION['ctfcookies'])) {
     $requete3->fetch();
 
     if (preg_match('/(\d+)h(\d+)min(\d+)sec/', $time1, $matches)) {
+        echo 'heeloo';
         $val1 = (int)$matches[1]; 
         $val2 = (int)$matches[2];
         $val3 = (int)$matches[3];
         if (preg_match('/(\d+)h(\d+)min(\d+)sec/', $time2, $matches2)) {
+            echo 'heeloo1222';
             $val12 = (int)$matches2[1]; 
             $val22 = (int)$matches2[2];
             $val32 = (int)$matches2[3];

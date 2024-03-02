@@ -1,0 +1,128 @@
+:root{
+    --color-red:#d75959;
+    --color-yellow:#f5c463;
+    --color-green:#9ccd7e;
+    --color-blue: #5ca7db;
+    --rgb-black:0,0,0;
+}
+
+
+body{
+    font-family: sans-serif;
+    background-color: #537895;
+    background-image: linear-gradient(315deg, #537895 0%, #09203f 74%);
+    height: 100vh;
+    color: white;
+}
+
+.wrapper{
+    margin-top: 150px;
+}
+
+.progressbar:not(.circle) svg,
+.progressbar:not(.circle) svg path{
+    border-radius: 20px;
+}
+
+.progressbar svg path:first-child{
+    stroke: rgba(var(--rgb-black), 0.09);
+}
+
+
+
+.progressbar.border{
+   border: 1px solid transparent;
+    box-sizing: border-box;
+}
+
+
+.progressbar.border svg path:first-child{
+    stroke: transparent;
+}
+
+
+.progressbar.line svg{
+    height: 10px;
+}
+
+
+.progressbar.line.border svg{
+    height: 8px;
+}
+
+
+
+
+.progressbar.circle{
+    position: relative;
+    margin: 0 auto 30px;
+    width: 170px;
+    height: 85px;
+}
+
+
+.progressbar.circle .progressbar-text{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    margin: 0;
+    font-size: 40px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    color: white !important;
+    font-weight: bold;
+}
+
+.progressbar.circle .progressbar-text:after{
+    content: "%";
+    display: block;
+    font-size: 20px;
+    padding-left: 2px;
+}
+
+
+.progressbar.red svg path:last-child{
+    stroke: var(--color-red)
+    
+}
+
+ 
+
+.progressbar.blue svg path:last-child{
+    stroke: var(--color-blue)
+    
+}
+
+  
+
+.progressbar.green svg path:last-child{
+    stroke: var(--color-green)
+    
+}
+
+ 
+.progressbar.yellow svg path:last-child{
+    stroke: var(--color-yellow)
+    
+}
+
+h5{
+    background: transparent;
+    padding: 10px;
+    width: 75%;
+    margin: 0 auto;
+    border-radius: 50px;
+    border: 2px solid #ebebeb;
+    font-size: 17px;
+    color: white;
+}
+ 
+p{
+    margin-top: 25px;
+}
+
+
+

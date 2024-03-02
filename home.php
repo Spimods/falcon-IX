@@ -13,10 +13,20 @@ if ($connexion->connect_error) {
 
 session_start();
 
+
 if (isset($_SESSION['ctfcookies']) && isset($_SESSION['ctfId'])) {
     $valeurCookie = $_SESSION['ctfcookies'];
     $valeurCookieID = $_SESSION['ctfId'];
-    
+    $requetedebut = $connexion->prepare("SELECT finish FROM ctfuser WHERE cookie = ?");
+    $requetedebut->bind_param("s", $valeurCookie);
+    $requetedebut->execute();
+    $requetedebut->bind_result($finish);
+    $requetedebut->fetch();
+    $requetedebut->close();
+    if ($finish == null) {
+        header('Location: start/index.html');
+        exit();
+    }
     $requete = $connexion->prepare("SELECT flag1, flag2, flag3, nom, time_flag_1, time_flag_2 ,time_flag_3 FROM python WHERE cookie = ?");
     $requete->bind_param("s", $valeurCookie);
     $requete->execute();
@@ -77,6 +87,7 @@ if (isset($_GET['nom'])){
 
 } else {
 }
+ 
 ?>
 <!DOCTYPE html>
 <html lang="fr">

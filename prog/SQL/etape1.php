@@ -39,6 +39,7 @@ if (isset($_SESSION['ctfcookies'])) {
     <title>Plus à gauche</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/ace.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/ext-language_tools.js"></script>
+    <link rel="stylesheet" href="../../css/scrollbar.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/ext-beautify.js"></script>
     <style>
         body {
@@ -209,8 +210,19 @@ if (isset($_SESSION['ctfcookies'])) {
             left: 56%;
             font-size: 14px;
             font-family: Arial, sans-serif;
+            overflow: overlay;
+        }
+        #tooltip p {
+            top: 35px;
+            position: fixed;
+            background-color: #272822;
+            padding-top: 22px;
+            padding-right: 10%;  
         }
 
+        #tooltip ul {
+            margin-top: 40px;
+        }
     </style>
 </head>
 <body>

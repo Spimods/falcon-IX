@@ -1,15 +1,17 @@
 window.addEventListener("blur", function () {
   window.location.href = "triche.php";
 });
+
 document.addEventListener('DOMContentLoaded', function() {
-    var nom = window.location.pathname;
-    nom = nom.split("/");
-    nom = nom[nom.length - 1];
-    nom = nom.substr(0, nom.lastIndexOf("."));
-    nom = nom.replace(new RegExp("(%20|_|-)", "g"), "");
+  var nom = window.location.pathname;
+  nom = nom.split("/");
+  nom = nom[nom.length - 1];
+  nom = nom.substr(0, nom.lastIndexOf("."));
+  nom = nom.replace(new RegExp("(%20|_|-)", "g"), "");
+
   const progressBar = document.getElementById('progress');
   const timeDisplay = document.getElementById('time');
-  const totalTime = 15 * 60; 
+  const totalTime = 15 * 60;
   let currentTime = getSavedTime() || 0;
   let currentPage = sessionStorage.getItem('currentPage') || window.location.href;
 
@@ -41,6 +43,9 @@ document.addEventListener('DOMContentLoaded', function() {
     if (currentTime < totalTime) {
       currentTime++;
       updateProgressAndTime();
+    } else {
+      timeDisplay.textContent = "Fin";
+      progressBar.style.width = "100%";
     }
   };
 

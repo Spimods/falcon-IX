@@ -60,18 +60,6 @@ body {
     scrollbar-width: thin;
 }
 
-#editor::-webkit-scrollbar {
-    width: 12px;
-}
-
-#editor::-webkit-scrollbar-thumb {
-    background-color: #888;
-}
-
-#editor::-webkit-scrollbar-track {
-    background-color: #333;
-}
-
 #tooltip {
     width: 30%;
     background-color: #2B2B2B;

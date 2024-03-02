@@ -39,6 +39,7 @@ if (isset($_SESSION['ctfcookies'])) {
     <title>Une image imaginaire</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/ace.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/ext-language_tools.js"></script>
+    <link rel="stylesheet" href="../../css/scrollbar.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/ext-beautify.js"></script>
     <style>
         body {
@@ -173,9 +174,8 @@ if (isset($_SESSION['ctfcookies'])) {
         }
     </style>
 </head>
-<body>
-
-    <div class="editor">
+<body> 
+<div class="editor">
         <div id="editor" style="left: -10%; height: 210px; width: 30%; margin-bottom: 1em;">&lt;!DOCTYPE html&gt;
 &lt;html lang="fr"&gt;
 &lt;head&gt;

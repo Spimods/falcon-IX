@@ -39,6 +39,7 @@ if (isset($_SESSION['ctfcookies'])) {
     <title>Plus à droite</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/ace.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/ext-language_tools.js"></script>
+    <link rel="stylesheet" href="../../css/scrollbar.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/ext-beautify.js"></script>
     <style>
         body {
@@ -200,7 +201,10 @@ if (isset($_SESSION['ctfcookies'])) {
 
 <div id="output2"></div>
 
-    <div class="editor">
+    <div class="message" id="message">
+    <p>La sortie de cette page est interdite sous peine d'invalidation du flag.</p>
+</div>
+<div class="editor">
     <div id="editor" style="left: -10%; height: 210px; width: 30%; margin-bottom: 1em;">&lt;iframe width="100%" height="100%" src="https://github.com/Spimods/falcon-V"&gt;&lt;/iframe&gt;
 </div>
 <div id="tooltip">

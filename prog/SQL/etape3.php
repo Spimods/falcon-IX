@@ -39,6 +39,7 @@ if (isset($_SESSION['ctfcookies'])) {
     <title>Plus à gauche</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/ace.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/ext-language_tools.js"></script>
+    <link rel="stylesheet" href="../../css/scrollbar.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/ext-beautify.js"></script>
     <style>
         body {

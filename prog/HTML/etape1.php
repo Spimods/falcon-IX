@@ -6,6 +6,7 @@
     <title>Plus à gauche</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/ace.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/ext-language_tools.js"></script>
+    <link rel="stylesheet" href="../../css/scrollbar.css">
 
 </head>
 <style>
@@ -130,13 +131,31 @@
             font-size: 18px;
             font-weight: bold;
         }
-
+        .message {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            z-index: 1000000;
+            font-family: Arial, sans-serif;
+            display: none;
+        }
     </style>
 
 <body>
 <div class="loading-bar">
     <div class="progress" id="progress"></div>
     <div class="time" id="time">0:00</div>
+</div>
+<div class="message" id="message">
+    <p>La sortie de cette page est interdite sous peine d'invalidation du flag.</p>
 </div>
 <div class="editor">
     <div id="editor" style="left: -10%; height: 210px; width: 30%; margin-bottom: 1em;">&lt;img id="output" src="votre_image_ici.png" style="height:200px; width:200px"/&gt;</div>

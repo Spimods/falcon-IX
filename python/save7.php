@@ -15,7 +15,6 @@ if ($connexion->connect_error) {
 }
 
 if (isset($_SESSION['ctfcookies'])) {
-    echo "c'est ok";
     $idcookie = $_SESSION['ctfcookies'];
     $name = $_SESSION['ctfNOM'];
     $requete = $connexion->prepare("SELECT time7 FROM timepython WHERE cookie = ?");

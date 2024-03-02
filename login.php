@@ -62,7 +62,9 @@ if (isset($_SESSION['ctfcookies']) and isset($_SESSION['ctfId']) ) {
             exit();
     }
     } else {
-        echo "<br>Merci de ne pas supprimer vos cookies";
+        $_SESSION = array();
+        header("refresh: 0"); 
+        exit; 
     }
 
 } else {
@@ -85,36 +87,48 @@ if (isset($_SESSION['ctfcookies']) and isset($_SESSION['ctfId']) ) {
         header("Location: home.php?nom=$nom");
         exit();
     } else {
-        $codeAleatoire = uniqid();
-        $_SESSION['ctfcookies'] = $codeAleatoire;
-        $requete6 = $connexion->prepare("INSERT INTO ctfuser (cookie, n_modele, ip, nom) VALUES (?, ?, ?, ?)");
-        $numeroNav = htmlentities($_SERVER["HTTP_USER_AGENT"]);
-        $requete6->bind_param("ssss", $codeAleatoire, $numeroNav, $adresseIP, $nom);
-        $requete6->execute();
-        $idAutoIncrement = $requete6->insert_id;
-        $requete7 = $connexion->prepare("INSERT INTO prog (nom, cookie) VALUES (?,?);");
-        $requete7->bind_param("ss", $nom,$codeAleatoire );
-        $requete7->execute();
-        $idprog = $requete7->insert_id;
-        $requete8 = $connexion->prepare("INSERT INTO python (nom, cookie) VALUES (?,?);");
-        $requete8->bind_param("ss", $nom, $codeAleatoire);
-        $requete8->execute();
-        $requete9 = $connexion->prepare("INSERT INTO timepython (nom, cookie) VALUES (?,?);");
-        $requete9->bind_param("ss", $nom, $codeAleatoire);
-        $requete9->execute();
-        $requete10 = $connexion->prepare("INSERT INTO timeprog (nom, cookie) VALUES (?,?);");
-        $requete10->bind_param("ss", $nom, $codeAleatoire);
-        $requete10->execute();
-        $requete11 = $connexion->prepare("INSERT INTO timeproghtml (nom, cookie) VALUES (?,?);");
-        $requete11->bind_param("ss", $nom, $codeAleatoire);
-        $requete11->execute();
-        $idpython = $requete8->insert_id;
-        $_SESSION['ctfId'] = $idAutoIncrement;
-        $_SESSION['ctfIdprog'] = $idprog;
-        $_SESSION['ctfIdpython'] = $idpython;
-        $_SESSION['ctfNOM'] = $nom;
-        header("Location: home.php?nom=$nom");
-        exit();
+ $sql = "SELECT * FROM ctfuser WHERE nom = '$nom'";
+        $result = $connexion->query($sql);
+
+        if ($result->num_rows > 0) {
+            echo "Ce nom existe déjà dans la base de données.";
+            header("Location: login.html?error=12");
+            exit();
+        } else {
+            $codeAleatoire = uniqid();
+            $_SESSION['ctfcookies'] = $codeAleatoire;
+            $requete6 = $connexion->prepare("INSERT INTO ctfuser (cookie, n_modele, ip, nom) VALUES (?, ?, ?, ?)");
+            $numeroNav = htmlentities($_SERVER["HTTP_USER_AGENT"]);
+            $requete6->bind_param("ssss", $codeAleatoire, $numeroNav, $adresseIP, $nom);
+            $requete6->execute();
+            $idAutoIncrement = $requete6->insert_id;
+            $requete7 = $connexion->prepare("INSERT INTO prog (nom, cookie) VALUES (?,?);");
+            $requete7->bind_param("ss", $nom,$codeAleatoire );
+            $requete7->execute();
+            $idprog = $requete7->insert_id;
+            $requete8 = $connexion->prepare("INSERT INTO python (nom, cookie) VALUES (?,?);");
+            $requete8->bind_param("ss", $nom, $codeAleatoire);
+            $requete8->execute();
+            $requete9 = $connexion->prepare("INSERT INTO timepython (nom, cookie) VALUES (?,?);");
+            $requete9->bind_param("ss", $nom, $codeAleatoire);
+            $requete9->execute();
+            $requete10 = $connexion->prepare("INSERT INTO timeprog (nom, cookie) VALUES (?,?);");
+            $requete10->bind_param("ss", $nom, $codeAleatoire);
+            $requete10->execute();
+            $requete11 = $connexion->prepare("INSERT INTO timeproghtml (nom, cookie) VALUES (?,?);");
+            $requete11->bind_param("ss", $nom, $codeAleatoire);
+            $requete11->execute();
+            $requete12 = $connexion->prepare("INSERT INTO timeprogsql (nom, cookie) VALUES (?,?);");
+            $requete12->bind_param("ss", $nom, $codeAleatoire);
+            $requete12->execute();
+            $idpython = $requete8->insert_id;
+            $_SESSION['ctfId'] = $idAutoIncrement;
+            $_SESSION['ctfIdprog'] = $idprog;
+            $_SESSION['ctfIdpython'] = $idpython;
+            $_SESSION['ctfNOM'] = $nom;
+            header("Location: home.php?nom=$nom");
+            exit();
+        }
     }
 }
 $connexion->close();

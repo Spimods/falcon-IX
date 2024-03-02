@@ -43,6 +43,7 @@ if (isset($_SESSION['ctfcookies'])) {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/3.0.1/js.cookie.min.js"></script>
     <link rel="stylesheet" href="../css/editor.css">
     <link rel="stylesheet" href="../css/select.css">
+    <link rel="stylesheet" href="../css/scrollbar.css">
 
 </head>
 <body>

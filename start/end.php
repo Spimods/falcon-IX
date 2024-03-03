@@ -1,5 +1,5 @@
 <?php
-$indice = $_GET['chiffre'];
+$indice = $_GET['chiffres'];
 session_start();
 
 $serveur = "localhost";
@@ -52,7 +52,6 @@ $sql = ($listeIndices[8]-1) * 100 / 3;
     --color-blue: #5ca7db;
     --color-blue: #5ca7db; 
     --rgb-black: 0, 0, 0;
-	 
 }
     *{
         color: white;
@@ -154,6 +153,7 @@ h5{
     border: 2px solid #ebebeb;
     font-size: 17px;
     color: white;
+    cursor: pointer;
 }
 h5:hover {
     background: #ebebeb;
@@ -196,44 +196,41 @@ p{
     </style>
 </head>
 <body>
-  
     <div class="wrapper image-wrapper">
     <div class="container inner">
-      <div class="row">
+        <div class="row">
         <div class="col-md-10 offset-md-1">
         <br><br><br>
-           <div class="row text-center">          
-          <div class="col-lg-3">
+            <div class="row text-center">          
+            <div class="col-lg-3">
             <div class="progressbar circle blue" data-value="<?php echo $css; ?>"></div>
             <h5>CSS</h5>
             <p>Le CSS stylise les éléments HTML d'une page web.</p>
-          </div>
-           
-          <div class="col-lg-3">
+        </div>
+        <div class="col-lg-3">
             <div class="progressbar circle green" data-value="<?php echo $js; ?>"></div>
             <h5>JavaScript</h5>
-              <p>JavaScript est pour ajouter de l'interactivité et manipuler le contenu des pages.</p>
-              </div>
+                <p>JavaScript est pour ajouter de l'interactivité et manipuler le contenu des pages.</p>
+                </div>
                 
-              <div class="col-lg-3">
+            <div class="col-lg-3">
                 <div class="progressbar circle red" data-value="<?php echo $html; ?>"></div>
                 <h5>HTML</h5>
                 <p>HTML est le langage standard utilisé pour créer et structurer le contenu des pages web.</p>
-              </div>
-               
-              <div class="col-lg-3">
+            </div>
+            <div class="col-lg-3">
                 <div class="progressbar circle yellow" data-value="<?php echo $php; ?>"></div>
                 <h5>PHP</h5>
                 <p>PHP génère du contenu HTML côté serveur pour des sites web dynamiques.</p>
-              </div>
+            </div>
 
-              <div class="col-lg-3">
+            <div class="col-lg-3">
                 <div class="progressbar circle violet" data-value="<?php echo $sql; ?>"></div>
                 <h5>SQL</h5>
                 <p>SQL est utilisé pour gérer et manipuler des bases de données relationnelles.</p>
-              </div>
-           </div>
-         </div>
+            </div>
+            </div>
+            </div>
         </div>
         </div>
     </div>

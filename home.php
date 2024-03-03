@@ -24,7 +24,7 @@ if (isset($_SESSION['ctfcookies']) && isset($_SESSION['ctfId'])) {
     $requetedebut->fetch();
     $requetedebut->close();
     if ($finish == null) {
-        header('Location: start/index.html');
+        header('Location: start/');
         exit();
     }
     $requete = $connexion->prepare("SELECT flag1, flag2, flag3, nom, time_flag_1, time_flag_2 ,time_flag_3 FROM python WHERE cookie = ?");
@@ -48,8 +48,34 @@ if (isset($_SESSION['ctfcookies']) && isset($_SESSION['ctfId'])) {
     $requete2->fetch();
     $requete2->close();
 
-    $time = "not defined";
+    function parseTime($timeString) {
+        preg_match('/(\d+)h (\d+)min (\d+)sec/', $timeString, $matches);
+        $hours = isset($matches[1]) ? intval($matches[1]) : 0;
+        $minutes = isset($matches[2]) ? intval($matches[2]) : 0;
+        $seconds = isset($matches[3]) ? intval($matches[3]) : 0;
+        return $hours * 3600 + $minutes * 60 + $seconds;
+    }
     
+    function totalTime($times) {
+        $totalSeconds = 0;
+        foreach ($times as $time) {
+            if (!is_null($time)) {
+                $totalSeconds += parseTime($time);
+            }
+        }
+    
+        $hours = floor($totalSeconds / 3600);
+        $minutes = floor(($totalSeconds % 3600) / 60);
+        $seconds = $totalSeconds % 60;
+        $totalTime = sprintf("%02dh %02dmin %02dsec", $hours, $minutes, $seconds);
+    
+        return $totalTime;
+    }
+        $times = array($time1, $time2, $time3, $time4, $time5, $time6, $time7, $time8, $time9);
+    
+    $totalTime = totalTime($times);
+    
+
     if ($flag1===1 and $flag2===1 and $flag3=== 1) {
         $part1 = 1;
     }
@@ -138,10 +164,10 @@ if (isset($_GET['nom'])){
                 <div class="col-xl-8">
                     <div class="container">
                         <div class="stack" style="--stacks: 3;">
-                          <span style="--index: 0;"><?php echo "$valeurBaseDeDonneesNom" ," " , "$time"; ?></span>
-                          <span style="--index: 1;"><?php echo "$valeurBaseDeDonneesNom" ," " , "$time"; ?></span>
-                          <span style="--index: 2;"><?php echo "$valeurBaseDeDonneesNom" ," " , "$time" ; ?></span>
-                      </div>
+                            <span style="--index: 0;"><?php echo "$valeurBaseDeDonneesNom" ," " , "$totalTime"; ?></span>
+                            <span style="--index: 1;"><?php echo "$valeurBaseDeDonneesNom" ," " , "$totalTime"; ?></span>
+                            <span style="--index: 2;"><?php echo "$valeurBaseDeDonneesNom" ," " , "$totalTime" ; ?></span>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -1,61 +1,127 @@
-﻿# falcon-V
-# OZANAM CYBERQUEST 
+﻿
+<h1 align="center">
+  <br>
+  <a href="http://www.ozanam-cyberquest.fr/"><img src="https://spimods.github.io/falcon-IX/images/no_image.png" alt="CyberQuest" width="200"></a>
+  <br>
+  Ozanam CyberQuest
+  <br>
+</h1>
 
-## Sommaire
+<h4 align="center">A minimal Markdown Editor desktop app built on top of <a href="http://electron.atom.io" target="_blank">Electron</a>.</h4>
 
-1. [Introduction](#introduction)
-2. [Description](#description)
-3. [Défis](#défis)
-    - 3.1 [Python](#python)
-    - 3.2 [HTML et CSS](#html-et-css)
-    - 3.3 [SQL](#sql)
-    - 3.4 [Réseaux sociaux](#réseaux-sociaux)
-4. [Comment participer](#comment-participer)
-5. [Améliorations possibles](#améliorations-possibles)
-6. [Remerciements](#remerciements)
+<p align="center">
+  <a href="https://badge.fury.io/js/electron-markdownify">
+    <img src="https://badge.fury.io/js/electron-markdownify.svg"
+         alt="Gitter">
+  </a>
+  <a href="https://gitter.im/amitmerchant1990/electron-markdownify"><img src="https://badges.gitter.im/amitmerchant1990/electron-markdownify.svg"></a>
+  <a href="https://saythanks.io/to/bullredeyes@gmail.com">
+      <img src="https://img.shields.io/badge/SayThanks.io-%E2%98%BC-1EAEDB.svg">
+  </a>
+  <a href="https://www.paypal.me/AmitMerchant">
+    <img src="https://img.shields.io/badge/$-donate-ff69b4.svg?maxAge=2592000&amp;style=flat">
+  </a>
+</p>
+
+<p align="center">
+  <a href="#key-features">Key Features</a> •
+  <a href="#how-to-use">How To Use</a> •
+  <a href="#download">Download</a> •
+  <a href="#credits">Credits</a> •
+  <a href="#related">Related</a> •
+  <a href="#license">License</a>
+</p>
+
+![screenshot](https://raw.githubusercontent.com/amitmerchant1990/electron-markdownify/master/app/img/markdownify.gif)
+
+## Key Features
+
+* LivePreview - Make changes, See changes
+  - Instantly see what your Markdown documents look like in HTML as you create them.
+* Sync Scrolling
+  - While you type, LivePreview will automatically scroll to the current location you're editing.
+* GitHub Flavored Markdown  
+* Syntax highlighting
+* [KaTeX](https://khan.github.io/KaTeX/) Support
+* Dark/Light mode
+* Toolbar for basic Markdown formatting
+* Supports multiple cursors
+* Save the Markdown preview as PDF
+* Emoji support in preview :tada:
+* App will keep alive in tray for quick usage
+* Full screen mode
+  - Write distraction free.
+* Cross platform
+  - Windows, macOS and Linux ready.
+
+## How To Use
+
+To clone and run this application, you'll need [Git](https://git-scm.com) and [Node.js](https://nodejs.org/en/download/) (which comes with [npm](http://npmjs.com)) installed on your computer. From your command line:
+
+```bash
+# Clone this repository
+$ git clone https://github.com/amitmerchant1990/electron-markdownify
+
+# Go into the repository
+$ cd electron-markdownify
+
+# Install dependencies
+$ npm install
+
+# Run the app
+$ npm start
+```
+
+> **Note**
+> If you're using Linux Bash for Windows, [see this guide](https://www.howtogeek.com/261575/how-to-run-graphical-linux-desktop-applications-from-windows-10s-bash-shell/) or use `node` from the command prompt.
+
+
+## Download
+
+You can [download](https://github.com/amitmerchant1990/electron-markdownify/releases/tag/v1.2.0) the latest installable version of Markdownify for Windows, macOS and Linux.
+
+## Emailware
+
+Markdownify is an [emailware](https://en.wiktionary.org/wiki/emailware). Meaning, if you liked using this app or it has helped you in any way, I'd like you send me an email at <bullredeyes@gmail.com> about anything you'd want to say about this software. I'd really appreciate it!
+
+## Credits
+
+This software uses the following open source packages:
+
+- [Electron](http://electron.atom.io/)
+- [Node.js](https://nodejs.org/)
+- [Marked - a markdown parser](https://github.com/chjj/marked)
+- [showdown](http://showdownjs.github.io/showdown/)
+- [CodeMirror](http://codemirror.net/)
+- Emojis are taken from [here](https://github.com/arvida/emoji-cheat-sheet.com)
+- [highlight.js](https://highlightjs.org/)
+
+## Related
+
+[markdownify-web](https://github.com/amitmerchant1990/markdownify-web) - Web version of Markdownify
+
+## Support
+
+<a href="https://www.buymeacoffee.com/5Zn8Xh3l9" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/purple_img.png" alt="Buy Me A Coffee" style="height: 41px !important;width: 174px !important;box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;" ></a>
+
+<p>Or</p> 
+
+<a href="https://www.patreon.com/amitmerchant">
+	<img src="https://c5.patreon.com/external/logo/become_a_patron_button@2x.png" width="160">
+</a>
+
+## You may also like...
+
+- [Pomolectron](https://github.com/amitmerchant1990/pomolectron) - A pomodoro app
+- [Correo](https://github.com/amitmerchant1990/correo) - A menubar/taskbar Gmail App for Windows and macOS
+
+## License
+
+MIT
 
 ---
 
-## 1. Introduction <a name="introduction"></a>
+> [amitmerchant.com](https://www.amitmerchant.com) &nbsp;&middot;&nbsp;
+> GitHub [@amitmerchant1990](https://github.com/amitmerchant1990) &nbsp;&middot;&nbsp;
+> Twitter [@amit_merchant](https://twitter.com/amit_merchant)
 
-Bienvenue dans le monde captivant d'OZANAM CYBERQUEST, un concours unique mêlant compétences en programmation, créativité web, et compréhension des bases de données. Ce défi n'est pas simplement un CTF (Capture The Flag), mais plutôt une aventure multidimensionnelle qui explore les domaines de Python, HTML, CSS, SQL, et même les réseaux sociaux.
-
-## 2. Description <a name="description"></a>
-
-OZANAM CYBERQUEST offre aux participants l'opportunité de tester et d'améliorer leurs compétences dans divers aspects de la cyber-sécurité et du développement web. Le concours est conçu pour être stimulant, éducatif et amusant.
-
-## 3. Défis <a name="défis"></a>
-
-### 3.1 Python <a name="python"></a>
-
-Des énigmes et des problèmes de programmation mettront à l'épreuve la maîtrise des participants dans le langage Python.
-
-### 3.2 HTML et CSS <a name="html-et-css"></a>
-
-La création d'interfaces utilisateur attrayantes et réactives sera évaluée à travers des défis axés sur HTML et CSS.
-
-### 3.3 SQL <a name="sql"></a>
-
-Des scénarios de base de données complexes testeront la capacité des participants à manipuler efficacement les données avec SQL.
-
-### 3.4 Réseaux sociaux <a name="réseaux-sociaux"></a>
-
-Des épreuves impliquant l'utilisation stratégique des médias sociaux seront présentées pour élargir la portée des compétences des participants.
-
-## 4. Comment participer <a name="comment-participer"></a>
-
-1. **Inscription**: Les participants peuvent s'inscrire sur la plateforme officielle d'OZANAM CYBERQUEST.
-2. **Règles et Instructions**: Une fois inscrits, les participants auront accès aux règles détaillées et aux instructions pour chaque défi.
-3. **Soumission des Solutions**: Les participants soumettront leurs solutions directement sur la plateforme.
-4. **Évaluation et Classement**: Les solutions seront évaluées, et un classement des participants sera publié.
-
-## 5. Améliorations possibles <a name="améliorations-possibles"></a>
-
-1. **Interface Utilisateur**: Optimiser davantage l'interface utilisateur des défis web pour offrir une expérience utilisateur maximale.
-2. **Documentation**: Fournir une documentation pour chaque défi, clarifiant les attentes et offrant des conseils supplémentaires.
-3. **Réseaux sociaux interactifs**: Intégrez davantage les réseaux sociaux dans les défis pour une expérience immersive.
-4. **Événement en temps réel**: Explorer la possibilité d'organiser des sessions en temps réel pour accroître l'interaction entre les participants.
-
-## 6. Remerciements <a name="remerciements"></a>
-
-Un grand merci à tous les participants et aux contributeurs qui font d'OZANAM CYBERQUEST une expérience exceptionnelle. Rejoignez-nous dans cette aventure unique. Bonne chance à tous les participants d'OZANAM CYBERQUEST!

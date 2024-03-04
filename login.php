@@ -31,7 +31,7 @@ foreach($proxy_headers as $x){
         echo("Vous êtes derrière un proxy!");
     }
 }
-$nom = $_POST['nom'];
+$nom = $_GET['nom'];
 session_start();
 if (isset($_SESSION['ctfcookies']) and isset($_SESSION['ctfId']) ) {
     $valeurCookie = $_SESSION['ctfcookies'];

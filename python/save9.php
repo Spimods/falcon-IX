@@ -101,12 +101,10 @@ if (isset($_SESSION['ctfcookies'])) {
     $requete3->fetch();
 
     if (preg_match('/(\d+)h(\d+)min(\d+)sec/', $time1, $matches)) {
-        echo 'heeloo';
         $val1 = (int)$matches[1]; 
         $val2 = (int)$matches[2];
         $val3 = (int)$matches[3];
         if (preg_match('/(\d+)h(\d+)min(\d+)sec/', $time2, $matches2)) {
-            echo 'heeloo1222';
             $val12 = (int)$matches2[1]; 
             $val22 = (int)$matches2[2];
             $val32 = (int)$matches2[3];
@@ -477,19 +475,33 @@ if (isset($_SESSION['ctfcookies'])) {
     <script>
 
         function start(){
+
             document.querySelector('.content').style.display = "inherit"
             document.querySelector('.container').style.display = "none"
             document.querySelector('.message').style.display = "block"
             const canvas = document.querySelector('#confetti-canvas');
                 setTimeout(() => {
-                    var myConfetti = confetti.create(canvas, {
-                        resize: true,
-                        useWorker: true
+                    var end = Date.now() + (8 * 1000);
+                    var colors = ['#bb0000', '#ffffff'];
+                    (function frame() {
+                    confetti({
+                        particleCount: 2,
+                        angle: 60,
+                        spread: 55,
+                        origin: { x: 0 },
+                        colors: colors
                     });
-                    myConfetti({
-                        particleCount: 1000,
-                        spread: 200
+                    confetti({
+                        particleCount: 2,
+                        angle: 120,
+                        spread: 55,
+                        origin: { x: 1 },
+                        colors: colors
                     });
+                    if (Date.now() < end) {
+                        requestAnimationFrame(frame);
+                    }
+                    }());
                 }, 2000);
         }
         nombre = 0

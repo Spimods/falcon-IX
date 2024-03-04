@@ -10,10 +10,7 @@ $connexion = new mysqli($serveur, $utilisateur, $motDePasse, $baseDeDonnees);
 if ($connexion->connect_error) {
     die("Échec de la connexion à la base de données : " . $connexion->connect_error);
 }
-
 session_start();
-
-
 if (isset($_SESSION['ctfcookies']) && isset($_SESSION['ctfId'])) {
     $valeurCookie = $_SESSION['ctfcookies'];
     $valeurCookieID = $_SESSION['ctfId'];
@@ -33,21 +30,18 @@ if (isset($_SESSION['ctfcookies']) && isset($_SESSION['ctfId'])) {
     $requete->bind_result($flag1,$flag2,$flag3,$nom,$time1,$time2,$time3);
     $requete->fetch();
     $requete->close();
-
     $requete1 = $connexion->prepare("SELECT flag1, flag2, flag3, time_flag_1, time_flag_2 ,time_flag_3 FROM prog WHERE cookie = ?");
     $requete1->bind_param("s", $valeurCookie);
     $requete1->execute();
     $requete1->bind_result($flag4,$flag5,$flag6,$time4,$time5,$time6);
     $requete1->fetch();
     $requete1->close();
-
     $requete2 = $connexion->prepare("SELECT flag1, flag2, flag3, time_flag_1, time_flag_2 ,time_flag_3 FROM Rsociaux WHERE cookie = ?");
     $requete2->bind_param("s", $valeurCookie);
     $requete2->execute();
     $requete2->bind_result($flag7,$flag8,$flag9,$time7,$time8,$time9);
     $requete2->fetch();
     $requete2->close();
-
     function parseTime($timeString) {
         preg_match('/(\d+)h (\d+)min (\d+)sec/', $timeString, $matches);
         $hours = isset($matches[1]) ? intval($matches[1]) : 0;
@@ -55,7 +49,6 @@ if (isset($_SESSION['ctfcookies']) && isset($_SESSION['ctfId'])) {
         $seconds = isset($matches[3]) ? intval($matches[3]) : 0;
         return $hours * 3600 + $minutes * 60 + $seconds;
     }
-    
     function totalTime($times) {
         $totalSeconds = 0;
         foreach ($times as $time) {
@@ -63,19 +56,14 @@ if (isset($_SESSION['ctfcookies']) && isset($_SESSION['ctfId'])) {
                 $totalSeconds += parseTime($time);
             }
         }
-    
         $hours = floor($totalSeconds / 3600);
         $minutes = floor(($totalSeconds % 3600) / 60);
         $seconds = $totalSeconds % 60;
         $totalTime = sprintf("%02dh %02dmin %02dsec", $hours, $minutes, $seconds);
-    
         return $totalTime;
     }
-        $times = array($time1, $time2, $time3, $time4, $time5, $time6, $time7, $time8, $time9);
-    
+    $times = array($time1, $time2, $time3, $time4, $time5, $time6, $time7, $time8, $time9);
     $totalTime = totalTime($times);
-    
-
     if ($flag1===1 and $flag2===1 and $flag3=== 1) {
         $part1 = 1;
     }
@@ -110,10 +98,7 @@ if (isset($_GET['nom'])){
         exit();
     }
     $requete2->close();
-
-} else {
 }
- 
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -141,7 +126,7 @@ if (isset($_GET['nom'])){
         <div class="container">
             <nav class="navbar px-0 navbar-expand-lg navbar-dark">
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
+            <span class="navbar-toggler-icon"></span>
         </button>
                 <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                     <div class="navbar-nav">
@@ -155,7 +140,6 @@ if (isset($_GET['nom'])){
                     </div>
                 </div>
             </nav>
-
         </div>
     </div>
     <div class="jumbotron bg-transparent mb-0 pt-3 radius-0">

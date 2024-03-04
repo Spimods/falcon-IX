@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, shrink-to-fit=no">
@@ -13,7 +12,6 @@
     <link rel='stylesheet' href='//cdn.jsdelivr.net/font-hack/2.020/css/hack.min.css'>
     <link rel="stylesheet" href="css/main.css">
 </head>
-
 <body class="imgloaded">
     <div class="glitch">
         <div class="glitch__img"></div>
@@ -26,8 +24,8 @@
         <div class="container">
             <nav class="navbar px-0 navbar-expand-lg navbar-dark">
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
+                    <span class="navbar-toggler-icon"></span>
+                </button>
                 <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                     <div class="navbar-nav">
                         <a href="./." class="pl-md-0 p-3 text-decoration-none text-light">
@@ -37,98 +35,77 @@
                     <div class="navbar-nav ml-auto">
                         <a href="./." class="p-3 text-decoration-none text-light bold">Accueil</a>
                         <a href="intro.html" class="p-3 text-decoration-none text-white bold">Commencer</a>
-
                     </div>
                 </div>
             </nav>
-
         </div>
     </div>
-
     <div class="jumbotron bg-transparent mb-0 pt-3 radius-0">
         <div class="container">
             <div class="row">
                 <div class="col-xl-8">
                     <div class="container">
                         <div class="stack" style="--stacks: 3;">
-                          <span style="--index: 0;">CyberQuest</span>
-                          <span style="--index: 1;">CyberQuest</span>
-                          <span style="--index: 2;">CyberQuest</span>
+                            <span style="--index: 0;">CyberQuest</span>
+                            <span style="--index: 1;">CyberQuest</span>
+                            <span style="--index: 2;">CyberQuest</span>
                         </div>
-                      </div>
-                      <p class="text-grey text-spacey hackerFont lead mb-5">
+                    </div>
+                    <p class="text-grey text-spacey hackerFont lead mb-5">
                         Tapez vos identifiants pour conquérir le monde
                     </p>
                     <div class="row hackerFont">
                         <div class="col-md-6">
                             <form action="login.php" method="POST">
-                            <div class="form-group">
-                                <span id="timer"></span>
-                                <input type="text" required pattern="[a-zA-Z]*" class="form-control" name="nom" id="input" placeholder="Nom">
+                                <div class="form-group">
+                                    <span id="timer"></span>
+                                    <input type="text" required pattern="[a-zA-Z]*" class="form-control" name="nom" id="input" placeholder="Nom">
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-xl-8">
+                            <button class="btn btn-outline-danger btn-shadow px-3 my-2 ml-0 ml-sm-1 text-left typewriter" id="btn" type="submit" value="Submit">
+                                <h4>Confirmer</h4>
+                            </button>
+                        </div>
+                    </div>
+                </form>
             </div>
-            <br>
-
-            <div class="row">
-                <div class="col-xl-8">
-                    <button class="btn btn-outline-danger btn-shadow px-3 my-2 ml-0 ml-sm-1 text-left typewriter" id="btn" type="submit" value="Submit">
-                    <h4>Confirmer</h4>
-                    </button>
-                </div>
-            </div>
-        </form>
         </div>
     </div>
-
-
-
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-<script>
-const dateCible = new Date(2023, 2, 30, 12, 0, 0); // Par exemple, le 30 novembre 2023 à midi
+    <script>
+        const dateCible = new Date(2023, 2, 30, 12, 0, 0); // Par exemple, le 30 novembre 2023 à midi
 
-const timerElement = document.getElementById('timer');
+        const timerElement = document.getElementById('timer');
 
-const element1 = document.getElementById('input');
-const element2 = document.getElementById('btn');
+        const element1 = document.getElementById('input');
+        const element2 = document.getElementById('btn');
 
-function mettreAJourTimer() {
-    // Calculez la différence en millisecondes entre la date actuelle et la date cible
-    const differenceEnMillisecondes = dateCible - new Date();
+        function mettreAJourTimer() {
+            const differenceEnMillisecondes = dateCible - new Date();
+            if (differenceEnMillisecondes > 0) {
+                const secondes = Math.floor((differenceEnMillisecondes / 1000) % 60);
+                const minutes = Math.floor((differenceEnMillisecondes / (1000 * 60)) % 60);
+                const heures = Math.floor((differenceEnMillisecondes / (1000 * 60 * 60)) % 24);
+                const jours = Math.floor(differenceEnMillisecondes / (1000 * 60 * 60 * 24));
+                timerElement.textContent = `${jours}j ${heures}h ${minutes}m ${secondes}s`;
 
-    // Vérifiez si la date cible est déjà passée
-    if (differenceEnMillisecondes > 0) {
-        // Calculez les unités de temps
-        const secondes = Math.floor((differenceEnMillisecondes / 1000) % 60);
-        const minutes = Math.floor((differenceEnMillisecondes / (1000 * 60)) % 60);
-        const heures = Math.floor((differenceEnMillisecondes / (1000 * 60 * 60)) % 24);
-        const jours = Math.floor(differenceEnMillisecondes / (1000 * 60 * 60 * 24));
-
-        // Mettez à jour le contenu de l'élément span
-        timerElement.textContent = `${jours}j ${heures}h ${minutes}m ${secondes}s`;
-
-        element1.style.display = 'none';
-        element2.style.display = 'none';
-        setTimeout(mettreAJourTimer, 1000);
-    } else {
-        element1.style.display = 'initial';
-        element2.style.display = 'initial';
-
-    }
-}
-
-// Appelez la fonction pour la première fois
-mettreAJourTimer();
-
-
-</script>
+                element1.style.display = 'none';
+                element2.style.display = 'none';
+                setTimeout(mettreAJourTimer, 1000);
+            } else {
+                element1.style.display = 'initial';
+                element2.style.display = 'initial';
+            }
+        }
+        mettreAJourTimer();
+    </script>
 </body>
 
 </html>

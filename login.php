@@ -4,12 +4,10 @@ $serveur = "localhost";
 $utilisateur = "root";
 $motDePasse = "";
 $baseDeDonnees = "ctf";
-
 $connexion = new mysqli($serveur, $utilisateur, $motDePasse, $baseDeDonnees);
 if ($connexion->connect_error) {
     die("Échec de la connexion à la base de données : " . $connexion->connect_error);
 }
-
 $adresseIP = $_SERVER['REMOTE_ADDR'];
 $proxy_headers = array(
     'HTTP_VIA',
@@ -34,9 +32,7 @@ foreach($proxy_headers as $x){
     }
 }
 $nom = $_POST['nom'];
-
 session_start();
-
 if (isset($_SESSION['ctfcookies']) and isset($_SESSION['ctfId']) ) {
     $valeurCookie = $_SESSION['ctfcookies'];
     $valeurCookieID = $_SESSION['ctfId'];
@@ -66,7 +62,6 @@ if (isset($_SESSION['ctfcookies']) and isset($_SESSION['ctfId']) ) {
         header("refresh: 0"); 
         exit; 
     }
-
 } else {
     $requete4 = $connexion->prepare("SELECT EXISTS( SELECT * FROM ctfuser WHERE ip=? );");
     $requete4->bind_param("s", $adresseIP);
@@ -83,13 +78,11 @@ if (isset($_SESSION['ctfcookies']) and isset($_SESSION['ctfId']) ) {
         $_SESSION['ctfId'] = $id;
         $_SESSION['ctfcookies'] = $cookiesbdd;
         $_SESSION['ctfNOM'] = $nom;
-
         header("Location: home.php?nom=$nom");
         exit();
     } else {
- $sql = "SELECT * FROM ctfuser WHERE nom = '$nom'";
+        $sql = "SELECT * FROM ctfuser WHERE nom = '$nom'";
         $result = $connexion->query($sql);
-
         if ($result->num_rows > 0) {
             echo "Ce nom existe déjà dans la base de données.";
             header("Location: login.html?error=12");

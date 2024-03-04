@@ -8,7 +8,6 @@ if ($connexion->connect_error) {
     die("Échec de la connexion à la base de données : " . $connexion->connect_error);
 }
 session_start(); 
-
 if (isset($_SESSION['ctfcookies']) && isset($_SESSION['ctfId'])) {
     $valeurCookie = $_SESSION['ctfcookies'];
     $valeurCookieID = $_SESSION['ctfId'];
@@ -48,7 +47,7 @@ if (isset($_SESSION['ctfcookies']) && isset($_SESSION['ctfId'])) {
         <div class="container">
             <nav class="navbar px-0 navbar-expand-lg navbar-dark">
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
+            <span class="navbar-toggler-icon"></span>
         </button>
                 <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                     <div class="navbar-nav">
@@ -70,10 +69,10 @@ if (isset($_SESSION['ctfcookies']) && isset($_SESSION['ctfId'])) {
                 <div class="col-xl-8">
                     <div class="container">
                         <div class="stack" style="--stacks: 3; width: 1000px; min-width: 1000px;">
-                          <span style="--index: 0;"><?php echo "Programmation : ".$flag1+$flag2+$flag3."/3" ; ?></span>
-                          <span style="--index: 1;"><?php echo "Programmation : ".$flag1+$flag2+$flag3."/3" ; ?></span>
-                          <span style="--index: 2;"><?php echo "Programmation : ".$flag1+$flag2+$flag3."/3" ; ?></span>
-                      </div>
+                            <span style="--index: 0;"><?php echo "Programmation : ".$flag1+$flag2+$flag3."/3" ; ?></span>
+                            <span style="--index: 1;"><?php echo "Programmation : ".$flag1+$flag2+$flag3."/3" ; ?></span>
+                            <span style="--index: 2;"><?php echo "Programmation : ".$flag1+$flag2+$flag3."/3" ; ?></span>
+                        </div>
                     </div>
                 </div>
             </div>

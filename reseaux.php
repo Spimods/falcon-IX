@@ -1,6 +1,5 @@
 <?php
 session_start();
-
 $serveur = "localhost";
 $utilisateur = "root";
 $motDePasse = "";
@@ -48,7 +47,7 @@ if (isset($_SESSION['ctfcookies']) && isset($_SESSION['ctfId'])) {
         <div class="container">
             <nav class="navbar px-0 navbar-expand-lg navbar-dark">
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
+            <span class="navbar-toggler-icon"></span>
         </button>
                 <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                     <div class="navbar-nav">
@@ -72,10 +71,10 @@ if (isset($_SESSION['ctfcookies']) && isset($_SESSION['ctfId'])) {
                 <div class="col-xl-8">
                     <div class="container">
                         <div class="stack" style="--stacks: 3;">
-                          <span style="--index: 0;"><?php echo "Réseaux sociaux : ", $flag1+$flag2+$flag3,"/3" ; ?></span>
-                          <span style="--index: 1;"><?php echo "Réseaux sociaux : ",$flag1+$flag2+$flag3,"/3" ; ?></span>
-                          <span style="--index: 2;"><?php echo "Réseaux sociaux : ",$flag1+$flag2+$flag3,"/3" ; ?></span>
-                      </div>
+                            <span style="--index: 0;"><?php echo "Réseaux sociaux : ", $flag1+$flag2+$flag3,"/3" ; ?></span>
+                            <span style="--index: 1;"><?php echo "Réseaux sociaux : ",$flag1+$flag2+$flag3,"/3" ; ?></span>
+                            <span style="--index: 2;"><?php echo "Réseaux sociaux : ",$flag1+$flag2+$flag3,"/3" ; ?></span>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -164,9 +164,9 @@ if (isset($_GET['nom'])){
                 <div class="col-xl-8">
                     <div class="container">
                         <div class="stack" style="--stacks: 3;">
-                            <span style="--index: 0;"><?php echo "$valeurBaseDeDonneesNom" ," " , "$totalTime"; ?></span>
-                            <span style="--index: 1;"><?php echo "$valeurBaseDeDonneesNom" ," " , "$totalTime"; ?></span>
-                            <span style="--index: 2;"><?php echo "$valeurBaseDeDonneesNom" ," " , "$totalTime" ; ?></span>
+                            <span style="--index: 0;"><?php echo ucfirst($valeurBaseDeDonneesNom) ," : " , "$totalTime"; ?></span>
+                            <span style="--index: 1;"><?php echo ucfirst($valeurBaseDeDonneesNom) ," : " , "$totalTime"; ?></span>
+                            <span style="--index: 2;"><?php echo ucfirst($valeurBaseDeDonneesNom) ," : " , "$totalTime" ; ?></span>
                         </div>
                     </div>
                 </div>

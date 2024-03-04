@@ -1,6 +1,5 @@
 <?php
 session_start();
-
 $serveur = "localhost";
 $utilisateur = "root";
 $motDePasse = "";
@@ -67,7 +66,7 @@ if (isset($_SESSION['ctfcookies']) && isset($_SESSION['ctfId'])) {
         <div class="container">
             <nav class="navbar px-0 navbar-expand-lg navbar-dark">
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
+        <span class="navbar-toggler-icon"></span>
         </button>
                 <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                     <div class="navbar-nav">
@@ -78,11 +77,9 @@ if (isset($_SESSION['ctfcookies']) && isset($_SESSION['ctfId'])) {
                     <div class="navbar-nav ml-auto">
                         <a href="home.php" class="p-3 text-decoration-none text-light bold">Accueil</a>
                         <a href="intro.html" class="p-3 text-decoration-none text-white bold">Commencer</a>
-
                     </div>
                 </div>
             </nav>
-
         </div>
     </div>
     <div class="jumbotron bg-transparent mb-0 pt-3 radius-0">
@@ -91,10 +88,10 @@ if (isset($_SESSION['ctfcookies']) && isset($_SESSION['ctfId'])) {
                 <div class="col-xl-8">
                     <div class="container">
                         <div class="stack" style="--stacks: 3;">
-                        <span style="--index: 0;"><?php echo "Python : ", (int)$flag1end + (int)$flag2end + (int)$flag3end, "/3"; ?></span>
-                        <span style="--index: 1;"><?php echo "Python : ", (int)$flag1end + (int)$flag2end + (int)$flag3end, "/3"; ?></span>
-                        <span style="--index: 2;"><?php echo "Python : ", (int)$flag1end + (int)$flag2end + (int)$flag3end, "/3"; ?></span>
-                      </div>
+                            <span style="--index: 0;"><?php echo "Python : ", (int)$flag1end + (int)$flag2end + (int)$flag3end, "/3"; ?></span>
+                            <span style="--index: 1;"><?php echo "Python : ", (int)$flag1end + (int)$flag2end + (int)$flag3end, "/3"; ?></span>
+                            <span style="--index: 2;"><?php echo "Python : ", (int)$flag1end + (int)$flag2end + (int)$flag3end, "/3"; ?></span>
+                        </div>
                     </div>
                 </div>
             </div>

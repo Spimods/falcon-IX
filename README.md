@@ -11,10 +11,10 @@
 
 
 <p align="center">
-  <a href="#Principales">Principales caractéristiques</a> •
-  <a href="#how-to-use">Comment utiliser</a> •
-  <a href="#Crédits">Crédits</a> •
-  <a href="#Support">Support</a>
+  <a href="#principales-caractéristiques">Principales caractéristiques</a> •
+  <a href="#comment-utiliser">Comment utiliser</a> •
+  <a href="#crédits">Crédits</a> •
+  <a href="#support">Support</a>
 </p>
 
 <h1 align="center">

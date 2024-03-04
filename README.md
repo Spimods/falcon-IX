@@ -38,11 +38,11 @@
 
 ## Comment utiliser
 <br>
-#### Guide d'utilisation - Site Web Local avec PHP et Base de Données
+### Guide d'utilisation - Site Web Local avec PHP et Base de Données
 Ce guide vous aidera à configurer et à utiliser un site web en local avec PHP et une base de données sur votre machine.
 <br>
 <br>
-#### Prérequis :
+### Prérequis :
 <br>
 Avant de commencer, assurez-vous d'avoir les éléments suivants installés sur votre machine :
 
@@ -64,7 +64,7 @@ $ cd falcon-IX
 <br>
 
 
-#### Étapes :
+### Étapes :
 
 * Suivez ces étapes pour configurer et utiliser votre site web local :
 
@@ -79,7 +79,7 @@ $ cd falcon-IX
 	- Vérifiez les journaux d'erreurs de votre serveur web en cas de problèmes.
 
 
-> **Note**
+> **Note :**
 > Avant de commencer, assurez-vous d'avoir un serveur local tel que XAMPP, WAMP ou MAMP installé sur votre machine et en cours d'exécution. Placez ensuite le répertoire de l'application dans le répertoire approprié de votre serveur local (par exemple, htdocs pour XAMPP) avant de suivre les instructions ci-dessus pour cloner et exécuter l'application.
 
 

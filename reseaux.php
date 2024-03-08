@@ -12,13 +12,15 @@ if (isset($_SESSION['ctfcookies']) && isset($_SESSION['ctfId'])) {
     $valeurCookie = $_SESSION['ctfcookies'];
     $valeurCookieID = $_SESSION['ctfId'];
     $valeurCookieNOM = $_SESSION['ctfNOM'];
-
-    $requete = $connexion->prepare("SELECT flag1, flag2, flag3, time_flag_1 , time_flag_2 , time_flag_3 FROM rsociaux WHERE cookie = ?");
+    $requete = $connexion->prepare("SELECT flag1, time_flag_1 FROM rsociaux WHERE cookie = ?");
     $requete->bind_param("s", $valeurCookie);
     $requete->execute();
-    $requete->bind_result($flag1,$flag2,$flag3, $time1, $time2, $time3);
+    $requete->bind_result($flag1, $time1);
     $requete->fetch();
-}
+    if ($flag1 == null) {
+        $flag1 = 0;
+    }
+    }
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -71,9 +73,9 @@ if (isset($_SESSION['ctfcookies']) && isset($_SESSION['ctfId'])) {
                 <div class="col-xl-8">
                     <div class="container">
                         <div class="stack" style="--stacks: 3;">
-                            <span style="--index: 0;"><?php echo "Réseaux sociaux : ", $flag1+$flag2+$flag3,"/3" ; ?></span>
-                            <span style="--index: 1;"><?php echo "Réseaux sociaux : ",$flag1+$flag2+$flag3,"/3" ; ?></span>
-                            <span style="--index: 2;"><?php echo "Réseaux sociaux : ",$flag1+$flag2+$flag3,"/3" ; ?></span>
+                            <span style="--index: 0;"><?php echo "Réseaux sociaux : ", $flag1,"/1" ;?></span>
+                            <span style="--index: 1;"><?php echo "Réseaux sociaux : ",$flag1,"/1" ; ?></span>
+                            <span style="--index: 2;"><?php echo "Réseaux sociaux : ",$flag1,"/1" ; ?></span>
                         </div>
                     </div>
                 </div>
@@ -82,19 +84,10 @@ if (isset($_SESSION['ctfcookies']) && isset($_SESSION['ctfId'])) {
     </div>
 <br>
 <?php if($flag1 != 0){
-    echo "<div class='box1end'><span class='text'>$time1</span></div>"; 
+    echo "<div class='box2end'><span class='text'>$time1</span></div>"; 
 } else {
-    echo "<div class='box1' onclick='location.href=`./reseaux/etape1.php`;' ><span class='text'>Novice</span></div>"; 
+    echo "<div class='box2' onclick='location.href=`./reseaux/timestartetape1.php`;' ><span class='text'></span></div>"; 
 }; 
-if($flag2 != 0){
-    echo "<div class='box2end'><span class='text'>$time2</span></div>";
-}else{
-    echo "<div class='box2' onclick='location.href=`./reseaux/etape2.html`;'><span class='text'>Intermédiaire</span></div>";
-}
-if($flag3 != 0){
-    echo "<div class='box3end'><span class='text'>$time3</span></div>";
-}else{
-    echo "<div class='box3' onclick='location.href=`./reseaux/etape3.html`;'><span class='text'>Maître</span></div>";
-}?>
+?>
 </body>
 </html>

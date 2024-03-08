@@ -294,7 +294,7 @@ if (isset($_SESSION['ctfcookies'])) {
             margin-left: -10px;
             transform: rotateY(-90deg);
             transform-origin: 100% 50%;
-            background-color: #FD002E;
+            background-color: #030B19;
             border-radius: 2px;
         }
 
@@ -306,7 +306,7 @@ if (isset($_SESSION['ctfcookies'])) {
             width: 100%;
             height: 100%;
             border-radius: 50%;
-            background-color: #FD002E;
+            background-color: #030B19;
             transform: translateZ(-1px);
         }
 
@@ -319,8 +319,8 @@ if (isset($_SESSION['ctfcookies'])) {
             height: 100%;
             transform: translateZ(0);
             border-radius: 50%;
-            background-color: #FD002E;
-            background-image: url('../../images/pieceprogCSS1.png');
+            background-color: #030B19;
+            background-image: url('../../images/pieceproghtml1.png');
             background-repeat: no-repeat;
             background-position: center center;
             background-size: 108%;
@@ -349,8 +349,8 @@ if (isset($_SESSION['ctfcookies'])) {
             height: 100%;
             transform: rotateY(180deg) translateZ(20px);
             border-radius: 50%;
-            background-color: #FD002E;
-            background-image: url('../../images/pieceprogCSS1.png');
+            background-color: #030B19;
+            background-image: url('../../images/pieceproghtml1.png');
             background-repeat: no-repeat;
             background-position: center center;
             background-size: 108%;
@@ -380,7 +380,7 @@ if (isset($_SESSION['ctfcookies'])) {
             height: 100%;
             transform: translateZ(-19px);
             border-radius: 50%;
-            background-color: #FD002E;
+            background-color: #030B19;
         }
 
         body {
@@ -439,8 +439,8 @@ if (isset($_SESSION['ctfcookies'])) {
     <div class="message" id="message">
     </div>
     <div class="texte-fondu">
-    Bien joué pour avoir brillamment terminé la tâche CSS de l'Ozanam CyberQuest !<br>
-    Votre habileté rapide et précise dans la création de styles démontre un talent exceptionnel. Continuez sur cette lancée !<br>
+    Bien joué pour avoir brillamment terminé la tâche HTMLCSS de l'Ozanam CyberQuest !<br>
+    Votre habileté rapide et précise dans la création de site web démontre un talent exceptionnel. Continuez sur cette lancée !<br>
     <a class='fin' href="../../prog.php">Terminer</a>
     </div>
 
@@ -459,23 +459,36 @@ if (isset($_SESSION['ctfcookies'])) {
 
     <script>
 
-        function start(){
-            document.querySelector('.content').style.display = "inherit"
-            document.querySelector('.container').style.display = "none"
-            document.querySelector('.message').style.display = "block"
-            const canvas = document.querySelector('#confetti-canvas');
-                setTimeout(() => {
-                    var myConfetti = confetti.create(canvas, {
-                        resize: true,
-                        useWorker: true
-                    });
-                    myConfetti({
-                        particleCount: 1000,
-                        spread: 200
-                    });
-                }, 2000);
-        }
-        nombre = 0
+function start(){
+    document.querySelector('.content').style.display = "inherit"
+    document.querySelector('.container').style.display = "none"
+    document.querySelector('.message').style.display = "block"
+    const canvas = document.querySelector('#confetti-canvas');
+        setTimeout(() => {
+            var end = Date.now() + (8 * 1000);
+            var colors = ['#bb0000', '#ffffff'];
+            (function frame() {
+            confetti({
+                particleCount: 2,
+                angle: 60,
+                spread: 55,
+                origin: { x: 0 },
+                colors: colors
+            });
+            confetti({
+                particleCount: 2,
+                angle: 120,
+                spread: 55,
+                origin: { x: 1 },
+                colors: colors
+            });
+            if (Date.now() < end) {
+                requestAnimationFrame(frame);
+            }
+            }());
+        }, 2000);
+    }
+    nombre = 0
 
         function casse() {
             const back = document.querySelector('.currency-soft-3d__back');
@@ -484,17 +497,17 @@ if (isset($_SESSION['ctfcookies'])) {
             if (nombre == 0) {
                 back.style.backgroundColor = "#270013";
                 back2.style.backgroundColor = "#270013";
-                back.style.backgroundImage = "url(../../images/pieceprogCSScasse1.png)";
-                back2.style.backgroundImage = "url(../../images/pieceprogCSScasse1.png)";
+                back.style.backgroundImage = "url(../../images/pieceproghtmcasse1.png)";
+                back2.style.backgroundImage = "url(../../images/pieceproghtmcasse1.png)";
             } else if (nombre == 1) {
-                back.style.backgroundImage = "url(../../images/pieceprogCSScasse2.png)";
-                back2.style.backgroundImage = "url(../../images/pieceprogCSScasse2.png)";
+                back.style.backgroundImage = "url(../../images/pieceproghtmcasse2.png)";
+                back2.style.backgroundImage = "url(../../images/pieceproghtmcasse2.png)";
             } else if (nombre == 2) {
-                back.style.backgroundImage = "url(../../images/pieceprogCSScasse3.png)";
-                back2.style.backgroundImage = "url(../../images/pieceprogCSScasse3.png)";
+                back.style.backgroundImage = "url(../../images/pieceproghtmcasse3.png)";
+                back2.style.backgroundImage = "url(../../images/pieceproghtmcasse3.png)";
             } else if (nombre == 3) {
-                back.style.backgroundImage = "url(../../images/pieceprogCSScasse4.png)";
-                back2.style.backgroundImage = "url(../../images/pieceprogCSScasse4.png)";
+                back.style.backgroundImage = "url(../../images/pieceproghtmcasse4.png)";
+                back2.style.backgroundImage = "url(../../images/pieceproghtmcasse4.png)";
             } else if (nombre == 4) {
                 document.querySelector('.content__coins').classList.add('end');
                 setTimeout(() => {

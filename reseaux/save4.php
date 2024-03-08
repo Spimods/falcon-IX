@@ -89,7 +89,8 @@ if (isset($_SESSION['ctfcookies'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Score</title>
-    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/select.css">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -195,7 +196,7 @@ if (isset($_SESSION['ctfcookies'])) {
     <div class="container">
         <div class="note"><?php echo $notetime;?> / 10</div>
         <div class="details">
-            <p>Temps total :</p><div class="progress-bar"><div class="progress3"></div></div>
+            <p>Complexité :</p><div class="progress-bar"><div class="progress3"></div></div>
         </div>
         <button class="button" onClick='location.href="timestartetape5.php"'>Niveau Suivant <svg xmlns="http://www.w3.org/2000/svg" class="svgfleche" class="bi bi-chevron-double-right" viewBox="0 0 16 16"> <path fill-rule="evenodd" d="M3.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L9.293 8 3.646 2.354a.5.5 0 0 1 0-.708z"/> <path fill-rule="evenodd" d="M7.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L13.293 8 7.646 2.354a.5.5 0 0 1 0-.708z"/> </svg></button>
     </div>

@@ -460,23 +460,36 @@ if (isset($_SESSION['ctfcookies'])) {
 
     <script>
 
-        function start(){
-            document.querySelector('.content').style.display = "inherit"
-            document.querySelector('.container').style.display = "none"
-            document.querySelector('.message').style.display = "block"
-            const canvas = document.querySelector('#confetti-canvas');
-                setTimeout(() => {
-                    var myConfetti = confetti.create(canvas, {
-                        resize: true,
-                        useWorker: true
-                    });
-                    myConfetti({
-                        particleCount: 1000,
-                        spread: 200
-                    });
-                }, 2000);
-        }
-        nombre = 0
+function start(){
+    document.querySelector('.content').style.display = "inherit"
+    document.querySelector('.container').style.display = "none"
+    document.querySelector('.message').style.display = "block"
+    const canvas = document.querySelector('#confetti-canvas');
+        setTimeout(() => {
+            var end = Date.now() + (8 * 1000);
+            var colors = ['#bb0000', '#ffffff'];
+            (function frame() {
+            confetti({
+                particleCount: 2,
+                angle: 60,
+                spread: 55,
+                origin: { x: 0 },
+                colors: colors
+            });
+            confetti({
+                particleCount: 2,
+                angle: 120,
+                spread: 55,
+                origin: { x: 1 },
+                colors: colors
+            });
+            if (Date.now() < end) {
+                requestAnimationFrame(frame);
+            }
+            }());
+        }, 2000);
+    }
+    nombre = 0
 
         function casse() {
             const back = document.querySelector('.currency-soft-3d__back');

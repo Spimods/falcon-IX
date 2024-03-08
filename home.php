@@ -36,10 +36,10 @@ if (isset($_SESSION['ctfcookies']) && isset($_SESSION['ctfId'])) {
     $requete1->bind_result($flag4,$flag5,$flag6,$time4,$time5,$time6);
     $requete1->fetch();
     $requete1->close();
-    $requete2 = $connexion->prepare("SELECT flag1, flag2, flag3, time_flag_1, time_flag_2 ,time_flag_3 FROM Rsociaux WHERE cookie = ?");
+    $requete2 = $connexion->prepare("SELECT flag1,time_flag_1 FROM rsociaux WHERE cookie = ?");
     $requete2->bind_param("s", $valeurCookie);
     $requete2->execute();
-    $requete2->bind_result($flag7,$flag8,$flag9,$time7,$time8,$time9);
+    $requete2->bind_result($flag7,$time7);
     $requete2->fetch();
     $requete2->close();
     function parseTime($timeString) {
@@ -62,7 +62,7 @@ if (isset($_SESSION['ctfcookies']) && isset($_SESSION['ctfId'])) {
         $totalTime = sprintf("%02dh %02dmin %02dsec", $hours, $minutes, $seconds);
         return $totalTime;
     }
-    $times = array($time1, $time2, $time3, $time4, $time5, $time6, $time7, $time8, $time9);
+    $times = array($time1, $time2, $time3, $time4, $time5, $time6, $time7);
     $totalTime = totalTime($times);
     if ($flag1===1 and $flag2===1 and $flag3=== 1) {
         $part1 = 1;
@@ -70,7 +70,7 @@ if (isset($_SESSION['ctfcookies']) && isset($_SESSION['ctfId'])) {
     if($flag4===1 and $flag5===1 and $flag6=== 1) {
         $part2 = 1;
     }
-    if($flag7===1 and $flag8===1 and $flag9=== 1) {
+    if($flag7===1) {
         $part3 = 1;
     }
     $valeurBaseDeDonneesNom = $nom;

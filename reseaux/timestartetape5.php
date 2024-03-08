@@ -22,7 +22,7 @@ if (isset($_SESSION['ctfcookies'])) {
     $requete->bind_result($valeur1);
     $requete->fetch();
     if ($valeur1 != NULL) {
-        header('Location: timestartetape6.php');
+        header('Location: ../reseaux.php');
         exit();
     } else {
         $tempsDebut = new DateTime();

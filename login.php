@@ -102,6 +102,9 @@ if (isset($_SESSION['ctfcookies']) and isset($_SESSION['ctfId']) ) {
             $requete8 = $connexion->prepare("INSERT INTO python (nom, cookie) VALUES (?,?);");
             $requete8->bind_param("ss", $nom, $codeAleatoire);
             $requete8->execute();
+            $requete13 = $connexion->prepare("INSERT INTO rsociaux (nom, cookie) VALUES (?,?);");
+            $requete13->bind_param("ss", $nom, $codeAleatoire);
+            $requete13->execute();
             $requete9 = $connexion->prepare("INSERT INTO timepython (nom, cookie) VALUES (?,?);");
             $requete9->bind_param("ss", $nom, $codeAleatoire);
             $requete9->execute();
@@ -114,6 +117,9 @@ if (isset($_SESSION['ctfcookies']) and isset($_SESSION['ctfId']) ) {
             $requete12 = $connexion->prepare("INSERT INTO timeprogsql (nom, cookie) VALUES (?,?);");
             $requete12->bind_param("ss", $nom, $codeAleatoire);
             $requete12->execute();
+            $requete14 = $connexion->prepare("INSERT INTO timersociaux (nom, cookie) VALUES (?,?);");
+            $requete14->bind_param("ss", $nom, $codeAleatoire);
+            $requete14->execute();
             $idpython = $requete8->insert_id;
             $_SESSION['ctfId'] = $idAutoIncrement;
             $_SESSION['ctfIdprog'] = $idprog;

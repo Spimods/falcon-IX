@@ -40,6 +40,7 @@ if (isset($_SESSION['ctfcookies'])) {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/ace.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/ext-language_tools.js"></script>
     <link rel="stylesheet" href="../css/scrollbar.css">
+    <link rel="stylesheet" href="../css/select.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/ext-beautify.js"></script>
     <style>
         body {
@@ -78,8 +79,6 @@ if (isset($_SESSION['ctfcookies'])) {
             font-size: 18px;
             font-weight: bold;
         }
-
-
 
         #case {
             width: 96px;
@@ -248,6 +247,13 @@ if (isset($_SESSION['ctfcookies'])) {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
 
 <script>
+function remplacerCaracteresSpeciaux(chaine) {
+    let chaineModifiee = chaine.replace(/[éè]/gi, 'e').replace(/à/gi, 'a');
+    let chaineModifieend = chaineModifiee.toLowerCase();
+    return chaineModifieend;
+}
+
+
 var essai = 0
 function encryptValue(value, secretKey) {
     var key = CryptoJS.enc.Utf8.parse(secretKey);
@@ -259,8 +265,13 @@ function encryptValue(value, secretKey) {
 }
 
 function verifierValeur() {
-    var valeur = document.getElementById("inputval").value;
-    if ("JkSkNlkqYQrSJDbmmf8xSA==" == encryptValue(valeur, 1990) || "LAiGZGR5q8Osk9x1M8r5iQ==" == encryptValue(valeur, 1990) || "lgzQRBXxu3XvGJRxeuJXag==" == encryptValue(valeur, 1990) || "XMQHXnCk8lgWjftRAnQKwA==" == encryptValue(valeur, 1990)) {
+    var valeur = remplacerCaracteresSpeciaux(document.getElementById("inputval").value);
+    console.log(valeur)
+    let valeursAComparer = [
+        "LAiGZGR5q8Osk9x1M8r5iQ=="
+    ];
+
+    if (valeursAComparer.includes(encryptValue(valeur, 1990))) {
         document.getElementById("result").innerHTML = "Réponse correcte";
         document.getElementById("validButton").style.display = "initial";
         document.getElementById("runButton").style.display = "none";

@@ -89,7 +89,8 @@ if (isset($_SESSION['ctfcookies'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Score</title>
-    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../css/select.css">
+    <link rel="stylesheet" href="../css/main.css">
     <style>
         body {
             font-family: Arial, sans-serif;

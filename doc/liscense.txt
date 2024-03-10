@@ -1,0 +1,28 @@
+Images :
+-	Bing Images (images générées par IA) : https://www.bing.com/images 
+-	Logo Lycée Frédéric Ozanam (./images/ad.png) : https://file.diplomeo-static.com/file/00/00/01/39/13929.svg 
+-	Image de fond (./images/bg.png) : image libre de droits disponible sur internet
+-	Images pour les réseaux sociaux (./images/imageheloise.png, img.png) : https://thispersondoesnotexist.com 
+
+Code :
+-	Lampe présente pour le Python (./python/) : https://codepen.io/joebocock/pen/eYZKOjR 
+-	Interface Win95 V1.0, adaptation du niveau des nouveaux utilisateurs (./start/index.html) : https://codepen.io/fizzypop109/pen/Kjbbjq 
+-	Tuto CSS Glitch Effect (toutes les pages principales) : https://tympanus.net/codrops/2017/12/21/css-glitch-effect 
+
+Font :
+-	Doctor Glitch (./font/Doctor Glitch.otf) : https://www.dafont.com/doctor-glitch.font 
+-	PhelixBoomgartner (./font/PhelixBoomgartner.otf)
+-	Roboto : https://fonts.google.com/specimen/Roboto 
+
+Librairies :
+-	Ace.js (Éditeur de code en JS pour différents langages, utilisé pour le Python, SQL, HTML et CSS) : https://ace.c9.io 
+-	confetti.browser.min.js (confettis utilisés pour tous les SAVE.php) : https://github.com/catdad/canvas-confetti 
+-	bootstrap4-neon-glow.min.css (pour effet de sélection sur la page ./intro.html) : https://hackerthemes.com/bootstrap-themes/demo/neon-glow 
+
+
+* Joe Bocock
+* Kyla
+* AshAwe
+* Manoela Ilic
+* Ajax.org
+* Catdad

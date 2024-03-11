@@ -2,19 +2,8 @@
 
 session_start();
 
-$serveur = "localhost";
-$utilisateur = "root";
-$motDePasse = "";
-$baseDeDonnees = "ctf";
-
-date_default_timezone_set('Europe/Paris');
-
-$connexion = new mysqli($serveur, $utilisateur, $motDePasse, $baseDeDonnees);
-
-if ($connexion->connect_error) {
-    die("Échec de la connexion à la base de données : " . $connexion->connect_error);
-}
-$liste = array(
+require '../connect.php';
+date_default_timezone_set('Europe/Paris');$liste = array(
     "etape1" => "key1",
     "etape2" => "key2",
     "etape3" => "key3",

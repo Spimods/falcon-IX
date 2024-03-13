@@ -1,26 +1,6 @@
 <?php
-$indice = $_GET['chiffres'];
-session_start();
-
-require '../connect.php';
-
-
-date_default_timezone_set('Europe/Paris');
-
-
-
-
-if (isset($_SESSION['ctfcookies']) ) {
-    $idcookie = $_SESSION['ctfcookies'];
-    $name = $_SESSION['ctfNOM'];
-    $requete = $connexion->prepare("INSERT INTO skills (nom, skills, cookie) VALUES (?, ?, ?)");
-    $requete->bind_param("sss", $name, $indice, $idcookie);
-    $requete->execute();
-    $requeteuptade = $connexion->prepare("UPDATE ctfuser SET finish = 1 WHERE cookie = ?");
-    $requeteuptade->bind_param("s", $idcookie);
-    $requeteuptade->execute();
-
-}
+$indice = $_GET['chiffre'];
+echo $indice;
 
 $listeIndices = str_split($indice);
 $php = ($listeIndices[0]-1) * 100 / 3;
@@ -30,15 +10,15 @@ $js = ($listeIndices[6]-1) * 100 / 3;
 $sql = ($listeIndices[8]-1) * 100 / 3;
 ?>
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head> 
-<title>Ozanam CyberQuest | Skills</title>
-<link rel="preconnect" href="https://fonts.gstatic.com">
+  <title>Snowlake</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-
-<style>
-:root {
+  <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+  
+  <style>
+   :root { 
     --color-violet : #964688;
 	--color-red: #d75959; 
 	--color-yellow: #f5c463;
@@ -46,6 +26,7 @@ $sql = ($listeIndices[8]-1) * 100 / 3;
     --color-blue: #5ca7db;
     --color-blue: #5ca7db; 
     --rgb-black: 0, 0, 0;
+	 
 }
     *{
         color: white;
@@ -108,9 +89,9 @@ background-image: linear-gradient(147deg, #000000 0%, #2c3e50 74%);
     top: 0;
     left: 0;
     margin: 0;
-    font-size: 40px;
-    display: flex;
-    align-items: flex-end;
+    font-size: 40px;     
+    display: flex;     
+    align-items: flex-end;     
     justify-content: center;
     color: white !important;
     font-weight: bold;
@@ -121,127 +102,111 @@ background-image: linear-gradient(147deg, #000000 0%, #2c3e50 74%);
     font-size: 20px;
     padding-left: 2px;
 }
-
+ 
+  
+ 
+ 
 .progressbar.red svg path:last-child {
     stroke: var(--color-red)
 }
-
+ 
 .progressbar.yellow svg path:last-child {
     stroke: var(--color-yellow)
 }
 .progressbar.green svg path:last-child {
     stroke: var(--color-green)
 }
+ 
+ 
+ 
+ 
 .progressbar.blue svg path:last-child {
     stroke: var(--color-blue)
 }
 .progressbar.violet svg path:last-child {
     stroke: var(--color-violet)
 }
-h5{
-    background: transparent;
-    padding: 10px;
-    width: 75%;
-    margin: 0 auto;
-    border-radius: 50px;
-    border: 2px solid #ebebeb;
-    font-size: 17px;
-    color: white;
-    cursor: pointer;
-}
-h5:hover {
-    background: #ebebeb;
-    color: #161F28;
-}
-p{
-    margin-top: 25px;
-}
-.row {
-    flex-wrap: nowrap !important;
-}
-@media (min-width: 768px){
+ 
+    h5{
+        background: transparent;
+        padding: 10px;
+        width: 75%;
+        margin: 0 auto;
+        border-radius: 50px;
+        border: 2px solid #ebebeb;
+        font-size: 17px;
+        color: white;
+    }
+    p{
+        margin-top: 25px;
+    }
+    .row {
+      flex-wrap: nowrap !important; 
+    }
+    @media (min-width: 768px){
     .offset-md-1 {
-        margin-left: -20px !important;
+        margin-left: -20px !important; 
     }
 }
-.validation {
-    top: 78%;
-    background: transparent;
-    padding: 7px;
-    width: 10%;
-    margin: 0 auto;
-    border-radius: 50px;
-    border: 2px solid #ebebeb;
-    font-size: 17px;
-    color: white;
-    text-align: center;
-    left: 45%;
-    position: fixed;
-    cursor: pointer;
-    pointer-events: pointer;
-    text-decoration: none;
-}
-.validation:hover {
-    text-decoration: none;
-    background-color: white;
-    color: #273848;
-}
-
     </style>
 </head>
 <body>
+  
     <div class="wrapper image-wrapper">
     <div class="container inner">
-        <div class="row">
+      <div class="row">
         <div class="col-md-10 offset-md-1">
         <br><br><br>
-            <div class="row text-center">          
-            <div class="col-lg-3">
+           <div class="row text-center">          
+          <div class="col-lg-3">
             <div class="progressbar circle blue" data-value="<?php echo $css; ?>"></div>
             <h5>CSS</h5>
             <p>Le CSS stylise les éléments HTML d'une page web.</p>
-        </div>
-        <div class="col-lg-3">
+          </div>
+           
+          <div class="col-lg-3">
             <div class="progressbar circle green" data-value="<?php echo $js; ?>"></div>
             <h5>JavaScript</h5>
-                <p>JavaScript est pour ajouter de l'interactivité et manipuler le contenu des pages.</p>
-                </div>
+              <p>JavaScript est pour ajouter de l'interactivité et manipuler le contenu des pages.</p>
+              </div>
                 
-            <div class="col-lg-3">
+              <div class="col-lg-3">
                 <div class="progressbar circle red" data-value="<?php echo $html; ?>"></div>
                 <h5>HTML</h5>
                 <p>HTML est le langage standard utilisé pour créer et structurer le contenu des pages web.</p>
-            </div>
-            <div class="col-lg-3">
+              </div>
+               
+              <div class="col-lg-3">
                 <div class="progressbar circle yellow" data-value="<?php echo $php; ?>"></div>
                 <h5>PHP</h5>
                 <p>PHP génère du contenu HTML côté serveur pour des sites web dynamiques.</p>
-            </div>
+              </div>
 
-            <div class="col-lg-3">
+              <div class="col-lg-3">
                 <div class="progressbar circle violet" data-value="<?php echo $sql; ?>"></div>
                 <h5>SQL</h5>
                 <p>SQL est utilisé pour gérer et manipuler des bases de données relationnelles.</p>
-            </div>
-            </div>
-            </div>
+              </div>
+           </div>
+         </div>
         </div>
         </div>
     </div>
-<div style="width: 100%;">
-<a class="validation" href="../home.php">Continuer</a>
-</div>
-<script src="https://code.jquery.com/jquery-2.2.4.js"></script> 
 
-<script src="progressbar.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.3/waypoints.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Counter-Up/1.0.0/jquery.counterup.min.js"></script>
-
-
-
-<script>
+  
+  <script src="https://code.jquery.com/jquery-2.2.4.js"></script> 
+  
+  <script src="progressbar.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.3/waypoints.min.js"></script>  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Counter-Up/1.0.0/jquery.counterup.min.js"></script>
+  
+  
+  
+  <script>
     $(document).ready(function() {
 	'use strict';
+	 
+	 
 	var $pline = $('.progressbar.line');
 	var $pcircle = $('.progressbar.circle');
 	$pline.each(function(i) {

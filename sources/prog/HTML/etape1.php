@@ -1,3 +1,25 @@
+<?php
+session_start();
+
+require '../../connect.php';
+date_default_timezone_set('Europe/Paris');
+if (isset($_SESSION['ctfcookies'])) {
+    $valeurCookie = $_SESSION['ctfcookies'];
+    $valeurCookieNOM = $_SESSION['ctfNOM'];
+    $requeteverif = $connexion->prepare("SELECT key1 FROM timeproghtml WHERE cookie = ?");
+    $requeteverif->bind_param("s",$valeurCookie);
+    $requeteverif->execute();
+    $requeteverif->bind_result($valeur1);
+    $requeteverif->fetch();
+    if ($valeur1 != NULL) {
+        header('Location: timestartetape2.php');
+        exit();
+    } else {
+        $requeteverif->close();
+    }
+}
+
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>

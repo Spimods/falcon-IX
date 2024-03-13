@@ -1,13 +1,6 @@
 <?php
 session_start();
-$serveur = "localhost";
-$utilisateur = "root";
-$motDePasse = "";
-$baseDeDonnees = "ctf";
-$connexion = new mysqli($serveur, $utilisateur, $motDePasse, $baseDeDonnees);
-if ($connexion->connect_error) {
-    die("Échec de la connexion à la base de données : " . $connexion->connect_error);
-}
+require 'connect.php';
 if (isset($_SESSION['ctfcookies']) && isset($_SESSION['ctfId'])) {
     $valeurCookie = $_SESSION['ctfcookies'];
     $valeurCookieID = $_SESSION['ctfId'];
